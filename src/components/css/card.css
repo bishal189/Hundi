@@ -37,3 +37,25 @@ font-weight:800;
 .name_text{
     font-weight:600;
 }
+
+.Maincard{
+width: 420px;
+height: 287px;
+background-color: #EDEDED;
+
+}
+.MainText{
+    color:#2E8A99;
+}
+.custom-dropdown-menu{
+    width: 20px;
+
+}
+.dropdownItem{
+    background-color: #ededed;
+
+}
+.dropdownItem:hover{
+background-color:#2ec9e0;
+
+}

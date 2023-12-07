@@ -1,0 +1,65 @@
+/* Reset list styles */
+.logo{
+    font-size:1.5rem;
+    color:#2e8a99;
+    padding:20px 0px 10px 20px;
+    font-weight:800;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-top:30px;
+    padding-bottom:25px;
+
+  }
+  
+  /* Style for the sidebar ul */
+  .sidebar ul {
+    background-color: #ededed; /* Sidebar background color */
+  }
+   .li-icons{
+    display:flex;
+    align-items: center;
+    width:100%;
+
+  }
+  /* Style for the sidebar li items */
+ 
+  
+  /* Style for the sidebar links */
+  .sidebar a {
+    text-decoration: none;
+    color: #575757; /* Link text color */
+    font-size: 16px;
+    padding:10px;
+    padding-left: 50px;
+    display: block;
+    transition: 0.3s; /* Add a smooth transition effect */
+    width: 100%;
+  }
+  
+  /* Change link color on hover */
+  .sidebar .li-icons:hover {
+    background-color: #2e8a99; /* Change the background color on hover */
+    color:#fff;
+   
+  }
+
+  .sidebar .li-icons:hover a{
+    color:#fff;
+  }
+  
+  li .inner{
+    padding-left:90px;
+    font-size:.80rem;
+    color:#777575;
+
+  }
+ 
+   .li-icons a.active {
+      color: #fff;
+    background-color: #2e8a99;
+  }
+  
