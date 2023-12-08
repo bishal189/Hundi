@@ -93,15 +93,18 @@ export const BankCard = (props) => {
 
 
 
-export const SenderCard = () => {
+export const SenderCard = (props) => {
   const [show,setShow]=useState(false)
-
+  const handleChange=(e)=>{
+    props.setinputAmount(e.target.value)
+    console.log(e.target.value)
+  }
   return (
     <>
     { show && <SenderModel setShow={setShow} />}
 
 
-      <Card className="Maincard" style={{ margin: "20px" }}>
+      <Card className="Maincard" style={{ marginBottom: "30px" }}>
         <Card.Body>
             <IoLogOutOutline style={{ fontSize: "1.5rem" }} /> 
             <span style={{fontSize:'1.2rem',marginTop:'50px'}}>Sender</span>
@@ -127,16 +130,16 @@ export const SenderCard = () => {
     </InputGroup>
 
           <InputGroup className="mb-3 mt-4">
-            <CustomForm placeholder="Enter amount" name="amount" />
+            <CustomForm onChange={handleChange}  placeholder="Enter amount" name="amount" />
             <DropdownButton
               as={InputGroup.Append}
               variant="outline-secondary"
-              title="NPR" // Default currency
+              title={props.senderCountry} // Default currency
               id="input-group-dropdown-2"
               style={{ marginRight: "5px", backgroundColor: "#ededed" }} // Add margin-right to move it inside
             >
-              <Dropdown.Item className="dropdownItem">NPR</Dropdown.Item>
-              <Dropdown.Item className="dropdownItem">USD</Dropdown.Item>
+              <Dropdown.Item onClick={()=>props.setSenderCountry('NPR')} className="dropdownItem">NPR</Dropdown.Item>
+              <Dropdown.Item onClick={()=>props.setSenderCountry('USD')} className="dropdownItem">USD</Dropdown.Item>
               {/* Add more currency options as needed */}
             </DropdownButton>
           </InputGroup>
@@ -150,15 +153,13 @@ export const SenderCard = () => {
 
 
 // for the reciver card 
-export const ReciverCard = () => {
+export const ReceiverCard = (props) => {
   const [show,setShow]=useState(false)
-
+  
   return (
     <>
     { show && <ReceiverModel setShow={setShow} />}
-
-
-      <Card className="Maincard" style={{ margin: "20px" }}>
+      <Card className="Maincard" style={{ marginBottom: "30px" }}>
         <Card.Body>
             <IoLogOutOutline style={{ fontSize: "1.5rem" }} /> 
             <span style={{fontSize:'1.2rem',marginTop:'50px'}}>Recipent</span>
@@ -184,16 +185,16 @@ export const ReciverCard = () => {
     </InputGroup>
 
           <InputGroup className="mb-3 mt-4">
-            <CustomForm readonly="true" placeholder="Recepient Will Get" name="amount" />
+            <CustomForm val={props.outputAmount.toFixed(2)} readonly={true} placeholder="Recepient Will Get" name="amount" />
             <DropdownButton
               as={InputGroup.Append}
               variant="outline-secondary"
-              title="NPR" // Default currency
+              title={props.receiverCountry} // Default currency
               id="input-group-dropdown-2"
               style={{ marginRight: "5px", backgroundColor: "#ededed" }} // Add margin-right to move it inside
             >
-              <Dropdown.Item className="dropdownItem">NPR</Dropdown.Item>
-              <Dropdown.Item className="dropdownItem">USD</Dropdown.Item>
+              <Dropdown.Item onClick={()=>props.setReceiverCountry('NPR')} className="dropdownItem">NPR</Dropdown.Item>
+              <Dropdown.Item onClick={()=>props.setReceiverCountry('USD')} className="dropdownItem">USD</Dropdown.Item>
               {/* Add more currency options as needed */}
             </DropdownButton>
           </InputGroup>

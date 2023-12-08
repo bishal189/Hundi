@@ -6,13 +6,12 @@ import { FaArrowRight, FaRegCopy } from "react-icons/fa";
 import { CustomForm } from "./formInput";
 import { TransferSendCard, TransferReceiveCard, BankCard } from "./card";
 
-export function PayModel() {
-  const [show, setShow] = useState(true);
+export function TransferModel(props) {
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => props.setShow(false);
   return (
     <>
-      <Modal show={show} onHide={handleClose} size="xl" centered>
+      <Modal show={true} onHide={handleClose} size="xl" centered   backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title style={{ marginLeft: "auto" }}>
             Confirmation and payment
