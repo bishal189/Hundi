@@ -5,7 +5,7 @@ import './App.css'
 import { ReceiverModel, SenderModel} from './components/model'
 import {  SenderCard, TransferReceiveCard, TransferSendCard} from './components/card'
 import { MobileSideBar, SideBar } from './components/sidebar';
-import Transfer from './pages/transfer';
+import {Transfer} from './pages/transfer';
 import { UserLayout } from './pages/userLayout';
 function App() {
 

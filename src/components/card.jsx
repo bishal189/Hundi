@@ -97,7 +97,6 @@ export const SenderCard = (props) => {
   const [show,setShow]=useState(false)
   const handleChange=(e)=>{
     props.setinputAmount(e.target.value)
-    console.log(e.target.value)
   }
   return (
     <>

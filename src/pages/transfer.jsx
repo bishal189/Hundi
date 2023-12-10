@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { SenderCard, ReceiverCard } from "../components/card";
 import { ReceiverModel, TransferModel } from "../components/model";
 
-function Transfer() {
+export function Transfer() {
     const [show,setShow]=useState(false);
     const [exchangeRateArr,setExchangeRateArr]=useState(null)
     const [exchangeRate,setExchangeRate]=useState(0)
@@ -17,7 +17,7 @@ function Transfer() {
       const getRate = async () => {
         try {
           const response = await axios.get(
-    ` https://v6.exchangerate-api.com/v6/a088c8583f32b5f3e682b9d5/latest/${senderCountry}`)
+    `https://v6.exchangerate-api.com/v6/a088c8583f32b5f3e682b9d5/latest/${senderCountry}`)
 
           setExchangeRateArr(response.data.conversion_rates);
           exchangeRateArr&&setExchangeRate(exchangeRateArr[receiverCountry])
@@ -37,11 +37,7 @@ function Transfer() {
 
     useEffect(()=>{
       const rateCalculator=()=>{
-        console.log(exchangeRateArr)
-        console.log("input"+inputAmount)
-        console.log("echa"+exchangeRate)
         setoutputAmount(inputAmount*exchangeRate)
-        console.log("output"+outputAmount)
       }
       rateCalculator()
     },[inputAmount])
@@ -74,4 +70,3 @@ function Transfer() {
   );
 }
 
-export default Transfer;
