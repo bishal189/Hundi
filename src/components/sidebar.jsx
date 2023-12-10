@@ -109,6 +109,7 @@ export const MobileSideBar = () => {
         variant="outline-dark"
         className="d-md-none"
         onClick={handleToggleSidebar}
+        style={{fontSize:'1.5rem',position:'absolute',top:'20px',left:'25px'}}
       >
         ☰
       </Button>

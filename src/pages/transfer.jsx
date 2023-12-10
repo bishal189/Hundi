@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button,Col } from "react-bootstrap";
 import { SenderCard, ReceiverCard } from "../components/card";
 import { ReceiverModel, TransferModel } from "../components/model";
 
@@ -50,9 +50,15 @@ function Transfer() {
     { show && <TransferModel setShow={setShow}/> }
       <div style={{ backgroundColor: "#dfe6ee", padding: "30px 0px 0px 80px" }}>
         <p style={{ color: "#797b7d", fontSize: "1.2rem" ,paddingLeft:'5%',paddingBottom:'0px'}}>Money Transfer</p>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div  style={{ display: "flex", justifyContent: "space-around" }}>
+          <Col xs={6} md={6}>
+
           <SenderCard senderCountry={senderCountry} setinputAmount={setinputAmount} setSenderCountry={setSenderCountry}/>
+          </Col>
+          <Col md={6}>
+
           <ReceiverCard receiverCountry={receiverCountry} outputAmount={outputAmount} setReceiverCountry={setReceiverCountry}/>
+          </Col>
         </div>
         
         <div style={{textAlign:'center'}}>
