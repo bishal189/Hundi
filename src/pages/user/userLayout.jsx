@@ -7,7 +7,7 @@ export function UserLayout(props){
 return(
     <>
     <div className="d-flex">
-        <Col md={3} style={{backgroundColor:"rgb(247,249,251)"}}>
+        <Col md={3} style={{backgroundColor:"#ededed"}}>
         <SideBar />
         <MobileSideBar />
     </Col>

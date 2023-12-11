@@ -6,6 +6,7 @@ import { FaArrowRight, FaRegCopy } from "react-icons/fa";
 import { CustomForm } from "./formInput";
 import { TransferSendCard, TransferReceiveCard, BankCard } from "./card";
 import _ from 'lodash';
+import progress_1 from "../../assets/progress-1.png";
 
 // ...
 
@@ -15,6 +16,7 @@ import _ from 'lodash';
 export function TransferModel(props) {
 
   const handleClose = () => props.setShow(false);
+
   return (
     <>
       <Modal show={true} onHide={handleClose} size="xl" centered   backdrop="static" keyboard={false}>
@@ -40,7 +42,7 @@ export function TransferModel(props) {
 
             <Row style={{ marginBottom: "20px" }}>
               <Col style={{ marginLeft: "8%" }} md={4} sm={6}>
-                <TransferSendCard />
+                <TransferSendCard receiver={props.receiver} exchangeRate={props.exchangeRate} inputAmount={props.inputAmount} sender={props.sender}/>
               </Col>
               <Col
                 xs={2}
@@ -49,7 +51,7 @@ export function TransferModel(props) {
                 <FaArrowRight style={{ fontSize: "2rem" }} />
               </Col>
               <Col style={{ marginLeft: "50px" }} md={4} sm={6}>
-                <TransferReceiveCard />
+                <TransferReceiveCard outputAmount={props.outputAmount} receiver={props.receiver}/>
               </Col>
             </Row>
           </div>
@@ -63,7 +65,7 @@ export function TransferModel(props) {
                 }}
               >
                 Please transfer funds from your personaL account to one of our
-                accountw below.
+                accounts below.
                 <br />
                 If we don’t recieve the payment in 15 minutes, the transaction
                 will be canceled.
@@ -71,12 +73,13 @@ export function TransferModel(props) {
             </Row>
 
             <Row style={{ justifyContent: "space-around" }}>
-              <Col xs={4}>
-                <BankCard />
+              {props.bankCards.map((bankCard)=>(
+                <Col xs={4}>
+                <BankCard bankCard={bankCard}/>
               </Col>
-              <Col xs={4}>
-                <BankCard />
-              </Col>
+              ))}
+              
+             
             </Row>
 
             <Row style={{ justifyContent: "center" }}>
@@ -143,7 +146,7 @@ export function TransferModel(props) {
                         fontWeight: "800",
                       }}
                     >
-                      500.00 RUB
+                      {props.inputAmount} {props.sender.senderCurrencyCode}
                     </p>
                   </div>
                   <div style={{ marginTop: "2rem" }}>
@@ -153,11 +156,20 @@ export function TransferModel(props) {
                         border: "1px solid #2e8a99",
                         color: "#2e8a99",
                       }}
+                      onClick={props.cancelTransaction}
                     >
                       Cancel Payment
                     </Button>{" "}
                     <Button
                       style={{ backgroundColor: "#2e8a99", marginLeft: "1rem" }}
+                      onClick={()=>{
+                        handleClose()
+                        props.setProgress(progress_1)
+
+                        Object.fromEntries(
+                          Object.entries(props.sender).map(([key]) => [key, ''])
+                        );
+                      }}
                     >
                       I have already Paid
                     </Button>{" "}

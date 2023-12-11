@@ -20,19 +20,19 @@ export const TransferSendCard = (props) => {
         <Card.Text>
           <div className="spacer">
             <p className="muted_color">Amount Sent: </p>
-            <p className="money_color">550.0rb</p>
+            <p className="money_color">{props.inputAmount} {props.sender.senderCurrencyCode}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Sender Name: </p>
-            <p className="text_color">Thomas Henry</p>
+            <p className="text_color">{props.sender.senderFirstName} {props.sender.senderLastName}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Comission: </p>
-            <p className="text_color">0 rb</p>
+            <p className="text_color">0 {props.sender.senderCurrencyCode}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Average Rate: </p>
-            <p className="text_color">1 rub=0.65nig</p>
+            <p className="text_color">1 {props.sender.senderCurrencyCode}={props.exchangeRate} {props.receiver.receiverCurrencyCode}</p>
           </div>
         </Card.Text>
       </Card.Body>
@@ -47,20 +47,20 @@ export const TransferReceiveCard = (props) => {
         <Card.Text>
           <div className="spacer">
             <p className="muted_color">Recepient Get: </p>
-            <p className="money_color">550.0rb</p>
+            <p className="money_color">{props.outputAmount}</p>
           </div>
 
           <div className="spacer">
             <p className="muted_color">Recepient Name: </p>
-            <p className="text_color">Thomas Henry</p>
+            <p className="text_color">{props.receiver.receiverFullName}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Recepient Bank: </p>
-            <p className="text_color">0 rb</p>
+            <p className="text_color">{props.receiver.receiverBankName}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Account Number: </p>
-            <p className="text_color">1 rub=0.65nig</p>
+            <p className="text_color">{props.receiver.receiverBankAccountNumber}</p>
           </div>
         </Card.Text>
       </Card.Body>
@@ -73,17 +73,17 @@ export const BankCard = (props) => {
     <Card className="bank_card">
       <Card.Body>
         <Card.Text>
-          <p>Sberbank</p>
+          <p>{props.bankCard.bankName}</p>
           <p
             style={{ marginTop: "30px", marginRight: "10px" }}
             className="account_text"
           >
-            2202 0r50 e0r0 0554
+            {props.bankCard.bankAccountNumber}
             <FaRegCopy style={{ marginLeft: "30px" }} />
           </p>
           <div style={{ marginTop: "30px" }}>
-            <p className="name_text">Sandesh</p>
-            <p>Rub</p>
+            <p className="name_text">{props.bankCard.companyWorker.name}</p>
+            <p>{props.bankCard.currencyCode}</p>
           </div>
         </Card.Text>
       </Card.Body>
@@ -192,7 +192,7 @@ export const ReceiverCard = (props) => {
         name="amount"
         placeholder={props.outputAmount.toFixed(2)||"Recepient will get"}
         className="form_custom"
-        readOnly="true"
+        readOnly={true}
 
         
       />   
