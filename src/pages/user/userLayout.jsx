@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
-import { HomeHeader } from "../components/homeheader";
-import { MobileSideBar, SideBar } from "../components/sidebar";
+import { HomeHeader } from "../../components/user/homeheader";
+import { MobileSideBar, SideBar } from "../../components/user/sidebar";
 
 
 export function UserLayout(props){

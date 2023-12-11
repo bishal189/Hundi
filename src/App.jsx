@@ -2,11 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css'
-import { ReceiverModel, SenderModel} from './components/model'
-import {  SenderCard, TransferReceiveCard, TransferSendCard} from './components/card'
-import { MobileSideBar, SideBar } from './components/sidebar';
-import {Transfer} from './pages/transfer';
-import { UserLayout } from './pages/userLayout';
+import {Transfer} from './pages/user/transfer';
+import { UserLayout } from './pages/user/userLayout';
 function App() {
 
   return (
