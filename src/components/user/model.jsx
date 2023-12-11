@@ -84,7 +84,7 @@ export function TransferModel(props) {
                 style={{ backgroundColor: "#fff", borderRadius: "4px" }}
                 xs={9}
               >
-                <p
+                <span
                   style={{
                     color: "#767676",
                     fontSize: "1rem",
@@ -93,7 +93,7 @@ export function TransferModel(props) {
                   }}
                 >
                   Transfer Reference
-                </p>
+                </span>
 
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -106,9 +106,9 @@ export function TransferModel(props) {
                   </p>
 
                   <div className="d-flex">
-                    <p style={{ fontSize: "1.5rem", color: "#2e8a99" }}>
+                    <span style={{ fontSize: "1.5rem", color: "#2e8a99" }}>
                       #7849
-                    </p>
+                    </span>
                     <FaRegCopy
                       style={{ fontSize: "1.5rem", color: "#767676" }}
                     />

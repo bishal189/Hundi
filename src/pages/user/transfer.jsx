@@ -6,6 +6,8 @@ import {  TransferModel } from "../../components/user/model";
 import axiosInstance from '../../axiosInstance';
 
 export function Transfer() {
+    const [csrf_token,set_csrfToken]=useState(null)
+    const [error,showError]=useState(null)
     const [show,setShow]=useState(false);
     const [exchangeRateArr,setExchangeRateArr]=useState(null)
     const [exchangeRate,setExchangeRate]=useState(0)
@@ -27,6 +29,7 @@ export function Transfer() {
       senderCurrencyCode:'',
       
     })
+    
     //holds all receiver data
     const [receiver,setReceiver]=useState({
       receiverFullName:'',
@@ -36,9 +39,53 @@ export function Transfer() {
     })
 
     const startTransfer=async()=>{
-      get_token=axiosInstance.get('/auth/get_token')
-      console.log(get_token)
+     try{
+      //  const get_token=await axiosInstance.get('/auth/get_token')
+      // set_csrfToken(get_token.data.csrf_token)
+      console.log(csrf_token)
+      const isAnyValueEmptySender = Object.values(sender).some((value) => value === '');
+      const isAnyValueEmptyReceiver = Object.values(receiver).some((value) => value === '');
+      if (isAnyValueEmptyReceiver||isAnyValueEmptySender||inputAmount<=0){
+        showError("Some Values are Empty")
+        alert("error for now")
+
+      }else{
+          setShow(true)
+          const logindata={
+            email_or_phone:"san@gmail.com",
+            password:"sandesh"
+          }
+          
+          const login = await axiosInstance.post('/auth/login/', logindata);
+          const { access } = login.data.token;
+          
+          // Store the access token in localStorage or as needed
+          localStorage.setItem('accessToken', access); 
+          const accessToken = localStorage.getItem('accessToken');
+
+          const response = await axios.get('http://127.0.0.1:8000/auth/verify_user/', {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              });
+          console.log(response);
+          const dataToSend = {
+            sender: sender,
+            receiver: receiver,
+            sentAmount: inputAmount,
+            receivedAmount:outputAmount
+          };
+      
+          const data=await axiosInstance.post('/transaction/newTransaction/',dataToSend,{
+            headers:{
+              Authorization:`Bearer ${acessToken}`
+            }
+          })
+      }
+    }catch(error){
+      console.log('error'+error)
     }
+  }
  
     useEffect(()=>{
       //get Rate from api everytime sender country changes
@@ -79,6 +126,7 @@ export function Transfer() {
         setoutputAmount(inputAmount*exchangeRate)
       }
       rateCalculator()
+      console.log(outputAmount)
     },[inputAmount])
 
 
@@ -108,7 +156,6 @@ export function Transfer() {
               marginBottom:"100px"
             }}
             onClick={()=>{
-              setShow(true)
               startTransfer()
             }}
           >

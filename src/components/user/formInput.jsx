@@ -8,7 +8,7 @@ export function CustomForm(props){
         defaultValue={props.val}
         type={props.placeholder!=="Email ID"?"text":"email"}
         name={props.name}
-        placeholder={props.val||props.placeholder}
+        placeholder={props.placeholder}
         aria-label={props.placeholder}
         className="form_custom"
         readOnly={props.readonly}

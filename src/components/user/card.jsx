@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/card.css";
 import {
   Card,
+  Form,
   InputGroup,
   DropdownButton,
   Dropdown,
@@ -184,7 +185,18 @@ export const ReceiverCard = (props) => {
     </InputGroup>
 
           <InputGroup className="mb-3 mt-4">
-            <CustomForm val={props.outputAmount.toFixed(2)} readonly={true} placeholder="Recepient Will Get" name="amount" />
+      <Form.Control
+           onChangeCapture={props.onChange&&props.onChange}
+        size="lg"
+        type="text"
+        name="amount"
+        placeholder={props.outputAmount.toFixed(2)||"Recepient will get"}
+        className="form_custom"
+        readOnly="true"
+
+        
+      />   
+    
             <DropdownButton
               as={InputGroup.Append}
               variant="outline-secondary"
