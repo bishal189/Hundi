@@ -26,8 +26,7 @@ export function TransferModel(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ padding: "0px" }}>
-          <div style={{ marginTop: "20px" }}>
-            <Row>
+            <Row style={{ marginTop: "20px" }}>
               <span
                 style={{
                   color: "#767676",
@@ -54,7 +53,7 @@ export function TransferModel(props) {
                 <TransferReceiveCard outputAmount={props.outputAmount} receiver={props.receiver}/>
               </Col>
             </Row>
-          </div>
+          
           <div style={{ backgroundColor: "#dfe6ee" }}>
             <Row>
               <span
@@ -73,8 +72,8 @@ export function TransferModel(props) {
             </Row>
 
             <Row style={{ justifyContent: "space-around" }}>
-              {props.bankCards.map((bankCard)=>(
-                <Col xs={4}>
+              {props.bankCards.map((bankCard,index)=>(
+                <Col  key={index}xs={4}>
                 <BankCard bankCard={bankCard}/>
               </Col>
               ))}

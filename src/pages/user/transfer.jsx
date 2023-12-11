@@ -60,8 +60,8 @@ export function Transfer() {
         inputAmount <= 0
       ) {
         showError("Some Values are Empty");
-        alert("error for now fill all values");
-      } else {
+       // alert("error for now fill all values");
+      } 
         setShow(true);
         const bankCardsResponse=await axiosInstance.get(`/transaction/getBankCards/${sender.senderCurrencyCode}`)
         setBankCards(bankCardsResponse.data.data)
@@ -85,7 +85,7 @@ export function Transfer() {
           }
         );
         setTransactChange((prev)=>!prev)
-      }
+      
     } catch (error) {
       console.log("error" + error);
     }
