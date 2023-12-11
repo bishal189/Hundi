@@ -170,7 +170,14 @@ export const SenderModel = (props) => {
 
   const handleClose = () => props.setShow(false);
   const handleShow = () => setShow(true);
-
+//handling sender change data
+const handleSenderChange=(e)=>{
+  const {name,value}=e.target
+  props.setSenderData({
+    ...props.sender,
+    [name]:value
+  })
+}
   return (
     <>
       <Modal show="true" onHide={handleClose} className="custom-modal" centered backdrop="static" keyboard={false}>
@@ -190,22 +197,25 @@ export const SenderModel = (props) => {
               <Col xs={4}>
                 <CustomForm
                   placeholder="Full Legal First Name"
-                  name="firstName"
+                  onChange={handleSenderChange}
+                  name="senderFirstName"
                 />
               </Col>
               <Col xs={4}>
                 <CustomForm
                   placeholder="Full Legal Last Name"
-                  name="lastName"
+                  onChange={handleSenderChange}
+
+                  name="senderLastName"
                 />
               </Col>
             </Row>
             <Row style={{ justifyContent: "space-around", marginTop: "20px" }}>
               <Col xs={4}>
-                <CustomForm placeholder="Email ID" name="email" />
+                <CustomForm   onChange={handleSenderChange} placeholder="Email ID" name="senderEmail" />
               </Col>
               <Col xs={4}>
-                <CustomForm placeholder="Telephone Number" name="number" />
+                <CustomForm onChange={handleSenderChange} placeholder="Telephone Number" name="senderPhoneNumber" />
               </Col>
             </Row>
 
@@ -217,14 +227,14 @@ export const SenderModel = (props) => {
                 Your Address
               </p>
               <Col xs={4}>
-                <CustomForm placeholder="Country" name="country" />
+                <CustomForm onChange={handleSenderChange}  placeholder="Country" name="senderCountry" />
               </Col>
               <Col xs={4}>
-                <CustomForm placeholder="City" name="city" />
+                <CustomForm onChange={handleSenderChange} placeholder="City" name="senderCity" />
               </Col>
 
               <Col className="mt-3" xs={10}>
-                <CustomForm placeholder="Address" name="address" />
+                <CustomForm onChange={handleSenderChange} placeholder="Address" name="senderAddress" />
               </Col>
             </Row>
 

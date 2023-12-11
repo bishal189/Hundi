@@ -96,9 +96,11 @@ export const SenderCard = (props) => {
   const handleChange=(e)=>{
     props.setinputAmount(e.target.value)
   }
+  
+
   return (
     <>
-    { show && <SenderModel setShow={setShow} />}
+    { show && <SenderModel sender={props.sender} setSenderData={props.setSenderData} setShow={setShow} />}
 
 
       <Card className="Maincard" style={{ marginBottom: "30px" }}>
