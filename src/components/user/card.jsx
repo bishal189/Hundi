@@ -17,7 +17,6 @@ export const TransferSendCard = (props) => {
   return (
     <Card className="transfer_card">
       <Card.Body>
-        <Card.Text>
           <div className="spacer">
             <p className="muted_color">Amount Sent: </p>
             <p className="money_color">{props.inputAmount} {props.sender.senderCurrencyCode}</p>
@@ -34,7 +33,6 @@ export const TransferSendCard = (props) => {
             <p className="muted_color">Average Rate: </p>
             <p className="text_color">1 {props.sender.senderCurrencyCode}={props.exchangeRate} {props.receiver.receiverCurrencyCode}</p>
           </div>
-        </Card.Text>
       </Card.Body>
     </Card>
   );
@@ -44,7 +42,6 @@ export const TransferReceiveCard = (props) => {
   return (
     <Card className="transfer_card">
       <Card.Body>
-        <Card.Text>
           <div className="spacer">
             <p className="muted_color">Recepient Get: </p>
             <p className="money_color">{props.outputAmount}</p>
@@ -62,7 +59,6 @@ export const TransferReceiveCard = (props) => {
             <p className="muted_color">Account Number: </p>
             <p className="text_color">{props.receiver.receiverBankAccountNumber}</p>
           </div>
-        </Card.Text>
       </Card.Body>
     </Card>
   );
