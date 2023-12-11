@@ -68,7 +68,6 @@ export const BankCard = (props) => {
   return (
     <Card className="bank_card">
       <Card.Body>
-        <Card.Text>
           <p>{props.bankCard.bankName}</p>
           <p
             style={{ marginTop: "30px", marginRight: "10px" }}
@@ -81,7 +80,6 @@ export const BankCard = (props) => {
             <p className="name_text">{props.bankCard.companyWorker.name}</p>
             <p>{props.bankCard.currencyCode}</p>
           </div>
-        </Card.Text>
       </Card.Body>
     </Card>
   );
