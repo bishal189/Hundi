@@ -1,0 +1,4 @@
+.custom-modal .modal-dialog {
+    max-width: 65% !important; /* Set your custom width with !important */
+    margin: auto;
+  }
