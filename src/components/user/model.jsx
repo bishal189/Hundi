@@ -5,6 +5,12 @@ import { Row, Col, Button, Modal, Form } from "react-bootstrap";
 import { FaArrowRight, FaRegCopy } from "react-icons/fa";
 import { CustomForm } from "./formInput";
 import { TransferSendCard, TransferReceiveCard, BankCard } from "./card";
+import _ from 'lodash';
+
+// ...
+
+
+// ...
 
 export function TransferModel(props) {
 
@@ -167,9 +173,20 @@ export function TransferModel(props) {
 }
 
 export const SenderModel = (props) => {
-
+  const [error,setError]=useState(null)
   const handleClose = () => props.setShow(false);
-  const handleShow = () => setShow(true);
+
+  //form closing 
+  const isAnyValueEmpty = Object.values(props.sender).some((value) => value === '');
+
+  const handleCloseForm=()=>{
+    if (isAnyValueEmpty) {
+      setError("Some Fields are missing...Try after Filling Them")
+    }else{
+      handleClose()
+    }
+  }
+
 //handling sender change data
 const handleSenderChange=(e)=>{
   const {name,value}=e.target
@@ -178,6 +195,8 @@ const handleSenderChange=(e)=>{
     [name]:value
   })
 }
+// const handleSenderChange = _.debounce(handleSender, 1000);
+
   return (
     <>
       <Modal show="true" onHide={handleClose} className="custom-modal" centered backdrop="static" keyboard={false}>
@@ -186,6 +205,8 @@ const handleSenderChange=(e)=>{
         </Modal.Header>
 
         <Modal.Body>
+        {error&&<p style={{fontSize:"1rem",color:"red",marginLeft:"25%%"}}>{error}</p>}
+
           <div>
             <Row style={{ justifyContent: "space-around" }}>
               <p
@@ -196,6 +217,7 @@ const handleSenderChange=(e)=>{
               </p>
               <Col xs={4}>
                 <CustomForm
+                val={props.sender.senderFirstName}
                   placeholder="Full Legal First Name"
                   onChange={handleSenderChange}
                   name="senderFirstName"
@@ -203,6 +225,7 @@ const handleSenderChange=(e)=>{
               </Col>
               <Col xs={4}>
                 <CustomForm
+                  val={props.sender.senderLastName}
                   placeholder="Full Legal Last Name"
                   onChange={handleSenderChange}
 
@@ -212,10 +235,10 @@ const handleSenderChange=(e)=>{
             </Row>
             <Row style={{ justifyContent: "space-around", marginTop: "20px" }}>
               <Col xs={4}>
-                <CustomForm   onChange={handleSenderChange} placeholder="Email ID" name="senderEmail" />
+                <CustomForm  val={props.sender.senderEmail} onChange={handleSenderChange} placeholder="Email ID" name="senderEmail" />
               </Col>
               <Col xs={4}>
-                <CustomForm onChange={handleSenderChange} placeholder="Telephone Number" name="senderPhoneNumber" />
+                <CustomForm onChange={handleSenderChange} placeholder="Telephone Number" val={props.sender.senderPhoneNumber} name="senderPhoneNumber" />
               </Col>
             </Row>
 
@@ -227,14 +250,14 @@ const handleSenderChange=(e)=>{
                 Your Address
               </p>
               <Col xs={4}>
-                <CustomForm onChange={handleSenderChange}  placeholder="Country" name="senderCountry" />
+                <CustomForm onChange={handleSenderChange} val={props.sender.senderCountry} placeholder="Country" name="senderCountry" />
               </Col>
               <Col xs={4}>
-                <CustomForm onChange={handleSenderChange} placeholder="City" name="senderCity" />
+                <CustomForm onChange={handleSenderChange} placeholder="City" val={props.sender.senderCity}name="senderCity" />
               </Col>
 
               <Col className="mt-3" xs={10}>
-                <CustomForm onChange={handleSenderChange} placeholder="Address" name="senderAddress" />
+                <CustomForm onChange={handleSenderChange} placeholder="Address" val={props.sender.senderAddress} name="senderAddress" />
               </Col>
             </Row>
 
@@ -247,7 +270,7 @@ const handleSenderChange=(e)=>{
             >
               <Col xs={6}>
                 <div className="d-grid gap-6">
-                  <Button size="lg" style={{ backgroundColor: "#2e8a99" }}>
+                  <Button onClick={handleCloseForm}  size="lg" style={{ backgroundColor: "#2e8a99" }}>
                     Add New Sender
                   </Button>{" "}
                 </div>
@@ -260,19 +283,32 @@ const handleSenderChange=(e)=>{
   );
 };
 
-export const ReceiverModel = () => {
-    const [show, setShow] = useState(true);
+export const ReceiverModel = (props) => {
+  const handleClose = () => props.setShow(false);
+  const handleShow = () => setShow(true);
+  const [error,setError]=useState(null)
+    const handleReceiverChange=(e)=>{
+      const {name,value}=e.target
+      props.setReceiverData({...props.receiver,[name]:value})
+    }
+    //const handleReceiverChange = _.debounce(handleReceiver, 1000);
 
-    const handleClose = () => setShow(false);
-
+    const handleCloseForm=()=>{
+      if(props.receiver.receiverFullName==''||props.receiver.receiverBankAccountNumber==''||props.receiver.receiverBankName==''){
+          setError("Some Fields are missing...Try after Filling Them")
+      }else{
+        handleClose()
+      }
+    }
     return (
         <>
-        <Modal show={show} onHide={handleClose} className="custom-modal" centered>
+        <Modal show="true" onHide={handleClose} className="custom-modal" centered>
           <Modal.Header closeButton>
             <Modal.Title style={{ marginLeft: "auto" }}>New Recepient</Modal.Title>
           </Modal.Header>
   
           <Modal.Body>
+            {error&&<p style={{fontSize:"1rem",color:"red",marginLeft:"25%%"}}>{error}</p>}
             <div>
               <Row style={{ justifyContent: "space-around" }}>
                 <p
@@ -283,14 +319,18 @@ export const ReceiverModel = () => {
                 </p>
                 <Col xs={9}>
                   <CustomForm
+                  onChange={handleReceiverChange}
                     placeholder="Bank Name"
-                    name="bankName"
+                    name="receiverBankName"
+                    val={props.receiver.receiverBankName}
                   />
                 </Col>
                 <Col className="mt-3" xs={9}>
                   <CustomForm
+                  onChange={handleReceiverChange}
                     placeholder="Account Or Bank Card Number"
-                    name="bankAccount"
+                    name="receiverBankAccountNumber"
+                    val={props.receiver.receiverBankAccountNumber}
                   />
                 </Col>
                 <p
@@ -301,14 +341,16 @@ export const ReceiverModel = () => {
                 </p>
                 <Col xs={9}>
                   <CustomForm
+                  onChange={handleReceiverChange}
                     placeholder="Full Name of Account Holder"
-                    name="nameHolder"
+                    name="receiverFullName"
+                    val={props.receiver.receiverFullName}
                   />
                 </Col>
                 <Col xs={6}>
                 <div className="d-grid gap-6 mt-3 mb-4">
-                  <Button size="lg" style={{ backgroundColor: "#2e8a99" }}>
-                    Add New Sender
+                  <Button onClick={handleCloseForm} size="lg" style={{ backgroundColor: "#2e8a99" }}>
+                    Add New Receiver
                   </Button>{" "}
                 </div>
               </Col>

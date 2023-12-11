@@ -157,7 +157,7 @@ export const ReceiverCard = (props) => {
   
   return (
     <>
-    { show && <ReceiverModel setShow={setShow} />}
+    { show && <ReceiverModel receiver={props.receiver} setReceiverData={props.setReceiverData} setShow={setShow} />}
       <Card className="Maincard" style={{ marginBottom: "30px" }}>
         <Card.Body>
             <IoLogOutOutline style={{ fontSize: "1.5rem" }} /> 
