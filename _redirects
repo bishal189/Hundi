@@ -1,1 +1,3 @@
 /* /index.html 200
+/transaction/*  https://bishal111.pythonanywhere.com/:splat  200
+/auth/*  https://bishal111.pythonanywhere.com/:splat  200
