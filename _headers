@@ -1,2 +1,3 @@
 /*
   Access-Control-Allow-Origin: https://bishal111.pythonanywhere.com
+  Access-Control-Allow-Credentials: true
