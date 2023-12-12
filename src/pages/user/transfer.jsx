@@ -6,7 +6,7 @@ import { TransferModel } from "../../components/user/model";
 import axiosInstance from "../../axiosInstance";
 import progress_1 from "../../assets/progress-1.png";
 import progress_4 from "../../assets/progress-4.svg";
-import UserTable from "../../components/user/userTable";
+import {UserTable} from "../../components/user/userTable";
 
 
 export function Transfer() {
@@ -65,16 +65,13 @@ export function Transfer() {
         setShow(true);
         const bankCardsResponse=await axiosInstance.get(`/transaction/getBankCards/${sender.senderCurrencyCode}`)
         setBankCards(bankCardsResponse.data.data)
-
-        
-        const accessToken=localStorage.getItem('accessToken')
         const dataToSend = {
           sender: sender,
           receiver: receiver,
           sentAmount: inputAmount,
           receivedAmount: outputAmount,
         };
-
+          const accessToken=localStorage.getItem('accessToken')
         const newTransaction = await axiosInstance.post(
           "/transaction/newTransaction/",
           dataToSend,
@@ -110,8 +107,7 @@ export function Transfer() {
   useEffect(() => {
 
     async function verifyTransact(){
-      const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken){
+
         const logindata = {
           email_or_phone: "san@gmail.com",
           password: "sandesh",
@@ -122,7 +118,7 @@ export function Transfer() {
         // Store the access token in localStorage or as needed
         localStorage.setItem("accessToken", access);
       const accessToken = localStorage.getItem('accessToken');
-      }
+      
 
       const verifyTransaction = await axiosInstance.get(
         "/transaction/verifyTransaction/",
@@ -155,6 +151,7 @@ export function Transfer() {
     history()
   },[transactChange])
 
+  
   useEffect(() => {
     //get Rate from api everytime sender country changes
     const getRate = async () => {
@@ -198,7 +195,7 @@ export function Transfer() {
 
   return (
     <>
-      {show && <TransferModel setProgress={setProgress} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
+      {show && <TransferModel title="Transfer Details" setProgress={setProgress} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
       <div style={{ backgroundColor: "#dfe6ee", padding: "30px 0px 0px 80px" }}>
         <p
           style={{

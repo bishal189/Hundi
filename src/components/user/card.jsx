@@ -19,7 +19,7 @@ export const TransferSendCard = (props) => {
       <Card.Body>
           <div className="spacer">
             <p className="muted_color">Amount Sent: </p>
-            <p className="money_color">{props.inputAmount} {props.sender.senderCurrencyCode}</p>
+            <p className="money_color">{props.sender} {props.sender.senderCurrencyCode}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Sender Name: </p>
@@ -29,14 +29,44 @@ export const TransferSendCard = (props) => {
             <p className="muted_color">Comission: </p>
             <p className="text_color">0 {props.sender.senderCurrencyCode}</p>
           </div>
-          <div className="spacer">
+
+       <div className="spacer">
             <p className="muted_color">Average Rate: </p>
             <p className="text_color">1 {props.sender.senderCurrencyCode}={props.exchangeRate} {props.receiver.receiverCurrencyCode}</p>
           </div>
+        
+        
       </Card.Body>
     </Card>
   );
 };
+export const BuySendCard = (props) => {
+  return (
+    <Card className="transfer_card">
+      <Card.Body>
+          <div className="spacer">
+            <p className="muted_color">Consumer Name: </p>
+            <p className="text_color">{props.consumer.consumerName} </p>
+          </div>
+          <div className="spacer">
+            <p className="muted_color">Consumer ID: </p>
+            <p className="text_color">{props.consumer.consumerId}</p>
+          </div>
+          <div className="spacer">
+            <p className="muted_color">Bill Pay To: </p>
+            <p className="text_color">{props.consumer.companyName}</p>
+          </div>
+
+          <div className="spacer">
+            <p className="muted_color">Amount: </p>
+            <p className="money_color">{props.consumer.amount}USD</p>
+          </div>
+        
+      </Card.Body>
+    </Card>
+  );
+};
+
 
 export const TransferReceiveCard = (props) => {
   return (

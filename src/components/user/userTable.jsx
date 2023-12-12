@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const UserTable = (props) => {
+export const UserTable = (props) => {
     const colorArr=['#ededed','white']
   return (
     <Table bordered hover  style={{ backgroundColor: 'transparent' }}>
@@ -37,4 +37,37 @@ const UserTable = (props) => {
   );
 };
 
-export default UserTable;
+export const UserBuyTable=(props)=>{
+  const colorArr=['#ededed','white']
+  return (
+    <Table bordered hover  style={{ backgroundColor: 'transparent' }}>
+      <thead>
+        <tr>
+          <th style={{backgroundColor:'transparent'}}>Time</th>
+          <th style={{backgroundColor:'transparent'}}>Pay To</th>
+          <th style={{backgroundColor:'transparent'}}>TransactionId</th>
+          <th style={{backgroundColor:'transparent'}}>Amount</th>
+          <th style={{backgroundColor:'transparent'}}>Sent By</th>
+          <th style={{backgroundColor:'transparent'}}>Status</th>
+          {/* Add more headers as needed */}
+        </tr>
+      </thead>
+      <tbody>
+            {props.list && props.list.map((l,index)=>(
+                <tr key={index}  >
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.created_at}</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.companyName} </td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.id} </td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.Amount} Usd</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.consumerName}</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.status}</td>
+                </tr>
+            ))}
+         
+          {/* Add more cells as needed */}
+        
+        {/* Add more rows as needed */}
+      </tbody>
+    </Table>
+  );
+}

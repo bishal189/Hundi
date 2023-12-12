@@ -4,7 +4,7 @@ import "./css/model.css";
 import { Row, Col, Button, Modal, Form } from "react-bootstrap";
 import { FaArrowRight, FaRegCopy } from "react-icons/fa";
 import { CustomForm } from "./formInput";
-import { TransferSendCard, TransferReceiveCard, BankCard } from "./card";
+import { TransferSendCard, TransferReceiveCard, BankCard, BuySendCard } from "./card";
 import _ from 'lodash';
 import progress_1 from "../../assets/progress-1.png";
 
@@ -35,22 +35,26 @@ export function TransferModel(props) {
                   fontSize: "1rem",
                 }}
               >
-                Transfer Details
+                {props.title}
               </span>
             </Row>
 
             <Row style={{ marginBottom: "20px" }}>
               <Col style={{ marginLeft: "8%" }} md={4} sm={6}>
-                <TransferSendCard receiver={props.receiver} exchangeRate={props.exchangeRate} inputAmount={props.inputAmount} sender={props.sender}/>
-              </Col>
-              <Col
+               
+               {props.receiver && <TransferSendCard receiver={props.receiver} exchangeRate={props.exchangeRate} inputAmount={props.inputAmount} sender={props.sender}/>}
+               {!props.receiver && <BuySendCard   consumer={props.consumer}/>}
+
+             </Col>
+
+              {props.receiver &&  <Col
                 xs={2}
                 className="d-flex justify-content-center align-items-center"
               >
                 <FaArrowRight style={{ fontSize: "2rem" }} />
-              </Col>
+              </Col>}
               <Col style={{ marginLeft: "50px" }} md={4} sm={6}>
-                <TransferReceiveCard outputAmount={props.outputAmount} receiver={props.receiver}/>
+                {props.receiver &&<TransferReceiveCard outputAmount={props.outputAmount} receiver={props.receiver}/>}
               </Col>
             </Row>
           
@@ -72,7 +76,7 @@ export function TransferModel(props) {
             </Row>
 
             <Row style={{ justifyContent: "space-around" }}>
-              {props.bankCards.map((bankCard,index)=>(
+              {props.bankCards &&props.bankCards.map((bankCard,index)=>(
                 <Col  key={index}xs={4}>
                 <BankCard bankCard={bankCard}/>
               </Col>
@@ -145,7 +149,8 @@ export function TransferModel(props) {
                         fontWeight: "800",
                       }}
                     >
-                      {props.inputAmount} {props.sender.senderCurrencyCode}
+                      {props.inputAmount} {props.sender &&props.sender.senderCurrencyCode}
+                      {props.consumer&&props.consumer.amount }{props.consumer && <>USD</>}
                     </p>
                   </div>
                   <div style={{ marginTop: "2rem" }}>
@@ -162,12 +167,12 @@ export function TransferModel(props) {
                     <Button
                       style={{ backgroundColor: "#2e8a99", marginLeft: "1rem" }}
                       onClick={()=>{
-                        handleClose()
                         props.setProgress(progress_1)
+                        props.setTransactChange((prev)=>!prev)
+                        handleClose()
+                        {props.setProgress &&props.setProgress(progress_1)}
 
-                        Object.fromEntries(
-                          Object.entries(props.sender).map(([key]) => [key, ''])
-                        );
+                       
                       }}
                     >
                       I have already Paid
