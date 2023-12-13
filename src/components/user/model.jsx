@@ -54,7 +54,7 @@ export function TransferModel(props) {
                 <FaArrowRight style={{ fontSize: "2rem" }} />
               </Col>}
               <Col style={{ marginLeft: "50px" }} md={4} sm={6}>
-                {props.receiver &&<TransferReceiveCard outputAmount={props.outputAmount} receiver={props.receiver}/>}
+                {props.receiver &&<TransferReceiveCard outputAmount={props.outputAmount} receiverCountry={props.receiverCountry} receiver={props.receiver}/>}
               </Col>
             </Row>
           
@@ -171,7 +171,6 @@ export function TransferModel(props) {
                         props.setTransactChange((prev)=>!prev)
                         handleClose()
                         {props.setProgress &&props.setProgress(progress_1)}
-
                        
                       }}
                     >

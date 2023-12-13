@@ -19,7 +19,7 @@ export const TransferSendCard = (props) => {
       <Card.Body>
           <div className="spacer">
             <p className="muted_color">Amount Sent: </p>
-            <p className="money_color">{props.sender} {props.sender.senderCurrencyCode}</p>
+            <p className="money_color">{Number(props.inputAmount).toFixed(2)} {props.sender.senderCurrencyCode}</p>
           </div>
           <div className="spacer">
             <p className="muted_color">Sender Name: </p>
@@ -59,7 +59,7 @@ export const BuySendCard = (props) => {
 
           <div className="spacer">
             <p className="muted_color">Amount: </p>
-            <p className="money_color">{props.consumer.amount}USD</p>
+            <p className="money_color">{props.consumer.amount} USD</p>
           </div>
         
       </Card.Body>
@@ -74,7 +74,7 @@ export const TransferReceiveCard = (props) => {
       <Card.Body>
           <div className="spacer">
             <p className="muted_color">Recepient Get: </p>
-            <p className="money_color">{props.outputAmount}</p>
+            <p className="money_color">{Number(props.outputAmount).toFixed(2)}{props.receiverCountry}</p>
           </div>
 
           <div className="spacer">

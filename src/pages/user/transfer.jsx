@@ -195,7 +195,7 @@ export function Transfer() {
 
   return (
     <>
-      {show && <TransferModel title="Transfer Details" setProgress={setProgress} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
+      {show && <TransferModel title="Transfer Details" setProgress={setProgress} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} receiverCountry={receiverCountry} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
       <div style={{ backgroundColor: "#dfe6ee", padding: "30px 0px 0px 80px" }}>
         <p
           style={{
