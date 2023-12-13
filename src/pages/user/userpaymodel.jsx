@@ -28,7 +28,7 @@ export function UserPayModel(props){
     const [progress,setProgress]=useState(null)
 
 
-    const handleConsumer=(e)=>{
+    const handleConsumerChange=(e)=>{
         const {name,value}=e.target
         setConsumer({...consumer,[name]:value})
       }
