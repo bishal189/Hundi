@@ -167,10 +167,9 @@ export function TransferModel(props) {
                     <Button
                       style={{ backgroundColor: "#2e8a99", marginLeft: "1rem" }}
                       onClick={()=>{
-                        props.setProgress(progress_1)
                         props.setTransactChange((prev)=>!prev)
                         handleClose()
-                        {props.setProgress &&props.setProgress(progress_1)}
+                        props.setProgress(progress_1)
                        
                       }}
                     >
