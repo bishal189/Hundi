@@ -32,7 +32,7 @@ export function UserPayModel(props){
         const {name,value}=e.target
         setConsumer({...consumer,[name]:value})
       }
-      const handleConsumerChange = _.debounce(handleConsumer, 100);
+      // const handleConsumerChange = _.debounce(handleConsumer, 100);
 
   
     useEffect(() => {
@@ -62,7 +62,6 @@ export function UserPayModel(props){
                   },
             })
             setBankCards(response.data.data)
-            console.log(response)
 
             const newBuyTransaction = await axiosInstance.post(
                 "/transaction/newBuyTransaction/",
