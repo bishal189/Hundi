@@ -88,6 +88,7 @@ const [error,setError]=useState(null)
     if (response.status<400){
       setError(null)
     }
+    localStorage.setItem('accessToken',response.data.token.access)
 
   }catch(error){
     setShowToast(true)
