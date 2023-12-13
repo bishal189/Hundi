@@ -95,9 +95,7 @@ export function UserPayModel(props){
         }
         history()
       },[transactChange])
-    useEffect(()=>{
-console.log(consumer)
-    })
+
     async function cancelTransaction(){
         const accessToken = localStorage.getItem("accessToken");
         const cancel = await axiosInstance.get("/transaction/cancelBuyTransaction/",{
