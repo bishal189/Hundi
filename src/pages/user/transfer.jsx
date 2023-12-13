@@ -109,15 +109,7 @@ export function Transfer() {
 
     async function verifyTransact(){
 
-        const logindata = {
-          email_or_phone: "san@gmail.com",
-          password: "sandesh",
-        };
-      const login = await axiosInstance.post("/auth/login/", logindata);
-        const { access } = login.data.token;
-
-        // Store the access token in localStorage or as needed
-        localStorage.setItem("accessToken", access);
+     
       const accessToken = localStorage.getItem('accessToken');
       
 

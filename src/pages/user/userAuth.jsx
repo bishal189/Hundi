@@ -1,6 +1,6 @@
 import "./css/userAuth.css";
 import UserAuthContent from "../../assets/userAuthContent.png";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { Form ,Toast} from "react-bootstrap";
 import {useState,useEffect} from "react"
 import axiosInstance from '../../axiosInstance'
@@ -48,28 +48,78 @@ function CustomForm(props){
   )
 }
 export function UserSignIn() {
+  const [showToast, setShowToast] = useState(false);
+  const navigate= useNavigate()
+
+  const [user,setUser]=useState({
+    email_or_phone:'',
+    password:'',
+  })
+const [error,setError]=useState(null)
+
+  const Submit=async()=>{
+   try{
+    const response=await axiosInstance.post('/auth/login/',user)
+    console.log(response)
+    if (response.status<400){
+      setError(null)
+    }
+    localStorage.setItem('accessToken',response.data.token.access)
+    setShowToast(false)
+   navigate('/transfer')
+  }catch(error){
+    setError(error.response.data.error)
+
+    setShowToast(true)
+
+    }
+  }
+
+  useEffect(()=>{
+    console.log(user)
+  })
+
+  const handleChange=(e)=>{
+    const {name,value}=e.target
+    setUser({
+      ...user,[name]:value
+    })
+  }
+
   return (
+    <>
+        <Toast style={{width:'100%'}} show={showToast} onClose={()=>setShowToast(!showToast)}>
+    <Toast.Header>
+      <strong className="mr-auto">Error</strong>
+    </Toast.Header>
+    <Toast.Body>
+    {error && <p style={{fontSize:'1.2rem',color:'red'}}>{error}</p>}
+    </Toast.Body>
+  </Toast>
     <div className="mainContainer">
      <CommonPart title="Welcome Back"/>
 
       <div className=" rightContainer">
         <div className="rightContent">
             <h2>Logo</h2>
-            <CustomForm name="emailOrPhone" type="text" placeholder="Email Or Phone" />
+            <CustomForm onChange={handleChange} name="email_or_phone" type="text" placeholder="Email Or Phone" />
            
             <br />
-            <CustomForm name="password" type="password" placeholder="Password" />
-            <button className="loginButton" >Login</button>
+            <CustomForm onChange={handleChange}  name="password" type="password" placeholder="Password" />
+            <button onClick={Submit} className="loginButton" >Login</button>
             <p >You dont have an account?<Link to="/userRegister">Register Here</Link></p>
           </div>
 
       </div>
     </div>
+    </>
+
   );
 }
 
 export function UserRegister() {
   const [showToast, setShowToast] = useState(false);
+  const navigate= useNavigate()
 
   const [user,setUser]=useState({
     name:'',
@@ -84,11 +134,12 @@ const [error,setError]=useState(null)
   const Submit=async()=>{
    try{
     const response=await axiosInstance.post('/auth/register/',user)
-    console.log(response)
     if (response.status<400){
       setError(null)
     }
     localStorage.setItem('accessToken',response.data.token.access)
+    setShowToast(false)
+    navigate('/transfer')
 
   }catch(error){
     setShowToast(true)
@@ -96,14 +147,7 @@ const [error,setError]=useState(null)
 
     }
   }
-useEffect(()=>{
-  const ErrorShow=()=>{
-    if (!error){
-      setShowToast(!showToast);
-    }
-  }
-  ErrorShow()
-},[error])
+
   useEffect(()=>{
     console.log(user)
   })
