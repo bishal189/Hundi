@@ -11,7 +11,7 @@ export function CustomForm(props){
         placeholder={props.placeholder}
         aria-label={props.placeholder}
         className="form_custom"
-        readOnly={props.readonly}
+        disabled={props.readonly}
 
         
       />   

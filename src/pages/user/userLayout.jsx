@@ -1,9 +1,15 @@
 import { Col } from "react-bootstrap";
 import { HomeHeader } from "../../components/user/homeheader";
 import { MobileSideBar, SideBar } from "../../components/user/sidebar";
-
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 export function UserLayout(props){
+   const  navigate=useNavigate()
+    // useEffect(()=>{
+    //     if (!localStorage.getItem('acessToken')){
+    //       navigate('/userLogin')
+    //     }
+    //   })
 return(
     <>
     <div className="d-flex">

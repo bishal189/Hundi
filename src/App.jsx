@@ -5,8 +5,11 @@ import './App.css'
 import { UserPay } from './pages/user/pay';
 import {Transfer} from './pages/user/transfer';
 import { UserRegister, UserSignIn } from './pages/user/userAuth';
+import { UserDashboard } from './pages/user/userDashboard.jsx';
+import { UserHistory } from './pages/user/userHistory';
 import { UserLayout } from './pages/user/userLayout';
 import { UserPayModel } from './pages/user/userpaymodel';
+import { UserProfile } from './pages/user/userProfile';
 function App() {
 
   return (
@@ -20,6 +23,9 @@ function App() {
 
       <Route path="/userLogin" element={<UserSignIn />} />
       <Route  path="/userRegister" element={<UserRegister />} />
+      <Route path="/userHistory" element={<UserLayout><UserHistory /></UserLayout>} />
+      <Route path="/dashboard" element={<UserLayout><UserDashboard /></UserLayout>} />
+      <Route path="/userProfile" element={<UserProfile />} />
     </Routes>
   </Router>  )
 }
