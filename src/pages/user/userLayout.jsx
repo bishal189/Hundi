@@ -3,12 +3,23 @@ import { HomeHeader } from "../../components/user/homeheader";
 import { MobileSideBar, SideBar } from "../../components/user/sidebar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AxiosInstance  from "../../axiosInstance";
 export function UserLayout(props){
    const  navigate=useNavigate()
      useEffect(()=>{
+        async function verify(){
          if (!localStorage.getItem('accessToken')){
            navigate('/userLogin')
+
+         }else{
+          try{
+              const authResponse=await AxiosInstance.get('/auth/verifyUser')
+              console.log(authResponse)
+          }catch(error){
+            navigate('/userLogin')
+          }
          }
+        }
        })
 return(
     <>

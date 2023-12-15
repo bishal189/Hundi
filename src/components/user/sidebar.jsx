@@ -10,13 +10,26 @@ import { SlLogout } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import LogoutIcon from '../../assets/Logout.svg'
-import { useEffect } from "react";
+import axiosInstance from '../../axiosInstance'
 export const CommonSideBar = (props) => {
   const navigate=useNavigate()
   const [modal,setModal]=useState(false)
-  function Logout(){
 
+   async function Logout(){
+    const accessToken=localStorage.getItem('accessToken')
+
+   try{ 
+    const logoutResponse=await axiosInstance.get('/auth/logout/',{
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+   })
+   localStorage.clear()
      navigate('/userLogin')
+    }catch(error){
+console.log(error)
+    }
+     
   }
   function handleClose(){
     setModal(false)

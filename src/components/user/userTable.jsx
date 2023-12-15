@@ -6,10 +6,12 @@ export const UserTable = (props) => {
     const colorArr=['#ededed','white']
 
   return (
-    <Table bordered hover  style={{fontSize:'.90rem',width:'95%', backgroundColor: 'transparent' }}>
+    <Table bordered hover  style={{marginLeft:'20px',fontSize:'.90rem',width:'95%', backgroundColor: 'transparent' }}>
       <thead>
         <tr>
-          <th style={{backgroundColor:'transparent'}}>Time</th>
+        <th style={{backgroundColor:'transparent'}}>Time</th>
+        <th style={{backgroundColor:'transparent'}}>TransactionId:</th>
+          
           <th style={{backgroundColor:'transparent'}}>Amount Sent</th>
           <th style={{backgroundColor:'transparent'}}>Receipent Got</th>
           <th style={{backgroundColor:'transparent'}}>Sender</th>
@@ -27,6 +29,8 @@ export const UserTable = (props) => {
               return(
                 <tr key={index}  >
                 <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{formattedDateTime}</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.id} </td>
+
                 <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.sentAmount} {l.sender.currencyCode}</td>
                 <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.receivedAmount} {l.receiver.currencyCode}</td>
                 <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.sender.firstName}{l.sender.lastName}</td>
@@ -43,7 +47,7 @@ export const UserTable = (props) => {
   );
 };
 
-export const UserBuyTable=(props)=>{
+export const UserPayTable=(props)=>{
   const colorArr=['#ededed','white']
   return (
     <Table  bordered hover  style={{marginLeft:'20px', fontSize:'.90rem',width:'95%', backgroundColor: 'transparent' }}>

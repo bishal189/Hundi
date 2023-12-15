@@ -7,11 +7,12 @@ import axiosInstance from "../../axiosInstance";
 import progress_1 from "../../assets/progress-1.png";
 import progress_4 from "../../assets/progress-4.svg";
 import {UserTable} from "../../components/user/userTable";
-
+import { ErrorModal } from "../../components/user/errorModal";
 
 export function Transfer() {
   const [progress, setProgress] = useState(null);
   const [error, showError] = useState(null);
+  const [modal,setModal]=useState(false)
   const [transactChange,setTransactChange]=useState(false)
   const [show, setShow] = useState(false);
 
@@ -45,6 +46,7 @@ export function Transfer() {
     receiverCurrencyCode: "",
   });
 
+
   const startTransfer = async () => {
     try {
       //  const get_token=await axiosInstance.get('/auth/get_token')
@@ -60,8 +62,9 @@ export function Transfer() {
         isAnyValueEmptySender ||
         inputAmount <= 0
       ) {
-        showError("Some Values are Empty");
-        alert("error for now fill all values");
+        showError("Some Values are Empty..Fill All values and try again");
+        setModal(true)
+
       } else {
         setShow(true);
         const bankCardsResponse=await axiosInstance.get(`/transaction/getBankCards/${sender.senderCurrencyCode}`)
@@ -73,7 +76,8 @@ export function Transfer() {
           receivedAmount: outputAmount,
         };
           const accessToken=localStorage.getItem('accessToken')
-        const newTransaction = await axiosInstance.post(
+      
+          const newTransaction = await axiosInstance.post(
           "/transaction/newTransferTransaction/",
           dataToSend,
           {
@@ -85,9 +89,11 @@ export function Transfer() {
         setTransactChange((prev)=>!prev)
       }
     } catch (error) {
+      setModal(true)
+      showError(error.message)
       console.log("error" + error);
     }
-    
+  
   };
 
   async function cancelTransaction(){
@@ -99,20 +105,13 @@ export function Transfer() {
       }
     });
     setTransactChange((prev)=>!prev)
-
     setProgress(null)
     setShow(false)
-
   }
 
   useEffect(() => {
-
     async function verifyTransact(){
-
-     
       const accessToken = localStorage.getItem('accessToken');
-      
-
       const verifyTransaction = await axiosInstance.get(
         "/transaction/verifyTransferTransaction/",
         {
@@ -165,6 +164,7 @@ export function Transfer() {
     setSender({ ...sender, senderCurrencyCode: senderCountry });
   }, [senderCountry]);
 
+
   //everytime receiver country changes rate is calculated again
   useEffect(() => {
     const setRate = () => {
@@ -188,6 +188,7 @@ export function Transfer() {
 
   return (
     <>
+    {modal && <ErrorModal show={true} error={error} closeModal={setModal} />}
       {show && <TransferModel title="Transfer Details" setProgress={setProgress} setTransactChange={setTransactChange} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} receiverCountry={receiverCountry} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
       <div style={{ backgroundColor: "#dfe6ee", padding: "30px 0px 0px 80px" }}>
         <p
@@ -242,8 +243,11 @@ export function Transfer() {
         {progress && <p style={{fontSize:'1.3rem'}}>Transfer Status</p>}
         {progress && <img src={progress} />}
         <p style={{fontSize:'1.6rem',color:'#68696a',marginTop:'2rem'}}>Recent Transaction</p>
-        <UserTable list={transactionHistory}/>
       </div>
+      <div style={{backgroundColor:"#dfe6ee",marginTop:'0px'}}>
+      <UserTable list={transactionHistory}/>
+      </div>
+
     </>
   );
 }

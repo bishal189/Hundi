@@ -7,13 +7,16 @@ import axiosInstance  from "../../axiosInstance";
 import '../../components/user/css/formInput.css'
 import { TransferModel } from "../../components/user/model";
 import progress_1 from '../../assets/progress-1.png'
-import  { UserBuyTable } from "../../components/user/userTable";
-
+import  { UserPayTable } from "../../components/user/userTable";
+import { ErrorModal } from "../../components/user/errorModal";
 export function UserPayModel(props){
     const {company}=useParams()
     const [bankCards,setBankCards]=useState([])
     const [transactionHistory,setTransactionHistory]=useState([])
     const [transactChange,setTransactChange]=useState(false)
+    const [modal,setModal]=useState(false)
+    const [error,setError]=useState('')
+
 
     const [showClient,setShowClient]=useState(true)
     const [show,setShow]=useState(false)
@@ -51,7 +54,8 @@ export function UserPayModel(props){
             (value) => value === ""
           );
           if (isAnyValueEmpty){
-            alert('error fill all values')
+            setModal(true)
+            setError("Error Fill All Values")
           }else{
             setShow(true)
             const accessToken=localStorage.getItem('accessToken')
@@ -88,12 +92,11 @@ export function UserPayModel(props){
               Authorization:`Bearer ${accessToken}`
             }
           })
-          console.log(historyTransact)
           setTransactionHistory(historyTransact.data.data)
-          console.log(transactionHistory)
         }
         history()
       },[transactChange])
+
 
     async function cancelTransaction(){
         const accessToken = localStorage.getItem("accessToken");
@@ -104,18 +107,19 @@ export function UserPayModel(props){
           }
         });
         setTransactChange((prev)=>!prev)
-    
         setProgress(null)
         setShow(false)
     
       }
 return(
     <>
+        {modal && <ErrorModal show={true} error={error} closeModal={setModal} />}
+
     {progress && <img style={{margin:'50px 200px' }} src={progress} />}
     {show && <TransferModel setTransactChange={setTransactChange} cancelTransaction={cancelTransaction} bankCards={bankCards} setProgress={setProgress} consumer={consumer} title="Buy Details" setShow={()=>setShow(false)}/>}
     {!progress &&
 
-            <div style={{height:'100vh', backgroundColor: "#dfe6ee", padding: "30px 250px 0px 250px" }}>
+            <div style={{height:'82vh', backgroundColor: "#dfe6ee", padding: "30px 250px 0px 250px" }}>
                 <p style={{fontSize:'.90rem',margniBottom:'20px'}}>
                     Pay {company} Bill
                 </p>
@@ -140,7 +144,11 @@ return(
                 </div>
 
                 </div>}
-                <UserBuyTable   list={transactionHistory}/>
+                <div style={{backgroundColor:"#dfe6ee",marginTop:'0px'}}>
+                <p style={{fontSize:'1.6rem',color:'#68696a'}}>Recent Transaction</p>
+
+                <UserPayTable   list={transactionHistory}/>
+                </div>
 
 
     </>

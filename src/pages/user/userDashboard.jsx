@@ -12,6 +12,7 @@ function SmallCards(props) {
     </>
   );
 }
+
 export function UserDashboard() {
   const [dashboard,setDashboard]=useState({
     Balance:0,
