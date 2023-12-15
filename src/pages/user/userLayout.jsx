@@ -13,7 +13,7 @@ export function UserLayout(props){
 
          }else{
           try{
-              const authResponse=await AxiosInstance.get('/auth/verifyUser')
+              const authResponse=await AxiosInstance.get('/auth/verify_user')
               console.log(authResponse)
           }catch(error){
             navigate('/userLogin')
