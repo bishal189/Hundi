@@ -11,14 +11,14 @@ export function UserLayout(props){
          if (!localStorage.getItem('accessToken')){
            navigate('/userLogin')
 
-         }else{
-          try{
-              const authResponse=await AxiosInstance.get('/auth/verify_user')
-              console.log(authResponse)
-          }catch(error){
-            navigate('/userLogin')
-          }
-         }
+          }//else{
+        //   try{
+        //       const authResponse=await AxiosInstance.get('/auth/verify_user')
+        //       console.log(authResponse)
+        //   }catch(error){
+        //     navigate('/userLogin')
+        //   }
+        //  }
         }
       verify() 
       },[])
