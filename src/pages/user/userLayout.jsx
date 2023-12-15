@@ -21,7 +21,7 @@ export function UserLayout(props){
          }
         }
       verify() 
-      })
+      },[])
 return(
     <>
     <div className="d-flex">
