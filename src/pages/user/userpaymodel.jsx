@@ -64,7 +64,7 @@ export function UserPayModel(props){
             setBankCards(response.data.data)
 
             const newBuyTransaction = await axiosInstance.post(
-                "/transaction/newBuyTransaction/",
+                "/transaction/newPayTransaction/",
                 consumer,
                 {
                   headers: {
@@ -83,7 +83,7 @@ export function UserPayModel(props){
         async function history(){
           const accessToken = localStorage.getItem('accessToken');
     
-          const historyTransact=await axiosInstance.get('/transaction/getBuyTransactionHistory/',{
+          const historyTransact=await axiosInstance.get('/transaction/getPayTransactionHistory/',{
             headers:{
               Authorization:`Bearer ${accessToken}`
             }
@@ -97,7 +97,7 @@ export function UserPayModel(props){
 
     async function cancelTransaction(){
         const accessToken = localStorage.getItem("accessToken");
-        const cancel = await axiosInstance.get("/transaction/cancelBuyTransaction/",{
+        const cancel = await axiosInstance.get("/transaction/cancelPayTransaction/",{
           headers:{
             Authorization: `Bearer ${accessToken}`,
     

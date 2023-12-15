@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 export function UserLayout(props){
    const  navigate=useNavigate()
-    // useEffect(()=>{
-    //     if (!localStorage.getItem('acessToken')){
-    //       navigate('/userLogin')
-    //     }
-    //   })
+     useEffect(()=>{
+         if (!localStorage.getItem('accessToken')){
+           navigate('/userLogin')
+         }
+       })
 return(
     <>
     <div className="d-flex">

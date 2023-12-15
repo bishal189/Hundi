@@ -74,7 +74,7 @@ export function Transfer() {
         };
           const accessToken=localStorage.getItem('accessToken')
         const newTransaction = await axiosInstance.post(
-          "/transaction/newTransaction/",
+          "/transaction/newTransferTransaction/",
           dataToSend,
           {
             headers: {
@@ -92,7 +92,7 @@ export function Transfer() {
 
   async function cancelTransaction(){
     const accessToken = localStorage.getItem("accessToken");
-    const cancel = await axiosInstance.get("/transaction/cancelTransaction/",{
+    const cancel = await axiosInstance.get("/transaction/cancelTransferTransaction/",{
       headers:{
         Authorization: `Bearer ${accessToken}`,
 
@@ -114,7 +114,7 @@ export function Transfer() {
       
 
       const verifyTransaction = await axiosInstance.get(
-        "/transaction/verifyTransaction/",
+        "/transaction/verifyTransferTransaction/",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -134,7 +134,7 @@ export function Transfer() {
     async function history(){
       const accessToken = localStorage.getItem('accessToken');
 
-      const historyTransact=await axiosInstance.get('/transaction/getTransactionHistory/',{
+      const historyTransact=await axiosInstance.get('/transaction/getTransferTransactionHistory/5',{
         headers:{
           Authorization:`Bearer ${accessToken}`
         }
