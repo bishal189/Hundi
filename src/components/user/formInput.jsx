@@ -6,7 +6,10 @@ export function CustomForm(props){
       onChangeCapture={props.onChange&&props.onChange}
         size="lg"
         defaultValue={props.val}
-        type={props.placeholder!=="Email ID"?"text":"email"}
+         type={
+          props.type ||
+          (props.placeholder !== "Email ID" ? "text" : "email")
+        }
         name={props.name}
         placeholder={props.placeholder}
         aria-label={props.placeholder}
