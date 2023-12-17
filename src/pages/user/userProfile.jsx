@@ -1,6 +1,6 @@
 import { Col, Button, Row } from "react-bootstrap";
 import { CustomForm } from "../../components/user/formInput";
-import { ErrorModal } from "../../components/user/errorModal";
+import { ErrorModal } from "../../components/user/popupModal";
 import AxiosInstance from "../../axiosInstance";
 import { useEffect, useState } from "react";
 function Form(props) {

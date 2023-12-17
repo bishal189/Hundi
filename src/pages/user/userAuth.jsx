@@ -32,6 +32,7 @@ function CommonPart(props){
   </>
   )
 }
+
 function CustomForm(props){
   return(
     <>
@@ -60,7 +61,6 @@ const [error,setError]=useState(null)
   const Submit=async()=>{
    try{
     const response=await axiosInstance.post('/auth/login/',user)
-    console.log(response)
     if (response.status<400){
       setError(null)
     }

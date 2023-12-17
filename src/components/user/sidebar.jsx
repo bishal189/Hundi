@@ -109,14 +109,14 @@ console.log(error)
         </li>
 
         <li className="li-icons">
-          <NavLink to="/wallet">
+          <NavLink to="/userWallet">
             <IoWalletOutline style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp; Wallet
           </NavLink>
         </li>
         <li className="li-icons">
           <NavLink className="inner" to="/send">
-            Send
+            userSend
           </NavLink>
         </li>
         <li className="li-icons">

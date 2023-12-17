@@ -10,6 +10,8 @@ import { UserHistory } from './pages/user/userHistory';
 import { UserLayout } from './pages/user/userLayout';
 import { UserPayModel } from './pages/user/userpaymodel';
 import { UserProfile } from './pages/user/userProfile';
+import { UserWallet } from './pages/user/userWallet';
+import { UserSend } from './pages/user/userWalletInner';
 function App() {
 
   return (
@@ -26,6 +28,8 @@ function App() {
       <Route path="/userHistory" element={<UserLayout><UserHistory /></UserLayout>} />
       <Route path="/dashboard" element={<UserLayout><UserDashboard /></UserLayout>} />
       <Route path="/userProfile" element={<UserProfile />} />
+      <Route path ="/userWallet" element={<UserLayout><UserWallet /></UserLayout>} />
+      <Route path="/userSend" element={<UserLayout><UserSend /></UserLayout>} />
     </Routes>
   </Router>  )
 }

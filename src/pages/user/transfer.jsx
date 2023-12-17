@@ -7,7 +7,7 @@ import axiosInstance from "../../axiosInstance";
 import progress_1 from "../../assets/progress-1.png";
 import progress_4 from "../../assets/progress-4.svg";
 import {UserTable} from "../../components/user/userTable";
-import { ErrorModal } from "../../components/user/errorModal";
+import { ErrorModal } from "../../components/user/popupModal";
 
 export function Transfer() {
   const [progress, setProgress] = useState(null);

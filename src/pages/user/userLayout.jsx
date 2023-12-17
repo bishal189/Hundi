@@ -29,7 +29,7 @@ return(
         <SideBar />
         <MobileSideBar />
     </Col>
-    <Col md={9}>
+    <Col md={9} sm={12}>
         <HomeHeader />
         {props.children}
     </Col>

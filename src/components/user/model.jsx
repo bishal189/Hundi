@@ -43,7 +43,7 @@ export function TransferModel(props) {
               <Col style={{ marginLeft: "8%" }} md={4} sm={6}>
                
                {props.receiver && <TransferSendCard receiver={props.receiver} exchangeRate={props.exchangeRate} inputAmount={props.inputAmount} sender={props.sender}/>}
-               {!props.receiver && <BuySendCard   consumer={props.consumer}/>}
+               {props.consumer && <BuySendCard   consumer={props.consumer}/>}
 
              </Col>
 

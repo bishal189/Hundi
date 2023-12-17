@@ -8,7 +8,8 @@ import '../../components/user/css/formInput.css'
 import { TransferModel } from "../../components/user/model";
 import progress_1 from '../../assets/progress-1.png'
 import  { UserPayTable } from "../../components/user/userTable";
-import { ErrorModal } from "../../components/user/errorModal";
+import { ErrorModal } from "../../components/user/popupModal";
+
 export function UserPayModel(props){
     const {company}=useParams()
     const [bankCards,setBankCards]=useState([])
