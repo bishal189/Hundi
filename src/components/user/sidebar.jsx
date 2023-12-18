@@ -99,7 +99,7 @@ console.log(error)
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/request">Request</NavLink>
+          <NavLink to="/userRequest">Request</NavLink>
         </li>
         <li className="li-icons">
           <NavLink to="/userHistory">
@@ -115,17 +115,17 @@ console.log(error)
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/send">
-            userSend
+          <NavLink className="inner" to="/userSend">
+            Send
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/withdraw">
+          <NavLink className="inner" to="/userWithdraw">
             Withdraw
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/topup">
+          <NavLink className="inner" to="/userTopUp">
             Top Up
           </NavLink>
         </li>
