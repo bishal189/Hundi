@@ -87,7 +87,7 @@ console.log(error)
         </li>
 
         <li className="li-icons">
-          <NavLink to="/buy">
+          <NavLink to="/userBuy">
             <BiShoppingBag style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Buy
           </NavLink>
