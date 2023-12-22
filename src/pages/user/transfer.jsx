@@ -6,18 +6,18 @@ import { TransferModel } from "../../components/user/model";
 import axiosInstance from "../../axiosInstance";
 import progress_1 from "../../assets/progress-1.png";
 import progress_4 from "../../assets/progress-4.svg";
-import {UserTable} from "../../components/user/userTable";
+import { UserTable } from "../../components/user/userTable";
 import { ErrorModal } from "../../components/user/popupModal";
 
 export function Transfer() {
   const [progress, setProgress] = useState(null);
   const [error, showError] = useState(null);
-  const [modal,setModal]=useState(false)
-  const [transactChange,setTransactChange]=useState(false)
+  const [modal, setModal] = useState(false);
+  const [transactChange, setTransactChange] = useState(false);
   const [show, setShow] = useState(false);
 
-  const [bankCards,setBankCards]=useState([])
-  const [transactionHistory,setTransactionHistory]=useState([])
+  const [bankCards, setBankCards] = useState([]);
+  const [transactionHistory, setTransactionHistory] = useState([]);
 
   const [exchangeRateArr, setExchangeRateArr] = useState(null);
   const [exchangeRate, setExchangeRate] = useState(0);
@@ -46,7 +46,6 @@ export function Transfer() {
     receiverCurrencyCode: "",
   });
 
-
   const startTransfer = async () => {
     try {
       //  const get_token=await axiosInstance.get('/auth/get_token')
@@ -63,21 +62,22 @@ export function Transfer() {
         inputAmount <= 0
       ) {
         showError("Some Values are Empty..Fill All values and try again");
-        setModal(true)
-
+        setModal(true);
       } else {
         setShow(true);
-        const bankCardsResponse=await axiosInstance.get(`/transaction/getBankCards/${sender.senderCurrencyCode}`)
-        setBankCards(bankCardsResponse.data.data)
+        const bankCardsResponse = await axiosInstance.get(
+          `/transaction/getBankCards/${sender.senderCurrencyCode}`
+        );
+        setBankCards(bankCardsResponse.data.data);
         const dataToSend = {
           sender: sender,
           receiver: receiver,
           sentAmount: inputAmount,
           receivedAmount: outputAmount,
         };
-          const accessToken=localStorage.getItem('accessToken')
-      
-          const newTransaction = await axiosInstance.post(
+        const accessToken = localStorage.getItem("accessToken");
+
+        const newTransaction = await axiosInstance.post(
           "/transaction/newTransferTransaction/",
           dataToSend,
           {
@@ -86,32 +86,33 @@ export function Transfer() {
             },
           }
         );
-        setTransactChange((prev)=>!prev)
+        setTransactChange((prev) => !prev);
       }
     } catch (error) {
-      setModal(true)
-      showError(error.message)
+      setModal(true);
+      showError(error.message);
       console.log("error" + error);
     }
-  
   };
 
-  async function cancelTransaction(){
+  async function cancelTransaction() {
     const accessToken = localStorage.getItem("accessToken");
-    const cancel = await axiosInstance.get("/transaction/cancelTransferTransaction/",{
-      headers:{
-        Authorization: `Bearer ${accessToken}`,
-
+    const cancel = await axiosInstance.get(
+      "/transaction/cancelTransferTransaction/",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       }
-    });
-    setTransactChange((prev)=>!prev)
-    setProgress(null)
-    setShow(false)
+    );
+    setTransactChange((prev) => !prev);
+    setProgress(null);
+    setShow(false);
   }
 
   useEffect(() => {
-    async function verifyTransact(){
-      const accessToken = localStorage.getItem('accessToken');
+    async function verifyTransact() {
+      const accessToken = localStorage.getItem("accessToken");
       const verifyTransaction = await axiosInstance.get(
         "/transaction/verifyTransferTransaction/",
         {
@@ -122,28 +123,30 @@ export function Transfer() {
       );
       if (verifyTransaction.data.data.status == "PROCESSING") {
         setProgress(progress_1);
-      }else if(verifyTransaction.data.data.status=="PAID"){
-        setProgress(progress_4)
+      } else if (verifyTransaction.data.data.status == "PAID") {
+        setProgress(progress_4);
       }
     }
-   verifyTransact()
+    verifyTransact();
   }, []);
 
-  useEffect(()=>{
-    async function history(){
-      const accessToken = localStorage.getItem('accessToken');
+  useEffect(() => {
+    async function history() {
+      const accessToken = localStorage.getItem("accessToken");
 
-      const historyTransact=await axiosInstance.get('/transaction/getTransferTransactionHistory/5',{
-        headers:{
-          Authorization:`Bearer ${accessToken}`
+      const historyTransact = await axiosInstance.get(
+        "/transaction/getTransferTransactionHistory/5",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
-      })
-      setTransactionHistory(historyTransact.data.data)
+      );
+      setTransactionHistory(historyTransact.data.data);
     }
-    history()
-  },[transactChange])
+    history();
+  }, [transactChange]);
 
-  
   useEffect(() => {
     //get Rate from api everytime sender country changes
     const getRate = async () => {
@@ -163,7 +166,6 @@ export function Transfer() {
     getRate();
     setSender({ ...sender, senderCurrencyCode: senderCountry });
   }, [senderCountry]);
-
 
   //everytime receiver country changes rate is calculated again
   useEffect(() => {
@@ -188,8 +190,23 @@ export function Transfer() {
 
   return (
     <>
-    {modal && <ErrorModal show={true} error={error} closeModal={setModal} />}
-      {show && <TransferModel title="Transfer Details" setProgress={setProgress} setTransactChange={setTransactChange} cancelTransaction={cancelTransaction} bankCards={bankCards} exchangeRate={exchangeRate} receiverCountry={receiverCountry} inputAmount={inputAmount} outputAmount={outputAmount} sender={sender} receiver={receiver} setShow={setShow} />}
+      {modal && <ErrorModal show={true} error={error} closeModal={setModal} />}
+      {show && (
+        <TransferModel
+          title="Transfer Details"
+          setProgress={setProgress}
+          setTransactChange={setTransactChange}
+          cancelTransaction={cancelTransaction}
+          bankCards={bankCards}
+          exchangeRate={exchangeRate}
+          receiverCountry={receiverCountry}
+          inputAmount={inputAmount}
+          outputAmount={outputAmount}
+          sender={sender}
+          receiver={receiver}
+          setShow={setShow}
+        />
+      )}
       <div style={{ backgroundColor: "#dfe6ee", padding: "30px 0px 0px 80px" }}>
         <p
           style={{
@@ -240,14 +257,15 @@ export function Transfer() {
             Start Transfer
           </Button>
         </div>
-        {progress && <p style={{fontSize:'1.3rem'}}>Transfer Status</p>}
+        {progress && <p style={{ fontSize: "1.3rem" }}>Transfer Status</p>}
         {progress && <img src={progress} />}
-        <p style={{fontSize:'1.6rem',color:'#68696a',marginTop:'2rem'}}>Recent Transaction</p>
+        <p style={{ fontSize: "1.6rem", color: "#68696a", marginTop: "2rem" }}>
+          Recent Transaction
+        </p>
       </div>
-      <div style={{backgroundColor:"#dfe6ee",marginTop:'0px'}}>
-      <UserTable list={transactionHistory}/>
+      <div style={{ backgroundColor: "#dfe6ee", marginTop: "0px" }}>
+        <UserTable list={transactionHistory} />
       </div>
-
     </>
   );
 }

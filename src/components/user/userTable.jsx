@@ -86,3 +86,42 @@ export const UserPayTable=(props)=>{
     </Table>
   );
 }
+
+
+export const UserWalletTable=(props)=>{
+  const colorArr=['#ededed','white']
+  return (
+    <Table  bordered hover  style={{marginLeft:'20px', fontSize:'.90rem',width:'95%', backgroundColor: 'transparent' }}>
+      <thead>
+        <tr>
+          <th style={{backgroundColor:'transparent'}}>Time</th>
+          <th style={{backgroundColor:'transparent'}}>Name</th>
+          <th style={{backgroundColor:'transparent'}}>TransactionId</th>
+          <th style={{backgroundColor:'transparent'}}>Amount</th>
+          <th style={{backgroundColor:'transparent'}}>Status</th>
+          {/* Add more headers as needed */}
+        </tr>
+      </thead>
+      <tbody>
+            {props.list && props.list.map((l,index)=>{
+               const date= new Date(l.createdAt);
+               const formattedDate = date.toLocaleDateString();
+               const formattedTime = date.toLocaleTimeString();
+               const formattedDateTime = `${formattedDate} ${formattedTime}`;
+               return(
+                <tr key={index}  >
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{formattedDateTime}</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.name} </td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.id} </td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.amount} Usd</td>
+                <td style={{ backgroundColor: colorArr[index%2] ,border:'none'}}>{l.status}</td>
+                </tr>
+            )})}
+         
+          {/* Add more cells as needed */}
+        
+        {/* Add more rows as needed */}
+      </tbody>
+    </Table>
+  );
+}

@@ -1,17 +1,26 @@
 import { Button, Dropdown, FormControl } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { UserPayTable, UserTable } from "../../components/user/userTable";
+import { UserPayTable, UserTable,UserWalletTable } from "../../components/user/userTable";
 import AxiosInstance from "../../axiosInstance";
 
 export function UserHistory() {
   const [history, setHistory] = useState("Transfer");
   const [transferHistory, setTransferHistory] = useState(null);
   const [payHistory, setPayHistory] = useState(null);
+  const [sendHistory, setSendHistory] = useState(null);
+  const [withdrawHistory, setWithDrawHistory] = useState(null);
+  const [topupHistory, setTopUpHistory] = useState(null);
 
   useEffect(() => {
     async function getHistory() {
       const accessToken = localStorage.getItem("accessToken");
-      const historyUrl = `/transaction/get${history}TransactionHistory/`;
+      var historyUrl
+      if (history=="Transfer"||history=="Pay"){
+       historyUrl = `/transaction/get${history}TransactionHistory/`;
+      }else{
+         historyUrl = `/wallet/get${history}TransactionHistory/`;
+
+      }
       const historyTransact = await AxiosInstance.get(historyUrl, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -21,6 +30,14 @@ export function UserHistory() {
         setTransferHistory(historyTransact.data.data);
       } else if (history == "Pay") {
         setPayHistory(historyTransact.data.data);
+      } else if (history=="WithDraw"){
+        setWithDrawHistory(historyTransact.data.data)
+      }
+      else if (history=="Send"){
+        setSendHistory(historyTransact.data.data)
+      }
+      else if (history=="TopUp"){
+        setTopUpHistory(historyTransact.data.data)
       }
     }
     getHistory();
@@ -44,18 +61,33 @@ export function UserHistory() {
             align="end"
           >
             {/* Add Dropdown.Items as needed */}
-
-            {history == "Pay" && (
+            {history != "Transfer" && (
               <Dropdown.Item onClick={() => setHistory("Transfer")}>
                 Transfer History
               </Dropdown.Item>
             )}
-            {history == "Transfer" && (
+            {history != "Pay" && (
               <Dropdown.Item onClick={() => setHistory("Pay")}>
                 Pay History
               </Dropdown.Item>
             )}
+            {history != "WithDraw" && (
+              <Dropdown.Item onClick={() => setHistory("WithDraw")}>
+                WithDraw History
+              </Dropdown.Item>
+            )}
+            {history != "Send" && (
+              <Dropdown.Item onClick={() => setHistory("Send")}>
+                Send History
+              </Dropdown.Item>
+            )}
+            {history != "TopUp" && (
+              <Dropdown.Item onClick={() => setHistory("TopUp")}>
+                TopUp History
+              </Dropdown.Item>
+            )}
           </Dropdown.Menu>
+
         </Dropdown>
         <div style={{ paddingTop: "2.5rem" }}>
           <div style={{ display: "flex" }}>
@@ -80,6 +112,10 @@ export function UserHistory() {
 
       {history == "Transfer" && <UserTable list={transferHistory} />}
       {history == "Pay" && <UserPayTable list={payHistory} />}
+      {history == "Send" && <UserWalletTable list={sendHistory} />}
+      {history == "WithDraw" && <UserWalletTable list={withdrawHistory} />}
+      {history == "TopUp" && <UserWalletTable list={topupHistory} />}
+      
     </div>
   );
 }
