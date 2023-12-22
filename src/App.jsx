@@ -5,7 +5,7 @@ import './App.css'
 import { UserPay } from './pages/user/pay';
 import {Transfer} from './pages/user/transfer';
 import { UserRegister, UserSignIn } from './pages/user/userAuth';
-import { UserBuy, UserBuyList } from './pages/user/userBuy';
+import { UserBuy, UserBuyDetail, UserBuyList } from './pages/user/userBuy';
 import { UserDashboard } from './pages/user/userDashboard.jsx';
 import { UserHistory } from './pages/user/userHistory';
 import { UserLayout } from './pages/user/userLayout';
@@ -37,6 +37,7 @@ function App() {
       <Route path="/userRequest" element={<UserLayout><UserRequest /></UserLayout>} />
       <Route path="/userBuy" element={<UserLayout><UserBuy /></UserLayout>} />
       <Route path="/userBuyList/:type" element={<UserLayout><UserBuyList /></UserLayout>} />
+      <Route path="/userBuyDetail/:type/:id" element={<UserLayout><UserBuyDetail /></UserLayout>} />
       
     </Routes>
   </Router>  )

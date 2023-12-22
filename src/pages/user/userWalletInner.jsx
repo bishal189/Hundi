@@ -1,5 +1,9 @@
 import { Button } from "react-bootstrap";
 import { CustomForm } from "../../components/user/formInput";
+import AxiosInstance from '../../axiosInstance'
+import { useState,useEffect } from "react";
+import { ErrorModal } from "../../components/user/popupModal";
+
 export function UserSend() {
   return (
     <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
@@ -67,7 +71,57 @@ export function UserWithdraw(){
 }
 
 export function UserTopUp(){
+  const [error, showError] = useState(null);
+  const [modal,setModal]=useState(false)
+  const [color,setColor]=useState(false)
+  const [topUp,setTopUp]=useState({
+    name:'',
+    amount:'',
+    bankAccountNumber:'',
+    password:'',
+  })
+
+  const handleOnChange=(e)=>{
+  const {name,value}=e.target
+  setTopUp({
+  ...topUp,[name]:value
+  })
+  }
+
+  const handleClick=async()=>{
+    const checker = Object.values(topUp).some(
+      (value) => value === ""
+    );
+  if (checker){
+      showError("Some Values are Empty..Fill All values and try again");
+      setModal(true)
+      setColor('red')
+      return
+    }
+    try{
+    const accessToken = localStorage.getItem("accessToken");
+
+    const response=await AxiosInstance.post('/wallet/createNewTopUpTransaction/',topUp,
+    {
+        headers:{
+          Authorization: `Bearer ${accessToken}`
+        }
+    })
+    showError(response.data.message)
+    setModal(true)
+    setColor('green')
+  }catch(err){
+    showError(err.response.data.error)
+    setModal(true)
+    setColor('red')
+
+  }
+
+  }
   return (
+    <>
+    {modal && <ErrorModal color={color} show={true} error={error} closeModal={setModal} />}
+
     <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
       <div style={{ padding: "3rem", paddingBottom:'.5rem',color: "#575757" }}>
         <p style={{ margin: "0px", fontSize: "1rem" }}>Current Balance</p>
@@ -79,23 +133,27 @@ export function UserTopUp(){
           name="name"
           placeholder="Your Name"
           type="text"
+          onChange={handleOnChange}
         />
         <br />
         <CustomForm
-          name="accountNumber"
+          name="bankAccountNumber"
           placeholder=" Account no."
           type="text"
+          onChange={handleOnChange}
+
         />
         <br />
 
-        <CustomForm name="amount" placeholder="Amount" type="text" />
+        <CustomForm name="amount" placeholder="Amount" type="text" onChange={handleOnChange} />
         <br />
 
-        <CustomForm name="password" placeholder="Password" type="password" />
+        <CustomForm name="password" placeholder="Password" type="password"onChange={handleOnChange} />
         <br /><br />
 
-        <Button style={{backgroundColor:"#2e8a99",padding:'10px 80px',marginLeft:'25%'}}>Top Up</Button>
+        <Button onClick={handleClick} style={{backgroundColor:"#2e8a99",padding:'10px 80px',marginLeft:'25%'}}>Top Up</Button>
       </div>
     </div>
+    </>
   );
 }

@@ -10,7 +10,7 @@ export function ErrorModal(props){
       <div style={{display:'flex'}}>
         <div style={{fontSize:'1rem' ,marginLeft:'20px',marginTop:'20px'}}>
          
-          <h5 style={{color:'red'}}>{props.error}</h5>
+          <h5 style={{color:props.color||'red'}}>{props.error}</h5>
           </div>
 
       </div>

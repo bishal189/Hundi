@@ -50,6 +50,10 @@ export function UserBuy() {
 }
 
 export function UserBuyList(){
+    const navigate=useNavigate()
+    function handleClick(){
+navigate('/userBuyDetail/mobile/1')
+    }
 return(
     <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
    <p style={{textAlign:'center',paddingTop:'1rem',fontSize:'1.5rem'}}>Mobile Items</p>
@@ -79,9 +83,17 @@ return(
             <Button  onClick={()=>handleClick('Mobile')} style={{backgroundColor:'#2e8a99',marginLeft:'10%',marginTop:'1rem',padding:'10px 4rem'}}>Buy</Button>
         </Col>
         
-
-        
       </Row>
         </div>
 )
+}
+
+export function UserBuyDetail(){
+return(
+    <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
+        <Col md={4} sm={9}>
+            <img src={ProductSvg} />
+        </Col>
+</div>
+    )
 }
