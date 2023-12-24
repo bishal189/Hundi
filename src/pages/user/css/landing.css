@@ -1,0 +1,92 @@
+.containerLand {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  height: 70vh;
+  background: url("../../../assets/landingPage.png") center/cover no-repeat;
+  background-size: cover; /* Ensure the background covers the entire container */
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin:0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff; /* Set text color */
+}
+
+/* .customNavbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin-top: 20px;
+  background-color: transparent !important;
+  display: flex;
+} */
+.customNavbar {
+  background-color: transparent!important;
+  width:100%;
+  margin-top:20px;
+}
+
+.navTitles1,
+.navTitles2 {
+  display: flex;
+}
+
+.custom-toggler:focus,
+.custom-toggler:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.navLogo {
+  color: white;
+  font-weight: 600;
+  padding-left: 25px;
+}
+.navText {
+  color: white;
+  font-size: 1rem;
+  padding-left: 1.5rem !important;
+}
+.navTitleContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.navTitles2 {
+  margin-left: 15%;
+  margin-right: 2rem;
+}
+@media screen and (max-width: 768px) {
+
+  .navTitleContainer {
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(29, 28, 28);
+  }
+  .navTitles1,
+  .navTitles2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .navText {
+    text-align: center;
+    padding-left: 0px !important;
+  }
+}
+
+.TransferForm{
+  margin-top:2rem;
+  display:flex;
+}
+.textContainer{
+  margin-top:2rem;
+}

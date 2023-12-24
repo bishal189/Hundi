@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css'
+import { LandingPage } from './pages/user/landing';
 import { UserPay } from './pages/user/pay';
 import {Transfer} from './pages/user/transfer';
 import { UserRegister, UserSignIn } from './pages/user/userAuth';
@@ -19,7 +20,7 @@ function App() {
   return (
     <Router>
     <Routes>
-      {/* <Route path="/" element={<ReceiverModel />} /> */}
+       <Route path="/" element={<LandingPage />} />
       <Route path="/transfer" element={<UserLayout><Transfer /></UserLayout>} />
 
       <Route path="/pay" element={<UserLayout><UserPay /></UserLayout>} />
