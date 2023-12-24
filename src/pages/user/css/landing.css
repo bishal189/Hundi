@@ -21,14 +21,7 @@
   color: #fff; /* Set text color */
 }
 
-/* .customNavbar {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  margin-top: 20px;
-  background-color: transparent !important;
-  display: flex;
-} */
+
 .customNavbar {
   background-color: transparent!important;
   width:100%;
@@ -89,4 +82,97 @@
 }
 .textContainer{
   margin-top:2rem;
+}
+
+
+.detailContent{
+  width:80%;
+  background-color: rgb(240, 240, 240);
+  margin:auto;
+  margin-top:3rem;
+  padding:20px;
+  border-radius: 20px;
+text-align: center;
+}
+.detailContent .content{
+  display:flex;
+  margin-left: 25%;
+  margin-bottom:20px;
+  
+}
+
+/* */
+
+.outerBox{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;;
+}
+.Box{
+  margin-top:3rem;
+  background-color:#2e8a99;
+  margin-left: 4rem;
+  color:white;
+  border-radius: 5px;
+  width:150px;
+  padding:20px ;
+  font-size:1rem;
+  text-align: center;
+}
+
+/* */
+.outerContentBox{
+  display:flex;
+  justify-content: space-around;
+  margin-top:5rem;
+}
+.outerContentBox h2{
+  font-weight:600;
+}
+.innerText{
+  padding-top:5rem;
+}
+/* */
+.countryBox{
+  margin-bottom: 5rem;
+  margin-top:4rem;
+text-align: center;
+}
+.countryBox h3{
+font-weight: 800;
+}
+
+/* */
+
+.faqContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.faqContainer h3{
+  text-align: center;
+}
+
+/* */
+
+.footerArea{
+  margin-top:2rem;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footerArea .footer{
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-around;
+}
+.footerArea .footer h2{
+  color:#2e8a99
+}
+.footerArea a{
+text-decoration: none;
+font-size: 1rem;
 }
