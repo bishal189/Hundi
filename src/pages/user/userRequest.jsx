@@ -195,7 +195,6 @@ function Receive() {
       setColor("green");
       setList((prevList) => prevList.filter((l) => l.id !== id));
     } catch (err) {
-      console.log(err);
       setError(err.response.data.error);
       setModal(true);
       setColor('red')

@@ -1,10 +1,10 @@
 import "./css/userAuth.css";
 import UserAuthContent from "../../assets/userAuthContent.png";
 import { Link,useNavigate } from "react-router-dom";
-import { Form ,Toast} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import {useState,useEffect} from "react"
 import axiosInstance from '../../axiosInstance'
-
+import { ErrorModal } from "../../components/user/popupModal";
 function CommonPart(props){
   return(
     <>
@@ -49,7 +49,7 @@ function CustomForm(props){
   )
 }
 export function UserSignIn() {
-  const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate= useNavigate()
 
   const [user,setUser]=useState({
@@ -59,25 +59,28 @@ export function UserSignIn() {
 const [error,setError]=useState(null)
 
   const Submit=async()=>{
+    const checker=Object.values(user).some((value)=>value=='')
+    if (checker){
+      setError("Fill all values before proceeding")
+      setShowModal(true)
+    }
    try{
     const response=await axiosInstance.post('/auth/login/',user)
     if (response.status<400){
       setError(null)
     }
     localStorage.setItem('accessToken',response.data.token.access)
-    setShowToast(false)
+    setShowModal(false)
    navigate('/transfer')
   }catch(error){
     setError(error.response.data.error)
 
-    setShowToast(true)
+    setShowModal(true)
 
     }
   }
 
-  useEffect(()=>{
-    console.log(user)
-  })
+
 
   const handleChange=(e)=>{
     const {name,value}=e.target
@@ -88,14 +91,16 @@ const [error,setError]=useState(null)
 
   return (
     <>
-        <Toast style={{width:'100%'}} show={showToast} onClose={()=>setShowToast(!showToast)}>
-    <Toast.Header>
-      <strong className="mr-auto">Error</strong>
-    </Toast.Header>
-    <Toast.Body>
-    {error && <p style={{fontSize:'1.2rem',color:'red'}}>{error}</p>}
-    </Toast.Body>
-  </Toast>
+      {showModal && (
+        <ErrorModal
+          color='red'
+          show={true}
+          closeModal={setShowModal}
+          error={error}
+        />
+      )}
+  
+    
     <div className="mainContainer">
      <CommonPart title="Welcome Back"/>
 
@@ -118,7 +123,7 @@ const [error,setError]=useState(null)
 }
 
 export function UserRegister() {
-  const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate= useNavigate()
 
   const [user,setUser]=useState({
@@ -132,26 +137,28 @@ export function UserRegister() {
 const [error,setError]=useState(null)
 
   const Submit=async()=>{
+    const checker = Object.values(user).some((value) => value === "");
+    if (checker){
+      setError("Fill all values before proceeding")
+      setShowModal(true)
+      return
+    }
    try{
     const response=await axiosInstance.post('/auth/register/',user)
     if (response.status<400){
       setError(null)
     }
     localStorage.setItem('accessToken',response.data.token.access)
-    setShowToast(false)
+    setShowModal(false)
     navigate('/transfer')
 
   }catch(error){
-    setShowToast(true)
+    setShowModal(true)
       setError(error.response.data.error)
+      
 
     }
   }
-
-  useEffect(()=>{
-    console.log(user)
-  })
-
   const handleChange=(e)=>{
     const {name,value}=e.target
     setUser({
@@ -160,15 +167,15 @@ const [error,setError]=useState(null)
   }
   return (
     <>
-    
-    <Toast style={{width:'100%'}} show={showToast} onClose={()=>setShowToast(!showToast)}>
-    <Toast.Header>
-      <strong className="mr-auto">Error</strong>
-    </Toast.Header>
-    <Toast.Body>
-    {error && <p style={{fontSize:'1.2rem',color:'red'}}>{error}</p>}
-    </Toast.Body>
-  </Toast>
+      {showModal && (
+        <ErrorModal
+          color='red'
+          show={true}
+          closeModal={setShowModal}
+          error={error}
+        />
+      )}
+  
     <div className="mainContainer">
 
       <CommonPart title="Registration Now"/>
