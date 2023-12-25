@@ -138,7 +138,7 @@ function CustomTextContainer() {
           time
         </h5>
         <div className="TransferForm">
-          <Col md={6} style={{ marginRight: "2rem" }}>
+          <Col md={6} xs={12} style={{ marginRight: "2rem" }}>
             <h6>You Send</h6>
             <InputGroup className="mb-3 mt-4">
               <CustomForm
@@ -169,7 +169,7 @@ function CustomTextContainer() {
             </InputGroup>
           </Col>
 
-          <Col md={6}>
+          <Col md={6} xs={12}>
             <h6>You Receive</h6>
             <InputGroup className="mb-3 mt-4">
               <Form.Control
@@ -261,14 +261,14 @@ function BoxContent() {
     <>
       <div className="outerBox">
         <div className="Box">
-          <div ClassName="contentInsideBox">
+          <div className="contentInsideBox">
             <FaClockRotateLeft style={{ fontSize: "1.5rem" }} />
             <br />
             Quick Transfer
           </div>
         </div>
         <div className="Box">
-          <div ClassName="contentInsideBox">
+          <div className="contentInsideBox">
             <LiaCcAmazonPay style={{ fontSize: "2rem" }} />
             <br />
             Pay
@@ -276,14 +276,14 @@ function BoxContent() {
         </div>
 
         <div className="Box">
-          <div ClassName="contentInsideBox">
+          <div className="contentInsideBox">
             <IoBagAdd style={{ fontSize: "2rem" }} />
             <br />
             Buy
           </div>
         </div>
         <div className="Box">
-          <div ClassName="contentInsideBox">
+          <div className="contentInsideBox">
             <CiWallet style={{ fontSize: "2rem" }} />
             <br />
             Wallet
@@ -300,7 +300,7 @@ function BoxContent() {
           <h5>some dummy text here will be filled later</h5>
         </div>
         <div>
-          <img src={Landing2} />
+          <img className="landingPageImage" src={Landing2} />
         </div>
       </div>
 
@@ -310,18 +310,7 @@ function BoxContent() {
     </>
   );
 }
-export function LandingPage() {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState("70vh");
-  const toggleNavbar = () => {
-    setNavbarOpen(!navbarOpen);
-    console.log(navbarOpen);
-    if (!navbarOpen) {
-      setContainerHeight("130vh");
-    } else {
-      setContainerHeight("70vh");
-    }
-  };
+
 
   function FaqArea() {
     return (
@@ -385,9 +374,16 @@ export function LandingPage() {
       </>
     )
   }
+  export function LandingPage() {
+    const [navbarOpen, setNavbarOpen] = useState(false);
+    const toggleNavbar = () => {
+      setNavbarOpen(!navbarOpen);
+      console.log(navbarOpen);
+   
+    };
   return (
     <>
-      <div className="containerLand" style={{ height: containerHeight }}>
+      <div className="containerLand">
         <div className="overlay">
           <CustomNavbar toggler={toggleNavbar} />
           <CustomTextContainer />

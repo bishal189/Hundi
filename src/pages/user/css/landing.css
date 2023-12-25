@@ -2,14 +2,12 @@
   position: relative;
   width: 100%;
   padding: 20px;
-  height: 70vh;
   background: url("../../../assets/landingPage.png") center/cover no-repeat;
   background-size: cover; /* Ensure the background covers the entire container */
 
 }
 
 .overlay {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -56,24 +54,6 @@
 .navTitles2 {
   margin-left: 15%;
   margin-right: 2rem;
-}
-@media screen and (max-width: 768px) {
-
-  .navTitleContainer {
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgb(29, 28, 28);
-  }
-  .navTitles1,
-  .navTitles2 {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-  .navText {
-    text-align: center;
-    padding-left: 0px !important;
-  }
 }
 
 .TransferForm{
@@ -175,4 +155,44 @@ font-weight: 800;
 .footerArea a{
 text-decoration: none;
 font-size: 1rem;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .navTitleContainer {
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(29, 28, 28);
+  }
+  .navTitles1,
+  .navTitles2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .navText {
+    text-align: center;
+    padding-left: 0px !important;
+  }
+  .TransferForm{
+    flex-direction: column;
+  }
+
+  .detailContent .content{
+    margin-left: 0%;
+  }
+
+  .Box{
+    margin-left: 1rem;
+  }
+  .outerContentBox{
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .landingPageImage{
+    width:80%
+  }
+  
+  
 }
