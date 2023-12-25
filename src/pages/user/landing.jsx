@@ -92,7 +92,7 @@ function CustomTextContainer() {
     const getRate = async () => {
       try {
         const response = await axios.get(
-          `https://v6.exchangerate-api.com/v6/a088c8583f32b5f3e682b9d5/latest/${senderCountry}`
+          `https://v6.exchangerate-api.com/v6/ce71b58ace23ef4a6bdd8427/latest/${senderCountry}`
         );
 
         setExchangeRateArr(response.data.conversion_rates);

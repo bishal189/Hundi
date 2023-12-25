@@ -96,3 +96,7 @@ margin-bottom:3rem;
     left:6rem;
     padding:5px 30px;
 }
+
+
+@media screen and (max-width: 768px) {
+}
