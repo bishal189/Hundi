@@ -1,10 +1,11 @@
 import { Button } from "react-bootstrap";
 import {useState,useEffect} from "react"
 import axiosInstance from '../../axiosInstance'
+import './css/dashboard.css'
 function SmallCards(props) {
   return (
     <>
-      <Button style={{ backgroundColor: "#2e8a99", width: "20%" }}>
+      <Button className="smallCardButton">
         <span style={{ float: "left", fontSize: ".70rem" }}>{props.title}</span>
     <br />
         <span style={{ float: "left", fontWeight: "600" }}>{props.currency && '$'} {props.value} {props.currency} </span>
@@ -34,7 +35,6 @@ export function UserDashboard() {
           Authorization: `Bearer ${accessToken}`,
         },
   })
-  console.log(dashboardResponse)
   setDashboard({
     ...dashboard,
     CurrencyCode:dashboardResponse.data.currencyCode,
@@ -56,7 +56,7 @@ export function UserDashboard() {
         style={{
           backgroundColor: "#dfe6ee",
           paddingTop: "2rem",
-          height: "100vh",
+          minHeight:'100vh'
         }}
       >
         <div
@@ -66,28 +66,20 @@ export function UserDashboard() {
             justifyContent: "space-between",
             width: "80%",
             marginLeft: "10%",
+            flexWrap:'wrap',
           }}
         >
           <SmallCards title="Balance" currency={dashboard.CurrencyCode} value={dashboard.Balance}/>
           <SmallCards title="Total Send Money"  currency={dashboard.CurrencyCode} value={dashboard.TotalSendMoney}/>
           <SmallCards title="Total Top Up" currency={dashboard.CurrencyCode}  value={dashboard.TotalTopUp}/>
           <SmallCards title="Total Received"  currency={dashboard.CurrencyCode} value={dashboard.TotalReceived}/>
-        </div>
-
-        <div
-          style={{
-            paddingTop: "3rem",
-            display: "flex",
-            justifyContent: "space-between",
-            width: "80%",
-            marginLeft: "10%",
-          }}
-        >
+        
+        
           <SmallCards title="Sucessfull Transfer"   value={dashboard.SucessFullTransfer}/>
           <SmallCards title="SucessFull Topup"  value={dashboard.SucessFullTopup}/>
           <SmallCards title="Top Buy"  currency={dashboard.CurrencyCode} value={dashboard.TopBuy} />
           <SmallCards title="Total Buy" currency={dashboard.CurrencyCode}  value={dashboard.TotalBuy}/>
-        </div>
+          </div>
       </div>
     </>
   );

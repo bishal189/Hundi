@@ -1,0 +1,33 @@
+.walletItems{
+    display:flex;
+    justify-content:space-around;
+}
+.outerContainer{
+    background-color: #dfe6ee;
+     height: 100vh;
+}
+
+
+/* */
+.walletInnerContainer{
+background-color: #dfe6ee;
+ height: 100vh;
+ padding:30px 50px 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .walletItems{
+flex-wrap: wrap;
+        align-items: center;
+    }
+    .outerContainer{
+        height:100%;
+        }
+        
+    .walletLink{margin-bottom: 20px;}
+
+    /* */
+    .walletInnerContainer{
+        height: 100%;
+    }
+    }

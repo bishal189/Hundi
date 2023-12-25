@@ -1,6 +1,6 @@
 // Sidebar.js
 import React, { useState } from "react";
-import { Button, Offcanvas, Nav, Container, Col ,Modal} from "react-bootstrap";
+import { Button, Offcanvas, Modal} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./css/sidebar.css";
 import { BiShoppingBag, BiTransfer } from "react-icons/bi";
@@ -73,59 +73,59 @@ console.log(error)
       <ul className="list-unstyled">
         <li className="li-icons">
           <NavLink to="/dashboard
-          ">
+          " onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <FaRegUserCircle style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Dashboard
           </NavLink>
         </li>
 
         <li className="li-icons">
-          <NavLink to="/transfer">
+          <NavLink to="/transfer" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <BiTransfer style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Transfer
           </NavLink>
         </li>
 
         <li className="li-icons">
-          <NavLink to="/userBuy">
+          <NavLink to="/userBuy" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <BiShoppingBag style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Buy
           </NavLink>
         </li>
-        <li className="li-icons">
-          <NavLink to="/pay">
+        <li className="li-icons" >
+          <NavLink to="/pay" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <MdPayment style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp; Pay
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/userRequest">Request</NavLink>
+          <NavLink to="/userRequest" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>Request</NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/userHistory">
+          <NavLink to="/userHistory" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <MdHistory style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;History
           </NavLink>
         </li>
 
         <li className="li-icons">
-          <NavLink to="/userWallet">
+          <NavLink to="/userWallet" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <IoWalletOutline style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp; Wallet
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/userSend">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userSend">
             Send
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/userWithdraw">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userWithdraw">
             Withdraw
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" to="/userTopUp">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userTopUp">
             Top Up
           </NavLink>
         </li>
@@ -136,7 +136,7 @@ console.log(error)
           </NavLink>
         </li>
         <li onClick={()=>setModal(true)} className="li-icons">
-          <NavLink style={{ pointerEvents: 'none' }} to="/logout" >
+          <NavLink onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} style={{ pointerEvents: 'none' }} to="/logout" >
             <SlLogout style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Log Out
           </NavLink>
@@ -184,7 +184,7 @@ export const MobileSideBar = () => {
           <div className="logo">LOGO</div>
         </Offcanvas.Header>
         <Offcanvas.Body style={{ padding: "0px" }}>
-          <CommonSideBar mobile={true} />
+          <CommonSideBar mobile={true} setShowSidebar={setShowSidebar} />
         </Offcanvas.Body>
       </Offcanvas>
     </>

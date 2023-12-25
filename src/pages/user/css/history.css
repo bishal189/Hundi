@@ -1,0 +1,14 @@
+.historyContainer{
+    height:100vh;
+    background-color: #dfe6ee;
+    overflow:scroll;
+}
+
+
+@media screen and (max-width: 768px) {
+    .historyContainer{
+        height:100%;
+    }
+
+    
+}

@@ -9,6 +9,7 @@ export function UserLayout(props) {
   const navigate = useNavigate();
   useEffect(() => {
     async function verify() {
+      return
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         navigate("/userLogin");
@@ -39,7 +40,7 @@ export function UserLayout(props) {
           <SideBar />
           <MobileSideBar />
         </Col>
-        <Col md={9} sm={12}>
+        <Col xs={12} md={9} sm={12}>
           <HomeHeader />
           {props.children}
         </Col>

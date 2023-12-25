@@ -2,7 +2,7 @@ import { Button, Dropdown, FormControl } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { UserPayTable, UserTable,UserWalletTable } from "../../components/user/userTable";
 import AxiosInstance from "../../axiosInstance";
-
+import './css/history.css'
 export function UserHistory() {
   const [history, setHistory] = useState("Transfer");
   const [transferHistory, setTransferHistory] = useState(null);
@@ -43,9 +43,9 @@ export function UserHistory() {
     getHistory();
   }, [history]);
   return (
-    <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <h3 style={{ marginLeft: "4rem", paddingTop: "2.5rem" }}>History</h3>
+    <div className="historyContainer">
+      <div className="innerContainer" style={{ display: "flex", justifyContent: "space-between" }}>
+        <h3 style={{ marginLeft: "4rem", paddingTop: "2.5rem",marginRight:'10px' }}>History</h3>
 
         <Dropdown style={{ paddingTop: "2.5rem" }}>
           <Dropdown.Toggle
@@ -89,7 +89,7 @@ export function UserHistory() {
           </Dropdown.Menu>
 
         </Dropdown>
-        <div style={{ paddingTop: "2.5rem" }}>
+        <div style={{marginLeft:'10px', paddingTop: "2.5rem" }}>
           <div style={{ display: "flex" }}>
             <FormControl
               style={{ width: "20rem" }}
@@ -100,6 +100,7 @@ export function UserHistory() {
             <Button
               style={{
                 marginLeft: "20px",
+                marginRight:'3rem',
                 backgroundColor: "#2e8a99",
                 padding: "0px 40px",
               }}

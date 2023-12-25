@@ -1,0 +1,12 @@
+.smallCardButton{
+    background-color: #2e8a99;
+    width:13rem;
+
+     margin-bottom:1rem
+}
+@media screen and (max-width: 768px) {
+.smallCardButton{
+    width: 8rem;
+
+}
+}

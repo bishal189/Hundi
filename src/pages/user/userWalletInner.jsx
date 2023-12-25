@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import { CustomForm } from "../../components/user/formInput";
 import AxiosInstance from "../../axiosInstance";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ErrorModal } from "../../components/user/popupModal";
-
+import "./css/userWallet.css";
 export function UserSend() {
   const [error, showError] = useState(null);
   const [modal, setModal] = useState(false);
@@ -55,23 +55,23 @@ export function UserSend() {
 
   return (
     <>
-      {modal && (
-        <ErrorModal
-          color={color}
-          show={true}
-          error={error}
-          closeModal={setModal}
-        />
-      )}
+      <div className="walletInnerContainer">
+        {modal && (
+          <ErrorModal
+            color={color}
+            show={true}
+            error={error}
+            closeModal={setModal}
+          />
+        )}
 
-      <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
         <div style={{ padding: "3rem", paddingBottom: ".5rem" }}>
           <p style={{ margin: "0px", fontSize: "1rem", color: "#575757" }}>
             Current Balance
           </p>
           <p style={{ fontSize: "2rem" }}>$12433</p>
         </div>
-        <div className="col-md-5  col-sm-6 m-auto">
+        <div className="col-md-7  col-sm-6 m-auto">
           <p style={{ fontSize: "1rem" }}>Sending To</p>
           <CustomForm
             name="recipentName"
@@ -104,17 +104,17 @@ export function UserSend() {
           />
           <br />
           <br />
-          <Button
-            style={{
-              backgroundColor: "#2e8a99",
-              padding: "10px 80px",
-              marginLeft: "25%",
-              
-            }}
-            onClick={handleClick}
-          >
-            Send
-          </Button>
+          <div style={{ textAlign: "center" }}>
+            <Button
+              style={{
+                backgroundColor: "#2e8a99",
+                padding: "10px 80px",
+              }}
+              onClick={handleClick}
+            >
+              Send
+            </Button>
+          </div>
         </div>
       </div>
     </>
@@ -170,7 +170,6 @@ export function UserWithdraw() {
     }
   };
 
-
   return (
     <>
       {modal && (
@@ -181,43 +180,60 @@ export function UserWithdraw() {
           closeModal={setModal}
         />
       )}
-    <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
-      <div
-        style={{ padding: "3rem", paddingBottom: ".5rem", color: "#575757" }}
-      >
-        <p style={{ margin: "0px", fontSize: "1rem" }}>Current Balance</p>
-        <p style={{ fontSize: "2rem" }}>$12433</p>
-      </div>
-      <div className="col-md-5  col-sm-6 m-auto">
-        <p style={{ fontSize: "1rem" }}>Withdraw</p>
-        <CustomForm name="name" placeholder="Your Name" type="text" onChange={handleOnChange}/>
-        <br />
-        <CustomForm
-          name="bankAccountNumber"
-          placeholder=" Bank Account No."
-          type="text"
-          onChange={handleOnChange}
-        />
-        <br />
-
-        <CustomForm name="amount" placeholder="Amount" type="text" onChange={handleOnChange}/>
-        <br />
-
-        <CustomForm name="password" placeholder="Password" type="password" onChange={handleOnChange} />
-        <br />
-        <br />
-        <Button
-          style={{
-            backgroundColor: "#2e8a99",
-            padding: "10px 80px",
-            marginLeft: "25%",
-          }}
-          onClick={handleClick}
+      <div className="walletInnerContainer">
+        <div
+          style={{ padding: "3rem", paddingBottom: ".5rem", color: "#575757" }}
         >
-          Withdraw
-        </Button>
+          <p style={{ margin: "0px", fontSize: "1rem" }}>Current Balance</p>
+          <p style={{ fontSize: "2rem" }}>$12433</p>
+        </div>
+        <div className="col-md-7  col-sm-6 m-auto">
+          <p style={{ fontSize: "1rem" }}>Withdraw</p>
+          <CustomForm
+            name="name"
+            placeholder="Your Name"
+            type="text"
+            onChange={handleOnChange}
+          />
+          <br />
+          <CustomForm
+            name="bankAccountNumber"
+            placeholder=" Bank Account No."
+            type="text"
+            onChange={handleOnChange}
+          />
+          <br />
+
+          <CustomForm
+            name="amount"
+            placeholder="Amount"
+            type="text"
+            onChange={handleOnChange}
+          />
+          <br />
+
+          <CustomForm
+            name="password"
+            placeholder="Password"
+            type="password"
+            onChange={handleOnChange}
+          />
+          <br />
+          <br />
+          <div style={{ textAlign: "center" }}>
+
+          <Button
+            style={{
+              backgroundColor: "#2e8a99",
+              padding: "10px 80px",
+            }}
+            onClick={handleClick}
+          >
+            Withdraw
+          </Button>
+          </div>
+        </div>
       </div>
-    </div>
     </>
   );
 }
@@ -281,14 +297,14 @@ export function UserTopUp() {
         />
       )}
 
-      <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
+      <div className="walletInnerContainer">
         <div
           style={{ padding: "3rem", paddingBottom: ".5rem", color: "#575757" }}
         >
           <p style={{ margin: "0px", fontSize: "1rem" }}>Current Balance</p>
           <p style={{ fontSize: "2rem" }}>$12433</p>
         </div>
-        <div className="col-md-5  col-sm-6 m-auto">
+        <div className="col-md-7  col-sm-6 m-auto">
           <p style={{ fontSize: "1rem" }}>Make a Top Up</p>
           <CustomForm
             name="name"
@@ -321,17 +337,18 @@ export function UserTopUp() {
           />
           <br />
           <br />
+          <div style={{ textAlign: "center" }}>
 
           <Button
             onClick={handleClick}
             style={{
               backgroundColor: "#2e8a99",
               padding: "10px 80px",
-              marginLeft: "25%",
             }}
           >
             Top Up
           </Button>
+          </div>
         </div>
       </div>
     </>
