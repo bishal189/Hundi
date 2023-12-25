@@ -3,8 +3,6 @@ import Accordion from 'react-bootstrap/Accordion';
 
 import {
   Row,
-  Card,
-  Button,
   Nav,
   Col,
   Navbar,
@@ -47,29 +45,29 @@ function CustomNavbar(props) {
           <Nav className="w-100 ml-auto">
             <div className="navTitleContainer">
               <div className="navTitles1">
-                <Nav.Link className="navText" href="">
+                <Link className="navText" to="">
                   Converter
-                </Nav.Link>
-                <Nav.Link className="navText" href="">
+                </Link>
+                <Link className="navText" to="">
                   Send Money
-                </Nav.Link>
-                <Nav.Link className="navText" href="">
+                </Link>
+                <Link className="navText" to="">
                   Business & API
-                </Nav.Link>
-                <Nav.Link className="navText" href="">
+                </Link>
+                <Link className="navText" to="">
                   Tools
-                </Nav.Link>
-                <Nav.Link className="navText" href="">
+                </Link>
+                <Link className="navText" to="">
                   Agent
-                </Nav.Link>
+                </Link>
               </div>
               <div className="navTitles2">
-                <Nav.Link className="navText" href="/userRegister">
+                <Link className="navText" to="/userRegister">
                   Register
-                </Nav.Link>
-                <Nav.Link className="navText" href="/userLogin">
+                </Link>
+                <Link className="navText" to="/userLogin">
                   Log In
-                </Nav.Link>
+                </Link>
               </div>
             </div>
           </Nav>

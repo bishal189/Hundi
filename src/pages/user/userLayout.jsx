@@ -9,12 +9,11 @@ export function UserLayout(props) {
   const navigate = useNavigate();
   useEffect(() => {
     async function verify() {
-     const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken){
-        navigate('/userLogin')
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        navigate("/userLogin");
       }
       const decodedToken = jwtDecode(accessToken);
-      console.log(decodedToken)
       // If decoding is successful, check the expiration date
       if (decodedToken && decodedToken.exp) {
         const expirationDate = new Date(decodedToken.exp * 1000); // Convert seconds to milliseconds
@@ -31,7 +30,6 @@ export function UserLayout(props) {
         return;
       }
     }
-
     verify();
   }, []);
   return (
