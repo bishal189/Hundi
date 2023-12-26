@@ -9,7 +9,6 @@ export function UserLayout(props) {
   const navigate = useNavigate();
   useEffect(() => {
     async function verify() {
-      return
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         navigate("/userLogin");

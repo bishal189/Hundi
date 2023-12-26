@@ -77,7 +77,7 @@ function Send() {
         />
       )}
 
-      <div className="m-auto mt-5 col-md-5 col-sm-8">
+      <div className="m-auto mt-5 col-md-6 col-sm-8">
         <p style={{ fontSize: "1rem", marginBottom: "0px" }}>Make a request</p>
         <CustomForm
           placeholder="Your User Id"
@@ -218,6 +218,7 @@ function Receive() {
           fontSize: ".90rem",
           width: "95%",
           backgroundColor: "transparent",
+          overflow:'scroll'
         }}
       >
         <thead>
