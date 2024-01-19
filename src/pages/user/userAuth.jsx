@@ -171,7 +171,7 @@ export function UserRegister() {
     name: "",
     email: "",
     country: "",
-
+    confirmPassword:"",
     password: "",
     phone_number: "",
   });
