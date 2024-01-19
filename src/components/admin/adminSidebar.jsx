@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import LogoutIcon from '../../assets/Logout.svg'
 import axiosInstance from '../../axiosInstance'
+import { IoMdArrowDropdown } from "react-icons/io";
+
+
 export const AdminCommonSideBar = (props) => {
   const navigate=useNavigate()
   const [modal,setModal]=useState(false)
@@ -53,9 +56,7 @@ function customerShowToggler(){
           <h5>You will be Logged out in a second</h5>
           <h5>Are You Sure you want to Logout?</h5>
           </div>
-
       </div>
-
      </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={handleClose}>
@@ -66,6 +67,9 @@ function customerShowToggler(){
       </Button>
     </Modal.Footer>
   </Modal>}
+
+
+
     <div
       className="sidebar"
       style={{
@@ -87,6 +91,7 @@ function customerShowToggler(){
           <a href="#"  onClick={()=>customerShowToggler()}>
             <BiTransfer style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Customers
+            <IoMdArrowDropdown style={{fontSize:'2rem'}}/>
           </a>
         </li>
 
