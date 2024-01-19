@@ -14,9 +14,9 @@ export function UserWallet(){
             </div>
             <p style={{paddingLeft:'3rem',paddingTop:'2rem',fontSize:'1rem'}}>Choose An Option:</p>
             <div className="walletItems" >
-                <Link className="walletLink" to="/userSend"><img src={Send} /></Link>
-               <Link className="walletLink" to ="/userWithdraw"> <img src={Withdraw} /></Link>
-               <Link className="walletLink" to ="/userTopup"><img src={Topup} /></Link>
+                <Link className="walletLink" to="/user/userSend"><img src={Send} /></Link>
+               <Link className="walletLink" to ="/user/userWithdraw"> <img src={Withdraw} /></Link>
+               <Link className="walletLink" to ="/user/userTopup"><img src={Topup} /></Link>
             </div>
 
             </div>

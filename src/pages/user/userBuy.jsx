@@ -10,7 +10,7 @@ export function UserBuy() {
     const navigate=useNavigate()
 
     function handleClick(type){
-        navigate(`/userBuyList/${type}`)
+        navigate(`/user/userBuyList/${type}`)
     }
   return (
     <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>

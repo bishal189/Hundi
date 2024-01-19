@@ -22,7 +22,7 @@ function CommonPart(props) {
 
         // Compare with the current date
         if (expirationDate > new Date()) {
-          navigate('/dashboard')
+          navigate('/user/dashboard')
           return;
         } else {
           return;
@@ -103,7 +103,7 @@ export function UserSignIn() {
       }
       localStorage.setItem("accessToken", response.data.token.access);
       setShowModal(false);
-      navigate("/transfer");
+      navigate("/user/transfer");
     } catch (error) {
       setError(error.response.data.error);
       setShowModal(true);
@@ -191,7 +191,7 @@ export function UserRegister() {
       }
       localStorage.setItem("accessToken", response.data.token.access);
       setShowModal(false);
-      navigate("/transfer");
+      navigate("/user/transfer");
     } catch (error) {
       setShowModal(true);
       setError(error.response.data.error);

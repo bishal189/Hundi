@@ -18,7 +18,7 @@ function Icons(props) {
   return (
     <Col>
       <div>
-        <Link to={`/pay/${props.title}`}>
+        <Link to={`/user/pay/${props.title}`}>
           <img style={{ cursor: "pointer" }} src={props.imgSrc} />
         </Link>
         <p

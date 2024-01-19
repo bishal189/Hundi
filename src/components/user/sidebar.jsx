@@ -72,7 +72,7 @@ console.log(error)
       {!props.mobile && <div className="logo">LOGO</div>}
       <ul className="list-unstyled">
         <li className="li-icons">
-          <NavLink to="/dashboard
+          <NavLink to="/user/dashboard
           " onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <FaRegUserCircle style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Dashboard
@@ -80,63 +80,63 @@ console.log(error)
         </li>
 
         <li className="li-icons">
-          <NavLink to="/transfer" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/user/transfer" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <BiTransfer style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Transfer
           </NavLink>
         </li>
 
         <li className="li-icons">
-          <NavLink to="/userBuy" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/user/userBuy" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <BiShoppingBag style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Buy
           </NavLink>
         </li>
         <li className="li-icons" >
-          <NavLink to="/pay" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/user/pay" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <MdPayment style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp; Pay
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/userRequest" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>Request</NavLink>
+          <NavLink to="/user/userRequest" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>Request</NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/userHistory" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/user/userHistory" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <MdHistory style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;History
           </NavLink>
         </li>
 
         <li className="li-icons">
-          <NavLink to="/userWallet" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/user/userWallet" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <IoWalletOutline style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp; Wallet
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userSend">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/user/userSend">
             Send
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userWithdraw">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/user/userWithdraw">
             Withdraw
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/userTopUp">
+          <NavLink className="inner" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} to="/user/userTopUp">
             Top Up
           </NavLink>
         </li>
         <li className="li-icons">
-          <NavLink to="/contact">
+          <NavLink to="/user/contact">
             <MdOutlineHeadphones style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Contact US
           </NavLink>
         </li>
         <li onClick={()=>setModal(true)} className="li-icons">
-          <NavLink onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} style={{ pointerEvents: 'none' }} to="/logout" >
+          <NavLink onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}} style={{ pointerEvents: 'none' }} to="/user/logout" >
             <SlLogout style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Log Out
           </NavLink>

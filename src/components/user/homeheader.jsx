@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function HomeHeader(){
 const navigate=useNavigate()
 function navigator(){
-    navigate('/userProfile')
+    navigate('/user/userProfile')
 }
     return(
     <div style={{backgroundColor:'#f7f9fb',display:'flex',justifyContent:'flex-end'}}>

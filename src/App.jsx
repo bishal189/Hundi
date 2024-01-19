@@ -21,24 +21,23 @@ function App() {
     <Router>
     <Routes>
        <Route path="/" element={<LandingPage />} />
-      <Route path="/transfer" element={<UserLayout><Transfer /></UserLayout>} />
+      <Route path="/user/transfer" element={<UserLayout><Transfer /></UserLayout>} />
 
-      <Route path="/pay" element={<UserLayout><UserPay /></UserLayout>} />
-      <Route path="/pay/:company" element={<UserLayout><UserPayModel /></UserLayout>} />
-
+      <Route path="/user/pay" element={<UserLayout><UserPay /></UserLayout>} />
+      <Route path="/user/pay/:company" element={<UserLayout><UserPayModel /></UserLayout>} />
       <Route path="/userLogin" element={<UserSignIn />} />
       <Route  path="/userRegister" element={<UserRegister />} />
-      <Route path="/userHistory" element={<UserLayout><UserHistory /></UserLayout>} />
-      <Route path="/dashboard" element={<UserLayout><UserDashboard /></UserLayout>} />
-      <Route path="/userProfile" element={<UserProfile />} />
-      <Route path ="/userWallet" element={<UserLayout><UserWallet /></UserLayout>} />
-      <Route path="/userSend" element={<UserLayout><UserSend /></UserLayout>} />
-      <Route path="/userWithdraw" element={<UserLayout><UserWithdraw /></UserLayout>} />
-      <Route path="/userTopUp" element={<UserLayout><UserTopUp /></UserLayout>} />
-      <Route path="/userRequest" element={<UserLayout><UserRequest /></UserLayout>} />
-      <Route path="/userBuy" element={<UserLayout><UserBuy /></UserLayout>} />
-      <Route path="/userBuyList/:type" element={<UserLayout><UserBuyList /></UserLayout>} />
-      <Route path="/userBuyDetail/:type/:id" element={<UserLayout><UserBuyDetail /></UserLayout>} />
+      <Route path="/user/userHistory" element={<UserLayout><UserHistory /></UserLayout>} />
+      <Route path="/user/dashboard" element={<UserLayout><UserDashboard /></UserLayout>} />
+      <Route path="/user/userProfile" element={<UserProfile />} />
+      <Route path ="/user/userWallet" element={<UserLayout><UserWallet /></UserLayout>} />
+      <Route path="/user/userSend" element={<UserLayout><UserSend /></UserLayout>} />
+      <Route path="/user/userWithdraw" element={<UserLayout><UserWithdraw /></UserLayout>} />
+      <Route path="/user/userTopUp" element={<UserLayout><UserTopUp /></UserLayout>} />
+      <Route path="/user/userRequest" element={<UserLayout><UserRequest /></UserLayout>} />
+      <Route path="/user/userBuy" element={<UserLayout><UserBuy /></UserLayout>} />
+      <Route path="/user/userBuyList/:type" element={<UserLayout><UserBuyList /></UserLayout>} />
+      <Route path="/user/userBuyDetail/:type/:id" element={<UserLayout><UserBuyDetail /></UserLayout>} />
       
     </Routes>
   </Router>  )
