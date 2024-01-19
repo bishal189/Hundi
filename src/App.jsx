@@ -15,6 +15,8 @@ import { UserProfile } from './pages/user/userProfile';
 import { UserRequest } from './pages/user/userRequest';
 import { UserWallet } from './pages/user/userWallet';
 import { UserSend, UserTopUp, UserWithdraw } from './pages/user/userWalletInner';
+
+import {AdminLayout} from './pages/admin/adminLayout'
 function App() {
 
   return (
@@ -39,6 +41,8 @@ function App() {
       <Route path="/user/userBuyList/:type" element={<UserLayout><UserBuyList /></UserLayout>} />
       <Route path="/user/userBuyDetail/:type/:id" element={<UserLayout><UserBuyDetail /></UserLayout>} />
       
+
+      <Route path="/admin/" element={<AdminLayout><div>hello</div></AdminLayout>} />
     </Routes>
   </Router>  )
 }
