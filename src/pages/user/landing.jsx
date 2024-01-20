@@ -1,5 +1,5 @@
 import "./css/landing.css";
-import Accordion from 'react-bootstrap/Accordion';
+import Accordion from "react-bootstrap/Accordion";
 
 import {
   Row,
@@ -12,7 +12,11 @@ import {
   Form,
 } from "react-bootstrap";
 import { CiWallet } from "react-icons/ci";
-import { FaFacebookSquare ,FaInstagramSquare,FaWhatsappSquare} from "react-icons/fa";
+import {
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaWhatsappSquare,
+} from "react-icons/fa";
 
 import { FaClockRotateLeft } from "react-icons/fa6";
 import { LiaCcAmazonPay } from "react-icons/lia";
@@ -309,46 +313,44 @@ function BoxContent() {
   );
 }
 
-
-  function FaqArea() {
-    return (
-      <>
-        <div className="faqContainer">
-          <h3>FAQs</h3>
-          <Accordion style={{width:'80%',margin:'auto'}} defaultActiveKey="">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>How Can I make a Transfer?</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>How Long do transfer take?</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-
-        </div>
-      </>
-    );
-  }
-  function FooterArea(){
-    return(
-      <>
+function FaqArea() {
+  return (
+    <>
+      <div className="faqContainer">
+        <h3>FAQs</h3>
+        <Accordion style={{ width: "80%", margin: "auto" }} defaultActiveKey="">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>How Can I make a Transfer?</Accordion.Header>
+            <Accordion.Body>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>How Long do transfer take?</Accordion.Header>
+            <Accordion.Body>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </div>
+    </>
+  );
+}
+function FooterArea() {
+  return (
+    <>
       <div className="footerArea">
         <div className="aboutContainer">
           <h3>About Us</h3>
@@ -360,25 +362,30 @@ function BoxContent() {
             <Link to="">Contact Us</Link>
           </div>
           <div>
-            <FaFacebookSquare style={{marginRight:'2rem',fontSize:'3rem'}}/>
-            <FaWhatsappSquare style={{marginRight:'2rem',fontSize:'3rem'}} />
-            <FaInstagramSquare  style={{marginRight:'2rem',fontSize:'3rem'}}/>
+            <FaFacebookSquare
+              style={{ marginRight: "2rem", fontSize: "3rem" }}
+            />
+            <FaWhatsappSquare
+              style={{ marginRight: "2rem", fontSize: "3rem" }}
+            />
+            <FaInstagramSquare
+              style={{ marginRight: "2rem", fontSize: "3rem" }}
+            />
           </div>
           <div>
-              <h2>Logo</h2>
+            <h2>Logo</h2>
           </div>
         </div>
       </div>
-      </>
-    )
-  }
-  export function LandingPage() {
-    const [navbarOpen, setNavbarOpen] = useState(false);
-    const toggleNavbar = () => {
-      setNavbarOpen(!navbarOpen);
-      console.log(navbarOpen);
-   
-    };
+    </>
+  );
+}
+export function LandingPage() {
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const toggleNavbar = () => {
+    setNavbarOpen(!navbarOpen);
+    console.log(navbarOpen);
+  };
   return (
     <>
       <div className="containerLand">
