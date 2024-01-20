@@ -54,7 +54,7 @@ export function PayManagement(){
     return(
         <>
         <div  style={{backgroundColor:'#dfe6ee'}}className="payContainer">
-        <div style={{fontSize:'2rem',padding:'20px'}}>Pay</div>
+        <div style={{fontSize:'1.5rem',padding:'20px'}}>Pay</div>
 
             <AdminPayManagementTable list={list}/>
             </div>

@@ -18,6 +18,7 @@ import { UserSend, UserTopUp, UserWithdraw } from './pages/user/userWalletInner'
 
 import {PayManagement} from './pages/admin/payManagement'
 import {AdminLayout} from './pages/admin/adminLayout'
+import { BuyManagement } from './pages/admin/BuyManagement.jsx';
 function App() {
 
   return (
@@ -43,6 +44,7 @@ function App() {
       <Route path="/user/userBuyDetail/:type/:id" element={<UserLayout><UserBuyDetail /></UserLayout>} />
       
       <Route path="/admin/payManagement" element={<AdminLayout><PayManagement /></AdminLayout>} />
+      <Route path="/admin/buyManagement" element={<AdminLayout><BuyManagement /></AdminLayout>} />
 
     </Routes>
   </Router>  )
