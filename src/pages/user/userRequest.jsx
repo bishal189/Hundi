@@ -30,8 +30,7 @@ function Send() {
       } catch (error) {
         setModal(true);
         setError(error.message);
-        setColor('red')
-
+        setColor("red");
       }
     }
     retriver();
@@ -149,8 +148,7 @@ function Receive() {
       } catch (err) {
         setError(err.response.data.error);
         setModal(true);
-        setColor('red')
-
+        setColor("red");
       }
     }
 
@@ -172,11 +170,10 @@ function Receive() {
       setModal(true);
       setColor("green");
       setList((prevList) => prevList.filter((l) => l.id !== id));
-
     } catch (err) {
       setError(err.response.data.error);
       setModal(true);
-      setColor('red')
+      setColor("red");
     }
   };
   const rejectRequest = async (id) => {
@@ -197,7 +194,7 @@ function Receive() {
     } catch (err) {
       setError(err.response.data.error);
       setModal(true);
-      setColor('red')
+      setColor("red");
     }
   };
   return (
@@ -218,7 +215,6 @@ function Receive() {
           fontSize: ".90rem",
           width: "95%",
           backgroundColor: "transparent",
-          overflow:'scroll'
         }}
       >
         <thead>
@@ -318,7 +314,13 @@ export function UserRequest() {
   const [current, setCurrent] = useState("Send");
 
   return (
-    <div style={{ backgroundColor: "#dfe6ee", height: "100vh" }}>
+    <div
+      style={{
+        backgroundColor: "#dfe6ee",
+        height: "100vh",
+        overflow: "scroll",
+      }}
+    >
       <div style={{ textAlign: "center", paddingTop: "3rem" }}>
         <Button
           style={{

@@ -20,6 +20,7 @@ import {
   UserWithdraw,
 } from "./pages/user/userWalletInner";
 
+
 import { PayManagement } from "./pages/admin/payManagement";
 import { AdminLayout } from "./pages/admin/adminLayout";
 import { BuyManagement } from "./pages/admin/BuyManagement.jsx";
@@ -138,6 +139,8 @@ function App() {
             </UserLayout>
           }
         />
+
+      <Route path="/admin/requestManagement" element={<AdminLayout><Requestmanagement/> </AdminLayout>} />
 
         <Route
           path="/admin/payManagement"
