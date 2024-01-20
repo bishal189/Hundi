@@ -1,5 +1,5 @@
 import {AdminRequestTable} from '../../components/admin/adminTable'
-export function Requestmanagement(){
+export function RequestManagement(){
 
     // <th style={{backgroundColor:'transparent'}}>Request by</th>
     // <th style={{backgroundColor:'transparent'}}>Request by Id</th>

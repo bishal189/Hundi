@@ -489,4 +489,3 @@ export const AdminRequestTable=(props)=>{
     </Table>
   );
 }
-};

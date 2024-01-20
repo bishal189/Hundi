@@ -146,7 +146,7 @@ function customerShowToggler(){
           <NavLink to="/admin/payManagement" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>Pay Management</NavLink>
         </li>
                 <li className="li-icons">
-          <NavLink to="/admin/RequestManagement" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
+          <NavLink to="/admin/requestManagement" onClick={()=>{props.setShowSidebar && props.setShowSidebar(false)}}>
             <MdHistory style={{ fontSize: "1.3rem" }} />
             &nbsp;&nbsp;&nbsp;Request Management
           </NavLink>

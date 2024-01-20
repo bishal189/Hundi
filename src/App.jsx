@@ -26,6 +26,7 @@ import { AdminLayout } from "./pages/admin/adminLayout";
 import { BuyManagement } from "./pages/admin/BuyManagement.jsx";
 import TransferManagement from "./pages/admin/TransferManagement.jsx";
 import { HistoryMangement } from "./pages/admin/HistoryManagement.jsx";
+import { RequestManagement } from "./pages/admin/request.jsx";
 function App() {
   return (
     <Router>
@@ -140,7 +141,7 @@ function App() {
           }
         />
 
-      <Route path="/admin/requestManagement" element={<AdminLayout><Requestmanagement/> </AdminLayout>} />
+      <Route path="/admin/requestManagement" element={<AdminLayout><RequestManagement/> </AdminLayout>} />
 
         <Route
           path="/admin/payManagement"
