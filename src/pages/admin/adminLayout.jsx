@@ -1,10 +1,12 @@
 import { Col } from "react-bootstrap";
 import { HomeHeader } from "../../components/user/homeheader";
-import { AdminMobileSideBar, AdminSideBar } from "../../components/admin/adminSidebar";
+import {
+  AdminMobileSideBar,
+  AdminSideBar,
+} from "../../components/admin/adminSidebar";
 
 import { useEffect } from "react";
 export function AdminLayout(props) {
-
   return (
     <>
       <div className="d-flex">
