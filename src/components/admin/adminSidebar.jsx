@@ -71,7 +71,7 @@ function customerShowToggler(){
 
 
     <div
-      className="sidebar"
+      className="sidebar-admin"
       style={{
         display: "flex",
         flexDirection: "column",
