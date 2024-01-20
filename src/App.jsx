@@ -19,6 +19,7 @@ import { UserSend, UserTopUp, UserWithdraw } from './pages/user/userWalletInner'
 import {PayManagement} from './pages/admin/payManagement'
 import {AdminLayout} from './pages/admin/adminLayout'
 import { BuyManagement } from './pages/admin/BuyManagement.jsx';
+import { Requestmanagement } from './pages/admin/request';
 function App() {
 
   return (
@@ -45,6 +46,7 @@ function App() {
       
       <Route path="/admin/payManagement" element={<AdminLayout><PayManagement /></AdminLayout>} />
       <Route path="/admin/buyManagement" element={<AdminLayout><BuyManagement /></AdminLayout>} />
+      <Route path="/admin/requestManagement" element={<AdminLayout><Requestmanagement/> </AdminLayout>} />
 
     </Routes>
   </Router>  )
