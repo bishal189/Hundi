@@ -56,7 +56,7 @@ const TransferManagement = () => {
   ];
   return (
     <>
-      <div style={{ backgroundColor: "#dfe6ee" }} className="payContainer">
+      <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
         <div
           style={{
             fontSize: "1.5rem",

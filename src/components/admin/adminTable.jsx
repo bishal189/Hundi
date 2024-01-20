@@ -343,3 +343,103 @@ export const AdminTransferManagementTable = (props) => {
     </Table>
   );
 };
+
+export const AdminHistoryManagementTable = (props) => {
+  const colorArr = ["#ededed", "white"];
+  return (
+    <Table
+      bordered
+      hover
+      style={{
+        marginLeft: "20px",
+        fontSize: ".90rem",
+        width: "95%",
+        backgroundColor: "transparent",
+      }}
+    >
+      <thead>
+        <tr>
+          <th style={{ backgroundColor: "transparent" }}>Username</th>
+          <th style={{ backgroundColor: "transparent" }}>User ID</th>
+          <th style={{ backgroundColor: "transparent" }}>Type</th>
+          <th style={{ backgroundColor: "transparent" }}>TransactionId</th>
+          <th style={{ backgroundColor: "transparent" }}>Amount</th>
+          <th style={{ backgroundColor: "transparent" }}>Time</th>
+          <th style={{ backgroundColor: "transparent" }}>Action</th>
+
+          {/* Add more headers as needed */}
+        </tr>
+      </thead>
+      <tbody>
+        {props.list &&
+          props.list.map((l, index) => {
+            return (
+              <tr key={index}>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  {l.userName}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  {l.userId}{" "}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  {l.type}{" "}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  {l.transactionId}{" "}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  ${l.amount} Usd
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  {l.time}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                    color: "green",
+                  }}
+                >
+                  {l.action}
+                </td>
+              </tr>
+            );
+          })}
+
+        {/* Add more cells as needed */}
+
+        {/* Add more rows as needed */}
+      </tbody>
+    </Table>
+  );
+};
