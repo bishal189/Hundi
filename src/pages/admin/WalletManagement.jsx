@@ -1,32 +1,33 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AdminWalletManagementTable } from "../../components/admin/adminTable";
 
 import AxiosInstance from "../../axiosInstance";
 const WalletManagement = () => {
-
   const [buttonValue, setButtonValue] = useState("Send");
 
   const [walletHistory, setWalletHistory] = useState(null);
 
-  useEffect(()=>{
-    async function getWalletHistory(){
-      const accessToken=localStorage.getItem('accessToken');
-         try{
-     const response=await AxiosInstance.get(`wallet/get${buttonValue}TransactionHistory`,{
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-    })
-     console.log(response)
-     setWalletHistory(response.data.data)
-  }catch(error){
-    console.log(error)
-  }
-
+  useEffect(() => {
+    async function getWalletHistory() {
+      const accessToken = localStorage.getItem("accessToken");
+      try {
+        const response = await AxiosInstance.get(
+          `wallet/get${buttonValue}TransactionHistory`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        console.log(response);
+        setWalletHistory(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  getWalletHistory()
-  },[buttonValue])
+    getWalletHistory();
+  }, [buttonValue]);
   return (
     <>
       <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
@@ -47,8 +48,8 @@ const WalletManagement = () => {
                 borderRadius: "5px",
                 marginLeft: "10px",
                 border: 0,
-                background: buttonValue == "send" ? "#53449F" : "#efefefef",
-                color: buttonValue == "send" ? "white" : "black",
+                background: buttonValue == "Send" ? "#53449F" : "#efefefef",
+                color: buttonValue == "Send" ? "white" : "black",
               }}
               onClick={() => setButtonValue("Send")}
             >
@@ -62,8 +63,8 @@ const WalletManagement = () => {
                 borderRadius: "5px",
                 marginLeft: "10px",
                 border: 0,
-                background: buttonValue == "withdraw" ? "#53449F" : "#efefefef",
-                color: buttonValue == "withdraw" ? "white" : "black",
+                background: buttonValue == "WithDraw" ? "#53449F" : "#efefefef",
+                color: buttonValue == "WithDraw" ? "white" : "black",
               }}
               onClick={() => setButtonValue("WithDraw")}
             >
@@ -78,8 +79,8 @@ const WalletManagement = () => {
                 borderRadius: "5px",
                 marginLeft: "10px",
                 border: 0,
-                background: buttonValue == "topup" ? "#53449F" : "#efefefef",
-                color: buttonValue == "topup" ? "white" : "black",
+                background: buttonValue == "TopUp" ? "#53449F" : "#efefefef",
+                color: buttonValue == "TopUp" ? "white" : "black",
               }}
               onClick={() => setButtonValue("TopUp")}
             >
@@ -87,7 +88,10 @@ const WalletManagement = () => {
             </Button>
           </div>
         </div>
-        <AdminWalletManagementTable list={walletHistory} buttonValue={buttonValue} />
+        <AdminWalletManagementTable
+          list={walletHistory}
+          buttonValue={buttonValue}
+        />
       </div>
     </>
   );
