@@ -18,6 +18,7 @@ ul {
 .sidebar ul {
   background-color: #ededed; /* Sidebar background color */
 }
+
 .li-icons {
   display: flex;
   align-items: center;

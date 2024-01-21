@@ -76,8 +76,7 @@ export const CommonSideBar = (props) => {
         <ul className="list-unstyled">
           <li className="li-icons">
             <NavLink
-              to="/user/dashboard
-          "
+              to="/user/dashboard"
               onClick={() => {
                 props.setShowSidebar && props.setShowSidebar(false);
               }}
