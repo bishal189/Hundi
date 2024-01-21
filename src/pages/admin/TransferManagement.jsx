@@ -1,59 +1,31 @@
-import React from "react";
+import {useState,useEffect} from "react";
 import { AdminTransferManagementTable } from "../../components/admin/adminTable";
 
+import AxiosInstance from "../../axiosInstance";
+
 const TransferManagement = () => {
-  const list = [
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      senderAgent: "max tom",
-      recieverAgent: "mike green",
-      status: "pending",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      reciverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      senderAgent: "max tom",
-      recieverAgent: "mike green",
-      status: "pending",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      senderAgent: "max tom",
-      recieverAgent: "mike green",
-      status: "pending",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      senderAgent: "max tom",
-      recieverAgent: "mike green",
-      status: "pending",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      senderAgent: "max tom",
-      recieverAgent: "mike green",
-      status: "pending",
-    },
-  ];
+
+  const [transferHistory, setTransferHistory] = useState(null);
+
+  useEffect(()=>{
+    async function getTransferHistory(){
+      const accessToken=localStorage.getItem('accessToken');
+         try{
+     const response=await AxiosInstance.get('transaction/getTransferTransactionAdminHistory',{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+    })
+     setTransferHistory(response.data.data)
+     console.log(response)
+  }catch(error){
+    console.log(error)
+  }
+
+    }
+  getTransferHistory()
+  },[])
+
   return (
     <>
       <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
@@ -70,7 +42,7 @@ const TransferManagement = () => {
           <h4>Change currency rate</h4>
         </div>
 
-        <AdminTransferManagementTable list={list} />
+        {transferHistory && <AdminTransferManagementTable list={transferHistory} /> }
       </div>
     </>
   );

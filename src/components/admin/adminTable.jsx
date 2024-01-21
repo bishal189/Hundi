@@ -257,7 +257,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.senderName}
+                  {l.sender.firstName} {l.sender.lastName}
                 </td>
                 <td
                   style={{
@@ -265,7 +265,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.senderId}{" "}
+                  {l.sender.id}{" "}
                 </td>
                 <td
                   style={{
@@ -273,7 +273,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.recieverName}{" "}
+                  {l.receiver.fullName}{" "}
                 </td>
                 <td
                   style={{
@@ -281,7 +281,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.recieverId}{" "}
+                  {l.receiver.id}{" "}
                 </td>
                 <td
                   style={{
@@ -289,7 +289,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  ${l.amount} Usd
+                  ${l.sentAmount} Usd
                 </td>
                 <td
                   style={{
