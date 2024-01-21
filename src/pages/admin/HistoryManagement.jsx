@@ -1,8 +1,7 @@
 import { Button } from "react-bootstrap";
 import { AdminHistoryManagementTable } from "../../components/admin/adminTable";
-import { BiLeftArrow } from "react-icons/bi";
 
-export function HistoryMangement() {
+export function HistoryManagement() {
   const list = [
     {
       userName: "Martin James",

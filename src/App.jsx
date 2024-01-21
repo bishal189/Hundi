@@ -20,12 +20,13 @@ import {
   UserWithdraw,
 } from "./pages/user/userWalletInner";
 
-
 import { PayManagement } from "./pages/admin/payManagement";
 import { AdminLayout } from "./pages/admin/adminLayout";
 import { BuyManagement } from "./pages/admin/BuyManagement.jsx";
+import { HistoryManagement } from "./pages/admin/HistoryManagement.jsx";
 import TransferManagement from "./pages/admin/TransferManagement.jsx";
-import { HistoryMangement } from "./pages/admin/HistoryManagement.jsx";
+
+import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 function App() {
   return (
@@ -141,7 +142,14 @@ function App() {
           }
         />
 
-      <Route path="/admin/requestManagement" element={<AdminLayout><RequestManagement/> </AdminLayout>} />
+        <Route
+          path="/admin/requestManagement"
+          element={
+            <AdminLayout>
+              <RequestManagement />{" "}
+            </AdminLayout>
+          }
+        />
 
         <Route
           path="/admin/payManagement"
@@ -172,7 +180,15 @@ function App() {
           path="/admin/HistoryManagement"
           element={
             <AdminLayout>
-              <HistoryMangement />
+              <HistoryManagement />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/WalletManagement"
+          element={
+            <AdminLayout>
+              <WalletManagement />
             </AdminLayout>
           }
         />
