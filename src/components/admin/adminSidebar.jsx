@@ -74,7 +74,7 @@ export const AdminCommonSideBar = (props) => {
       )}
 
       <div
-        className="sidebar"
+        className="sidebar-admin"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -273,16 +273,6 @@ export const AdminCommonSideBar = (props) => {
           </li>
         </ul>
       </div>
-      {/* </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleClose}>
-        Cancel
-      </Button>
-      <Button variant="primary" onClick={Logout}>
-        OK
-      </Button>
-    </Modal.Footer>
-  </Modal>} */}
 
       <div
         className="sidebar-admin"
@@ -432,7 +422,7 @@ export const AdminCommonSideBar = (props) => {
 
           <li className="li-icons">
             <NavLink
-              to="/admin/walletMangement"
+              to="/admin/walletManagement"
               onClick={() => {
                 props.setShowSidebar && props.setShowSidebar(false);
               }}

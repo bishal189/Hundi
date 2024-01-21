@@ -27,7 +27,6 @@ import { HistoryManagement } from "./pages/admin/HistoryManagement.jsx";
 import TransferManagement from "./pages/admin/TransferManagement.jsx";
 
 import WalletManagement from "./pages/admin/WalletManagement.jsx";
-import { HistoryMangement } from "./pages/admin/HistoryManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 function App() {
   return (
