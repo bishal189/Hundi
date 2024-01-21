@@ -1,57 +1,28 @@
 import {AdminBuyManagementTable} from '../../components/admin/adminTable'
-export function BuyManagement(){
-    const list=[
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    {buyerName:"Martin James",
-    buyerId:'980000',
-    productName:"Aep texas",
-    transactionId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    }, 
-    ]
+import AxiosInstance from "../../axiosInstance";
+import {useState,useEffect} from "react";
+export function BuyManagement(){
+  const [BuyHistory, setBuyHistory] = useState(null);
+
+  useEffect(()=>{
+    async function getBuyHistory(){
+      const accessToken=localStorage.getItem('accessToken');
+         try{
+     const response=await AxiosInstance.get('buy/getBuyTransactionAdminHistory',{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+    })
+     console.log(response)
+     setBuyHistory(response.data.data)
+  }catch(error){
+    console.log(error)
+  }
+
+    }
+  getBuyHistory()
+  },[])
     return(
         <>
         <div  style={{backgroundColor:'#dfe6ee'}}className="payContainer">
@@ -59,7 +30,7 @@ export function BuyManagement(){
           <div style={{fontSize:'1.5rem',padding:'20px'}}>Buy</div>
           <div style={{fontSize:'1.4rem',padding:'25px'}}>Add New Product</div>
           </div>
-            <AdminBuyManagementTable list={list}/>
+            <AdminBuyManagementTable list={BuyHistory}/>
             </div>
         </>
     )

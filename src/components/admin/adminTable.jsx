@@ -147,7 +147,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.buyerName}
+                  {l.buyer.name}
                 </td>
                 <td
                   style={{
@@ -155,7 +155,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.buyerId}{" "}
+                  {l.buyer.id}{" "}
                 </td>
                 <td
                   style={{
@@ -163,7 +163,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.productName}{" "}
+                  {l.item.item}{" "}
                 </td>
                 <td
                   style={{
@@ -171,7 +171,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.transactionId}{" "}
+                  {l.id}{" "}
                 </td>
                 <td
                   style={{
@@ -179,7 +179,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  ${l.amount} Usd
+                  ${l.totalPrice} Usd
                 </td>
                 <td
                   style={{
@@ -195,6 +195,7 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
+                   {l.status=='PROCESSING'?
                   <div style={{ display: "flex" }}>
                     <Button
                       style={{ backgroundColor: "#53449f", marginRight: "5px" }}
@@ -204,7 +205,9 @@ export const AdminBuyManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#fb896b" }}>
                       Cancel
                     </Button>
-                  </div>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                 </td>
               </tr>
             );
