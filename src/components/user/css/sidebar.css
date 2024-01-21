@@ -16,7 +16,7 @@ ul {
 
 /* Style for the sidebar ul */
 .sidebar ul {
-  background-color: #ededed; /* Sidebar background color */
+  background-color: #ededed !important; /* Sidebar background color */
 }
 
 .li-icons {
