@@ -1,73 +1,32 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AdminWalletManagementTable } from "../../components/admin/adminTable";
 
+import AxiosInstance from "../../axiosInstance";
 const WalletManagement = () => {
-  const list = [
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      status: "On going",
-      userName: "James Paul",
-      userId: "234156",
-      accountNo: "2345621000231",
-      transactionId: "4563632",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      status: "On going",
-      userName: "James Paul",
-      userId: "234156",
-      accountNo: "2345621000231",
-      transactionId: "4563632",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      status: "On going",
-      userName: "James Paul",
-      userId: "234156",
-      accountNo: "2345621000231",
-      transactionId: "4563632",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      status: "On going",
-      userName: "James Paul",
-      userId: "234156",
-      accountNo: "2345621000231",
-      transactionId: "4563632",
-    },
-    {
-      senderName: "Martin James",
-      senderId: "980000",
-      recieverName: "Aep texas",
-      recieverId: "3334343",
-      amount: "2345.50",
-      status: "On going",
-      userName: "James Paul",
-      userId: "234156",
-      accountNo: "2345621000231",
-      transactionId: "4563632",
-    },
-  ];
 
-  const [buttonValue, setButtonValue] = useState("send");
+  const [buttonValue, setButtonValue] = useState("Send");
 
+  const [walletHistory, setWalletHistory] = useState(null);
+
+  useEffect(()=>{
+    async function getWalletHistory(){
+      const accessToken=localStorage.getItem('accessToken');
+         try{
+     const response=await AxiosInstance.get(`wallet/get${buttonValue}TransactionHistory`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+    })
+     console.log(response)
+     setWalletHistory(response.data.data)
+  }catch(error){
+    console.log(error)
+  }
+
+    }
+  getWalletHistory()
+  },[buttonValue])
   return (
     <>
       <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
@@ -91,7 +50,7 @@ const WalletManagement = () => {
                 background: buttonValue == "send" ? "#53449F" : "#efefefef",
                 color: buttonValue == "send" ? "white" : "black",
               }}
-              onClick={() => setButtonValue("send")}
+              onClick={() => setButtonValue("Send")}
             >
               Send
             </Button>
@@ -106,7 +65,7 @@ const WalletManagement = () => {
                 background: buttonValue == "withdraw" ? "#53449F" : "#efefefef",
                 color: buttonValue == "withdraw" ? "white" : "black",
               }}
-              onClick={() => setButtonValue("withdraw")}
+              onClick={() => setButtonValue("WithDraw")}
             >
               Withdraw
             </Button>
@@ -122,13 +81,13 @@ const WalletManagement = () => {
                 background: buttonValue == "topup" ? "#53449F" : "#efefefef",
                 color: buttonValue == "topup" ? "white" : "black",
               }}
-              onClick={() => setButtonValue("topup")}
+              onClick={() => setButtonValue("TopUp")}
             >
               Top Up
             </Button>
           </div>
         </div>
-        <AdminWalletManagementTable list={list} buttonValue={buttonValue} />
+        <AdminWalletManagementTable list={walletHistory} buttonValue={buttonValue} />
       </div>
     </>
   );

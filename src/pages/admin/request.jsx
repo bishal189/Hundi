@@ -1,78 +1,35 @@
 import {AdminRequestTable} from '../../components/admin/adminTable'
+import {useState,useEffect} from "react";
+import AxiosInstance from "../../axiosInstance";
+
 export function RequestManagement(){
 
-    // <th style={{backgroundColor:'transparent'}}>Request by</th>
-    // <th style={{backgroundColor:'transparent'}}>Request by Id</th>
-    // <th style={{backgroundColor:'transparent'}}>Request to </th>
-    // <th style={{backgroundColor:'transparent'}}>Request to Id</th>
-    // <th style={{backgroundColor:'transparent'}}>Amount</th>
-    // <th style={{backgroundColor:'transparent'}}>Status</th>
-    //   <th style={{backgroundColor:'transparent'}}>Action</th>
-   
-    const list=[
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    {
-    RequestBy:"Martin James",
-    RequestById:'980000',
-    RequestTo:"Aep texas",
-    RequestToId:'3334343',
-    amount:'2345.50',
-    status:'pending'
-    },   
-    ]
+const [requestHistory, setRequestHistory] = useState(null);
+
+  useEffect(()=>{
+    async function getTransferHistory(){
+      const accessToken=localStorage.getItem('accessToken');
+         try{
+     const response=await AxiosInstance.get('request/getRequestTransactionHistory',{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+    })
+     console.log(response)
+     setRequestHistory(response.data.data)
+  }catch(error){
+    console.log(error)
+  }
+
+    }
+  getTransferHistory()
+  },[])
     return(
         <>
         <div  style={{backgroundColor:'#dfe6ee'}}className="payContainer">
         <div style={{fontSize:'1.5rem',padding:'20px'}}>Request</div>
 
-            <AdminRequestTable list={list}/>
+            <AdminRequestTable list={requestHistory}/>
             </div>
         </>
     )

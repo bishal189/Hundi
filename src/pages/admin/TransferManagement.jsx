@@ -1,6 +1,6 @@
-import {useState,useEffect} from "react";
 import { AdminTransferManagementTable } from "../../components/admin/adminTable";
 
+import {useState,useEffect} from "react";
 import AxiosInstance from "../../axiosInstance";
 
 const TransferManagement = () => {

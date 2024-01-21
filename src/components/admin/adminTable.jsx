@@ -477,17 +477,16 @@ export const AdminWalletManagementTable = (props) => {
       }}
     >
       <>
-        {props.buttonValue == "send" ? (
+        {props.buttonValue == "Send" &&(
           <>
             <thead>
               <tr>
                 <th style={{ backgroundColor: "transparent" }}>Sender Name</th>
                 <th style={{ backgroundColor: "transparent" }}>Sender ID</th>
-                <th style={{ backgroundColor: "transparent" }}>
-                  Recievier Name
-                </th>
-                <th style={{ backgroundColor: "transparent" }}>Recievier Id</th>
+
+                <th style={{ backgroundColor: "transparent" }}>BankAccountNumber</th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
+
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
                 <th style={{ backgroundColor: "transparent" }}>Action</th>
 
@@ -505,7 +504,7 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.senderName}
+                        {l.name}
                       </td>
                       <td
                         style={{
@@ -513,24 +512,18 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.senderId}{" "}
+                        {l.id}{" "}
                       </td>
-                      <td
+
+                       <td
                         style={{
                           backgroundColor: colorArr[index % 2],
                           border: "none",
                         }}
                       >
-                        {l.recieverName}{" "}
+                        {l.bankAccountNumber}{" "}
                       </td>
-                      <td
-                        style={{
-                          backgroundColor: colorArr[index % 2],
-                          border: "none",
-                        }}
-                      >
-                        {l.recieverId}{" "}
-                      </td>
+
                       <td
                         style={{
                           backgroundColor: colorArr[index % 2],
@@ -554,30 +547,30 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                        <div style={{ display: "flex" }}>
-                          <Button
-                            style={{
-                              backgroundColor: "#53449f",
-                              marginRight: "5px",
-                            }}
-                          >
-                            Accept
-                          </Button>
-                          <Button style={{ backgroundColor: "#fb896b" }}>
-                            Cancel
-                          </Button>
-                        </div>
+                         {l.status=='PENDING'?
+                  <div style={{ display: "flex" }}>
+                    <Button
+                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
+                    >
+                      Accept
+                    </Button>
+                    <Button style={{ backgroundColor: "#fb896b" }}>
+                      Cancel
+                    </Button>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                       </td>
                     </tr>
                   );
                 })}
 
-              {/* Add more cells as needed */}
 
-              {/* Add more rows as needed */}
             </tbody>
           </>
-        ) : (
+        )}
+
+{props.buttonValue=="WithDraw" && (
           <>
             <thead>
               <tr>
@@ -605,7 +598,7 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.userName}
+                        {l.name}
                       </td>
                       <td
                         style={{
@@ -613,7 +606,7 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.userId}{" "}
+                        {l.user.id}{" "}
                       </td>
                       <td
                         style={{
@@ -621,7 +614,7 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.accountNo}{" "}
+                        {l.bankAccountNumber}{" "}
                       </td>
                       <td
                         style={{
@@ -629,7 +622,7 @@ export const AdminWalletManagementTable = (props) => {
                           border: "none",
                         }}
                       >
-                        {l.transactionId}{" "}
+                        {l.id}{" "}
                       </td>
                       <td
                         style={{
@@ -654,30 +647,125 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                        <div style={{ display: "flex" }}>
-                          <Button
-                            style={{
-                              backgroundColor: "#53449f",
-                              marginRight: "5px",
-                            }}
-                          >
-                            Accept
-                          </Button>
-                          <Button style={{ backgroundColor: "#fb896b" }}>
-                            Cancel
-                          </Button>
-                        </div>
+                               {l.status=='PENDING'?
+                  <div style={{ display: "flex" }}>
+                    <Button
+                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
+                    >
+                      Accept
+                    </Button>
+                    <Button style={{ backgroundColor: "#fb896b" }}>
+                      Cancel
+                    </Button>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                       </td>
                     </tr>
                   );
                 })}
 
-              {/* Add more cells as needed */}
-
-              {/* Add more rows as needed */}
             </tbody>
-          </>
-        )}
+          </>)}
+
+          {props.buttonValue=="TopUp" && (
+          <>
+            <thead>
+              <tr>
+                <th style={{ backgroundColor: "transparent" }}>User Name</th>
+                <th style={{ backgroundColor: "transparent" }}>User ID</th>
+                <th style={{ backgroundColor: "transparent" }}>Account no</th>
+                <th style={{ backgroundColor: "transparent" }}>
+                  Transaction Id
+                </th>
+                <th style={{ backgroundColor: "transparent" }}>Amount</th>
+                <th style={{ backgroundColor: "transparent" }}>Status</th>
+                <th style={{ backgroundColor: "transparent" }}>Action</th>
+
+                {/* Add more headers as needed */}
+              </tr>
+            </thead>
+            <tbody>
+              {props.list &&
+                props.list.map((l, index) => {
+                  return (
+                    <tr key={index}>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        {l.name}
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        {l.user.id}{" "}
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        {l.bankAccountNumber}{" "}
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        {l.id}{" "}
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        ${l.amount} Usd
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                        }}
+                      >
+                        {l.status}
+                      </td>
+                      <td
+                        style={{
+                          backgroundColor: colorArr[index % 2],
+                          border: "none",
+                          color: "green",
+                        }}
+                      >
+                                {l.status=='PENDING'?
+                  <div style={{ display: "flex" }}>
+                    <Button
+                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
+                    >
+                      Accept
+                    </Button>
+                    <Button style={{ backgroundColor: "#fb896b" }}>
+                      Cancel
+                    </Button>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
+                      </td>
+                    </tr>
+                  );
+                })}
+                </tbody>
+                </>
+                )}
+
       </>
     </Table>
   );
@@ -705,7 +793,6 @@ export const AdminRequestTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Status</th>
           <th style={{ backgroundColor: "transparent" }}>Action</th>
 
-          {/* Add more headers as needed */}
         </tr>
       </thead>
       <tbody>
@@ -719,7 +806,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.RequestBy}
+                  {l.requester.name}
                 </td>
                 <td
                   style={{
@@ -727,7 +814,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.RequestById}{" "}
+                  {l.requester.id}{" "}
                 </td>
                 <td
                   style={{
@@ -735,7 +822,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.RequestTo}{" "}
+                  {l.requestedTo.name}{" "}
                 </td>
                 <td
                   style={{
@@ -743,7 +830,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.RequestToId}{" "}
+                  {l.requestedTo.id}{" "}
                 </td>
                 <td
                   style={{
@@ -751,7 +838,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  ${l.amount} Usd
+                  ${l.requestedAmount} Usd
                 </td>
                 <td
                   style={{
@@ -767,6 +854,7 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
+                   {l.status=='PENDING'?
                   <div style={{ display: "flex" }}>
                     <Button
                       style={{ backgroundColor: "#53449f", marginRight: "5px" }}
@@ -776,7 +864,9 @@ export const AdminRequestTable = (props) => {
                     <Button style={{ backgroundColor: "#fb896b" }}>
                       Cancel
                     </Button>
-                  </div>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                 </td>
               </tr>
             );
