@@ -321,6 +321,7 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
+                {l.status=='PROCESSING'?
                   <div style={{ display: "flex" }}>
                     <Button
                       style={{ backgroundColor: "#53449f", marginRight: "5px" }}
@@ -330,7 +331,9 @@ export const AdminTransferManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#fb896b" }}>
                       Cancel
                     </Button>
-                  </div>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                 </td>
               </tr>
             );

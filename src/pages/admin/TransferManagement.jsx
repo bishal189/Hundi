@@ -17,7 +17,6 @@ const TransferManagement = () => {
         },
     })
      setTransferHistory(response.data.data)
-     console.log(response)
   }catch(error){
     console.log(error)
   }
