@@ -273,6 +273,217 @@ export const AdminCommonSideBar = (props) => {
           </li>
         </ul>
       </div>
+      {/* </Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={handleClose}>
+        Cancel
+      </Button>
+      <Button variant="primary" onClick={Logout}>
+        OK
+      </Button>
+    </Modal.Footer>
+  </Modal>} */}
+
+      <div
+        className="sidebar-admin"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {!props.mobile && <div className="logo">LOGO</div>}
+        <ul className="list-unstyled">
+          <li className="li-icons">
+            <NavLink
+              to="/
+          "
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <FaRegUserCircle style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Dashboard
+            </NavLink>
+          </li>
+
+          <li className="li-icons">
+            <a href="#" onClick={() => customerShowToggler()}>
+              <BiTransfer style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Customers
+              <IoMdArrowDropdown style={{ fontSize: "2rem" }} />
+            </a>
+          </li>
+
+          {customerShow && (
+            <>
+              <li className="li-icons li-icons-inner">
+                <NavLink
+                  to="/admin/transferManagement"
+                  onClick={() => {
+                    props.setShowSidebar && props.setShowSidebar(false);
+                  }}
+                >
+                  <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+                  &nbsp;&nbsp;&nbsp;All Customers
+                </NavLink>
+              </li>
+              <li className="li-icons li-icons-inner">
+                <NavLink
+                  to="/admin/transferManagement"
+                  onClick={() => {
+                    props.setShowSidebar && props.setShowSidebar(false);
+                  }}
+                >
+                  <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+                  &nbsp;&nbsp;&nbsp;Active Customers
+                </NavLink>
+              </li>
+              <li className="li-icons li-icons-inner">
+                <NavLink
+                  to="/admin/transferManagement"
+                  onClick={() => {
+                    props.setShowSidebar && props.setShowSidebar(false);
+                  }}
+                >
+                  <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+                  &nbsp;&nbsp;&nbsp;Disabled Customer
+                </NavLink>
+              </li>
+              <li className="li-icons li-icons-inner">
+                <NavLink
+                  to="/admin/transferManagement"
+                  onClick={() => {
+                    props.setShowSidebar && props.setShowSidebar(false);
+                  }}
+                >
+                  <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+                  &nbsp;&nbsp;&nbsp; Notifications
+                </NavLink>
+              </li>
+              <li className="li-icons li-icons-inner">
+                <NavLink
+                  to="/admin/transferManagement"
+                  onClick={() => {
+                    props.setShowSidebar && props.setShowSidebar(false);
+                  }}
+                >
+                  <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+                  &nbsp;&nbsp;&nbsp;Send Email To All
+                </NavLink>
+              </li>
+            </>
+          )}
+          {/*End of Customer show */}
+
+          <li className="li-icons">
+            <NavLink
+              to="/admin/transferManagement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <BiShoppingBag style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Transfer Management
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/buyManagement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <MdPayment style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp; Buy Management
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/payManagement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              Pay Management
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/requestManagement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <MdHistory style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Request Management
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/historyManagement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <MdHistory style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;History Management
+            </NavLink>
+          </li>
+
+          <li className="li-icons">
+            <NavLink
+              to="/admin/walletMangement"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <IoWalletOutline style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp; Wallet Management
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/kycSettings"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <IoWalletOutline style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp; Kyc Settings
+            </NavLink>
+          </li>
+          <li className="li-icons">
+            <NavLink
+              to="/admin/settings"
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+            >
+              <IoWalletOutline style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp; Settings
+            </NavLink>
+          </li>
+
+          <li className="li-icons">
+            <NavLink to="/admin/contact">
+              <MdOutlineHeadphones style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Contact US
+            </NavLink>
+          </li>
+          <li onClick={() => setModal(true)} className="li-icons">
+            <NavLink
+              onClick={() => {
+                props.setShowSidebar && props.setShowSidebar(false);
+              }}
+              style={{ pointerEvents: "none" }}
+              to="/admin/logout"
+            >
+              <SlLogout style={{ fontSize: "1.3rem" }} />
+              &nbsp;&nbsp;&nbsp;Log Out
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
