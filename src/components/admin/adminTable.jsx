@@ -20,8 +20,10 @@ export const AdminPayManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>UserName</th>
           <th style={{ backgroundColor: "transparent" }}>UserId</th>
           <th style={{ backgroundColor: "transparent" }}>PayTo</th>
+          <th style={{ backgroundColor: "transparent" }}>Type</th>
           <th style={{ backgroundColor: "transparent" }}>TransactionId</th>
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
+
           <th style={{ backgroundColor: "transparent" }}>Status</th>
           <th style={{ backgroundColor: "transparent" }}>Action</th>
 
@@ -39,7 +41,7 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.userName}
+                  {l.consumerName}
                 </td>
                 <td
                   style={{
@@ -47,7 +49,7 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.userId}{" "}
+                  {l.consumerId}{" "}
                 </td>
                 <td
                   style={{
@@ -57,13 +59,13 @@ export const AdminPayManagementTable = (props) => {
                 >
                   {l.payTo}{" "}
                 </td>
-                <td
+                 <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
                   }}
                 >
-                  {l.transactionId}{" "}
+                  {l.type}{" "}
                 </td>
                 <td
                   style={{
@@ -71,7 +73,15 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  ${l.amount} Usd
+                  {l.id}{" "}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+                  ${l.Amount} Usd
                 </td>
                 <td
                   style={{
@@ -87,6 +97,7 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
+                     {l.status=='PROCESSING'?
                   <div style={{ display: "flex" }}>
                     <Button
                       style={{ backgroundColor: "#53449f", marginRight: "5px" }}
@@ -96,7 +107,9 @@ export const AdminPayManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#fb896b" }}>
                       Cancel
                     </Button>
-                  </div>
+                  </div>:
+                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
+                }
                 </td>
               </tr>
             );
