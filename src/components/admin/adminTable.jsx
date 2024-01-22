@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CiEdit, CiMail } from "react-icons/ci";
 
 export const AdminPayManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
@@ -59,7 +60,7 @@ export const AdminPayManagementTable = (props) => {
                 >
                   {l.payTo}{" "}
                 </td>
-                 <td
+                <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
@@ -97,19 +98,25 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                     {l.status=='PROCESSING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
+                  {l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
                     </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                  )}
                 </td>
               </tr>
             );
@@ -208,19 +215,25 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                   {l.status=='PROCESSING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
+                  {l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
                     </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                  )}
                 </td>
               </tr>
             );
@@ -337,19 +350,25 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                {l.status=='PROCESSING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
+                  {l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
                     </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                  )}
                 </td>
               </tr>
             );
@@ -477,14 +496,16 @@ export const AdminWalletManagementTable = (props) => {
       }}
     >
       <>
-        {props.buttonValue == "Send" &&(
+        {props.buttonValue == "Send" && (
           <>
             <thead>
               <tr>
                 <th style={{ backgroundColor: "transparent" }}>Sender Name</th>
                 <th style={{ backgroundColor: "transparent" }}>Sender ID</th>
 
-                <th style={{ backgroundColor: "transparent" }}>BankAccountNumber</th>
+                <th style={{ backgroundColor: "transparent" }}>
+                  BankAccountNumber
+                </th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
 
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
@@ -515,7 +536,7 @@ export const AdminWalletManagementTable = (props) => {
                         {l.id}{" "}
                       </td>
 
-                       <td
+                      <td
                         style={{
                           backgroundColor: colorArr[index % 2],
                           border: "none",
@@ -547,30 +568,34 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                         {l.status=='PENDING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
-                    </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                        {l.status == "PENDING" ? (
+                          <div style={{ display: "flex" }}>
+                            <Button
+                              style={{
+                                backgroundColor: "#53449f",
+                                marginRight: "5px",
+                              }}
+                            >
+                              Accept
+                            </Button>
+                            <Button style={{ backgroundColor: "#fb896b" }}>
+                              Cancel
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button style={{ backgroundColor: "#53449f" }}>
+                            Already Complete
+                          </Button>
+                        )}
                       </td>
                     </tr>
                   );
                 })}
-
-
             </tbody>
           </>
         )}
 
-{props.buttonValue=="WithDraw" && (
+        {props.buttonValue == "WithDraw" && (
           <>
             <thead>
               <tr>
@@ -647,28 +672,34 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                               {l.status=='PENDING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
-                    </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                        {l.status == "PENDING" ? (
+                          <div style={{ display: "flex" }}>
+                            <Button
+                              style={{
+                                backgroundColor: "#53449f",
+                                marginRight: "5px",
+                              }}
+                            >
+                              Accept
+                            </Button>
+                            <Button style={{ backgroundColor: "#fb896b" }}>
+                              Cancel
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button style={{ backgroundColor: "#53449f" }}>
+                            Already Complete
+                          </Button>
+                        )}
                       </td>
                     </tr>
                   );
                 })}
-
             </tbody>
-          </>)}
+          </>
+        )}
 
-          {props.buttonValue=="TopUp" && (
+        {props.buttonValue == "TopUp" && (
           <>
             <thead>
               <tr>
@@ -745,31 +776,37 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                                {l.status=='PENDING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
-                    </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                        {l.status == "PENDING" ? (
+                          <div style={{ display: "flex" }}>
+                            <Button
+                              style={{
+                                backgroundColor: "#53449f",
+                                marginRight: "5px",
+                              }}
+                            >
+                              Accept
+                            </Button>
+                            <Button style={{ backgroundColor: "#fb896b" }}>
+                              Cancel
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button style={{ backgroundColor: "#53449f" }}>
+                            Already Complete
+                          </Button>
+                        )}
                       </td>
                     </tr>
                   );
                 })}
-                </tbody>
-                </>
-                )}
-
+            </tbody>
+          </>
+        )}
       </>
     </Table>
   );
 };
+
 export const AdminRequestTable = (props) => {
   const colorArr = ["#ededed", "white"];
   return (
@@ -792,7 +829,6 @@ export const AdminRequestTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
           <th style={{ backgroundColor: "transparent" }}>Action</th>
-
         </tr>
       </thead>
       <tbody>
@@ -854,19 +890,25 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                   {l.status=='PENDING'?
-                  <div style={{ display: "flex" }}>
-                    <Button
-                      style={{ backgroundColor: "#53449f", marginRight: "5px" }}
-                    >
-                      Accept
+                  {l.status == "PENDING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
                     </Button>
-                    <Button style={{ backgroundColor: "#fb896b" }}>
-                      Cancel
-                    </Button>
-                  </div>:
-                  <Button style={{backgroundColor:"#53449f"}}>Already Complete</Button>
-                }
+                  )}
                 </td>
               </tr>
             );
@@ -876,6 +918,210 @@ export const AdminRequestTable = (props) => {
 
         {/* Add more rows as needed */}
       </tbody>
+    </Table>
+  );
+};
+
+export const AdminAllCustomersTable = (props) => {
+  const colorArr = ["#ededed", "white"];
+  return (
+    <Table
+      bordered
+      hover
+      style={{
+        marginLeft: "20px",
+        fontSize: ".90rem",
+        width: "95%",
+        backgroundColor: "transparent",
+      }}
+    >
+      <>
+        <>
+          <thead>
+            <tr>
+              <th style={{ backgroundColor: "transparent" }}>Avatar</th>
+              <th style={{ backgroundColor: "transparent" }}>Name</th>
+
+              <th style={{ backgroundColor: "transparent" }}>Role</th>
+              <th style={{ backgroundColor: "transparent" }}>User ID</th>
+
+              <th style={{ backgroundColor: "transparent" }}>Email ID</th>
+              <th style={{ backgroundColor: "transparent" }}>Balance</th>
+
+              <th style={{ backgroundColor: "transparent" }}>Profile</th>
+              <th style={{ backgroundColor: "transparent" }}>KYC</th>
+
+              <th style={{ backgroundColor: "transparent" }}>Status</th>
+              <th style={{ backgroundColor: "transparent" }}>Action</th>
+
+              {/* Add more headers as needed */}
+            </tr>
+          </thead>
+          <tbody>
+            {props.list &&
+              props.list.map((l, index) => {
+                return (
+                  <tr key={index}>
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      <div
+                        style={{
+                          background: "#F36666",
+                          height: "40px",
+                          width: "40px",
+                          borderRadius: "20px",
+                          color: "white",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        AN
+                      </div>
+                    </td>
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      {l.name}{" "}
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      {l.role}{" "}
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      ${l.userId} Usd
+                    </td>
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      {l.email}
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      {l.balance}
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      {l.profit}
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100px",
+                          backgroundColor: "#FCCA4A",
+                          color: "black",
+                          borderRadius: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        {l.kyc}
+                      </div>
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100px",
+                          backgroundColor: "#2E8A99",
+                          color: "white",
+                          borderRadius: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        {l.status}
+                      </div>
+                    </td>
+
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
+                      <Button
+                        style={{
+                          background: "#53449F",
+                          width: "30px",
+                          height: "30px",
+                          padding: 0,
+                          borderRadius: "15px",
+                          marginRight: "5px",
+                          display: "inline",
+                        }}
+                      >
+                        <CiEdit />
+                      </Button>
+
+                      <Button
+                        style={{
+                          background: "#53449F",
+                          width: "30px",
+                          padding: 0,
+                          height: "30px",
+                          position: "relative",
+                          borderRadius: "15px",
+                        }}
+                      >
+                        <CiMail
+                          style={{
+                            width: "15px",
+                            height: "15px",
+                          }}
+                        />
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </>
+      </>
     </Table>
   );
 };

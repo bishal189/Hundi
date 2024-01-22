@@ -96,18 +96,21 @@ export const AdminCommonSideBar = (props) => {
           </li>
 
           <li className="li-icons">
-            <a href="#" onClick={() => customerShowToggler()}>
+            <NavLink
+              to="/admin/customer/AllCustomers"
+              onClick={() => customerShowToggler()}
+            >
               <BiTransfer style={{ fontSize: "1.3rem" }} />
               &nbsp;&nbsp;&nbsp;Customers
               <IoMdArrowDropdown style={{ fontSize: "2rem" }} />
-            </a>
+            </NavLink>
           </li>
 
           {customerShow && (
             <>
-              <li className="li-icons li-icons-inner">
+              <li className="li-icons li-icons-inner customer">
                 <NavLink
-                  to="/admin/transferManagement"
+                  to="/admin/customer/AllCustomers"
                   onClick={() => {
                     props.setShowSidebar && props.setShowSidebar(false);
                   }}
@@ -273,8 +276,6 @@ export const AdminCommonSideBar = (props) => {
           </li>
         </ul>
       </div>
-
-
     </>
   );
 };
