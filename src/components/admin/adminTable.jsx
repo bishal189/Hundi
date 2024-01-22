@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CiEdit, CiMail } from "react-icons/ci";
 
 export const AdminPayManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
@@ -974,6 +975,8 @@ export const AdminAllCustomersTable = (props) => {
                           width: "40px",
                           borderRadius: "20px",
                           color: "white",
+                          display: "flex",
+                          justifyContent: "center",
                           alignItems: "center",
                         }}
                       >
@@ -1012,7 +1015,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.emailId}
+                      {l.email}
                     </td>
 
                     <td
@@ -1045,6 +1048,9 @@ export const AdminAllCustomersTable = (props) => {
                           backgroundColor: "#FCCA4A",
                           color: "black",
                           borderRadius: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
                         }}
                       >
                         {l.kyc}
@@ -1063,30 +1069,52 @@ export const AdminAllCustomersTable = (props) => {
                           backgroundColor: "#2E8A99",
                           color: "white",
                           borderRadius: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
                         }}
                       >
                         {l.status}
                       </div>
                     </td>
 
-                    <td>
+                    <td
+                      style={{
+                        backgroundColor: colorArr[index % 2],
+                        border: "none",
+                      }}
+                    >
                       <Button
                         style={{
                           background: "#53449F",
-                          width: "20px",
-                          height: "20px",
-                          borderRadius: "10px",
+                          width: "30px",
+                          height: "30px",
+                          padding: 0,
+                          borderRadius: "15px",
+                          marginRight: "5px",
+                          display: "inline",
                         }}
-                      ></Button>
+                      >
+                        <CiEdit />
+                      </Button>
 
                       <Button
                         style={{
                           background: "#53449F",
-                          width: "20px",
-                          height: "20px",
-                          borderRadius: "10px",
+                          width: "30px",
+                          padding: 0,
+                          height: "30px",
+                          position: "relative",
+                          borderRadius: "15px",
                         }}
-                      ></Button>
+                      >
+                        <CiMail
+                          style={{
+                            width: "15px",
+                            height: "15px",
+                          }}
+                        />
+                      </Button>
                     </td>
                   </tr>
                 );
