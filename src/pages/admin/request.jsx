@@ -16,7 +16,8 @@ const [requestHistory, setRequestHistory] = useState(null);
         },
     })
      console.log(response)
-     setRequestHistory(response.data.data)
+      const data=response.data.data.filter((datas)=>datas.status=='PENDING')
+     setRequestHistory(data)
   }catch(error){
     console.log(error)
   }

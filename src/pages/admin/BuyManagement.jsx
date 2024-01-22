@@ -15,7 +15,8 @@ export function BuyManagement(){
         },
     })
      console.log(response)
-     setBuyHistory(response.data.data)
+      const data=response.data.data.filter((datas)=>datas.status=='PROCESSING')
+     setBuyHistory(data)
   }catch(error){
     console.log(error)
   }

@@ -506,7 +506,7 @@ export const AdminWalletManagementTable = (props) => {
                          {props.type=="history" ?
                   formattedDateTime
                 :
-            (l.status == "PROCESSING" ? (
+            (l.status == "PENDING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -619,7 +619,7 @@ export const AdminWalletManagementTable = (props) => {
                         {props.type=="history" ?
                   formattedDateTime
                 :
-            (l.status == "PROCESSING" ? (
+            (l.status == "PENDING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -732,7 +732,7 @@ export const AdminWalletManagementTable = (props) => {
                          {props.type=="history" ?
                   formattedDateTime
                 :
-            (l.status == "PROCESSING" ? (
+            (l.status == "PENDING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -856,7 +856,7 @@ export const AdminRequestTable = (props) => {
                    {props.type=="history" ?
                   formattedDateTime
                 :
-            (l.status == "PROCESSING" ? (
+            (l.status == "PENDING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{

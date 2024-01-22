@@ -16,7 +16,9 @@ const TransferManagement = () => {
           Authorization: `Bearer ${accessToken}`,
         },
     })
-     setTransferHistory(response.data.data)
+     const data=response.data.data.filter((datas)=>datas.status=='PROCESSING')
+
+     setTransferHistory(data)
   }catch(error){
     console.log(error)
   }
