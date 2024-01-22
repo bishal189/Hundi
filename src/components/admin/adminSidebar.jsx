@@ -110,7 +110,7 @@ export const AdminCommonSideBar = (props) => {
             <>
               <li className="li-icons li-icons-inner customer">
                 <NavLink
-                  to="/admin/transferManagement"
+                  to="/admin/customer/AllCustomers"
                   onClick={() => {
                     props.setShowSidebar && props.setShowSidebar(false);
                   }}
