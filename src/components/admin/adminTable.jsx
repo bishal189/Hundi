@@ -31,6 +31,27 @@ export const AdminPayManagementTable = (props) => {
       setModal(true)
     }
   }
+    async function denyPay(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/denyPayTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
+
   return (
     <>
   {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
@@ -148,7 +169,7 @@ export const AdminPayManagementTable = (props) => {
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyPay(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
@@ -814,10 +835,11 @@ export const AdminRequestTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Request to Id</th>
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
-          <th style={{ backgroundColor: "transparent" }}>Action</th>}        </tr>
+    {props.type === "history" ? (
+        <th style={{ backgroundColor: "transparent" }}>Time</th>
+      ) : (
+        <th style={{ backgroundColor: "transparent" }}>Action</th>
+      )}  </tr>
       </thead>
       <tbody>
         {props.list &&
@@ -885,8 +907,7 @@ export const AdminRequestTable = (props) => {
                 >
                    {props.type=="history" ?
                   formattedDateTime
-                :
-            (l.status == "PENDING" ? (
+                :(l.status == "PENDING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
