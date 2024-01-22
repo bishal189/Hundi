@@ -26,7 +26,10 @@ export const AdminPayManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
 
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-          <th style={{ backgroundColor: "transparent" }}>Action</th>
+          {props.type=="history"?
+
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
 
           {/* Add more headers as needed */}
         </tr>
@@ -34,7 +37,12 @@ export const AdminPayManagementTable = (props) => {
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
-            return (
+             const date= new Date(l.created_at);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
+              console.log(formattedDateTime)
+              return (
               <tr key={index}>
                 <td
                   style={{
@@ -98,7 +106,10 @@ export const AdminPayManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.status == "PROCESSING" ? (
+                {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -116,7 +127,7 @@ export const AdminPayManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#53449f" }}>
                       Already Complete
                     </Button>
-                  )}
+                  ))}
                 </td>
               </tr>
             );
@@ -151,14 +162,20 @@ export const AdminBuyManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>TransactionId</th>
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-          <th style={{ backgroundColor: "transparent" }}>Action</th>
+   {props.type=="history"?
 
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
           {/* Add more headers as needed */}
         </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
+              const date= new Date(l.createdAt);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
             return (
               <tr key={index}>
                 <td
@@ -215,7 +232,10 @@ export const AdminBuyManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.status == "PROCESSING" ? (
+                   {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -233,7 +253,7 @@ export const AdminBuyManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#53449f" }}>
                       Already Complete
                     </Button>
-                  )}
+                  ))}
                 </td>
               </tr>
             );
@@ -270,14 +290,20 @@ export const AdminTransferManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Sender agent</th>
           <th style={{ backgroundColor: "transparent" }}>Reciever agent</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-          <th style={{ backgroundColor: "transparent" }}>Action</th>
+   {props.type=="history"?
 
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
           {/* Add more headers as needed */}
         </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
+              const date= new Date(l.created_at);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
             return (
               <tr key={index}>
                 <td
@@ -350,7 +376,10 @@ export const AdminTransferManagementTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.status == "PROCESSING" ? (
+                   {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -368,107 +397,7 @@ export const AdminTransferManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#53449f" }}>
                       Already Complete
                     </Button>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
-
-        {/* Add more cells as needed */}
-
-        {/* Add more rows as needed */}
-      </tbody>
-    </Table>
-  );
-};
-
-export const AdminHistoryManagementTable = (props) => {
-  const colorArr = ["#ededed", "white"];
-  return (
-    <Table
-      bordered
-      hover
-      style={{
-        marginLeft: "20px",
-        fontSize: ".90rem",
-        width: "95%",
-        backgroundColor: "transparent",
-      }}
-    >
-      <thead>
-        <tr>
-          <th style={{ backgroundColor: "transparent" }}>Username</th>
-          <th style={{ backgroundColor: "transparent" }}>User ID</th>
-          <th style={{ backgroundColor: "transparent" }}>Type</th>
-          <th style={{ backgroundColor: "transparent" }}>TransactionId</th>
-          <th style={{ backgroundColor: "transparent" }}>Amount</th>
-          <th style={{ backgroundColor: "transparent" }}>Time</th>
-          <th style={{ backgroundColor: "transparent" }}>Action</th>
-
-          {/* Add more headers as needed */}
-        </tr>
-      </thead>
-      <tbody>
-        {props.list &&
-          props.list.map((l, index) => {
-            return (
-              <tr key={index}>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  {l.userName}
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  {l.userId}{" "}
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  {l.type}{" "}
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  {l.transactionId}{" "}
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  ${l.amount} Usd
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                  }}
-                >
-                  {l.time}
-                </td>
-                <td
-                  style={{
-                    backgroundColor: colorArr[index % 2],
-                    border: "none",
-                    color: "green",
-                  }}
-                >
-                  {l.action}
+                  ))}
                 </td>
               </tr>
             );
@@ -509,14 +438,20 @@ export const AdminWalletManagementTable = (props) => {
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
 
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-                <th style={{ backgroundColor: "transparent" }}>Action</th>
+   {props.type=="history"?
 
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
                 {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
+                    const date= new Date(l.createdAt);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
                   return (
                     <tr key={index}>
                       <td
@@ -568,25 +503,28 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                        {l.status == "PENDING" ? (
-                          <div style={{ display: "flex" }}>
-                            <Button
-                              style={{
-                                backgroundColor: "#53449f",
-                                marginRight: "5px",
-                              }}
-                            >
-                              Accept
-                            </Button>
-                            <Button style={{ backgroundColor: "#fb896b" }}>
-                              Cancel
-                            </Button>
-                          </div>
-                        ) : (
-                          <Button style={{ backgroundColor: "#53449f" }}>
-                            Already Complete
-                          </Button>
-                        )}
+                         {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
+                    </Button>
+                  ))}
                       </td>
                     </tr>
                   );
@@ -607,14 +545,20 @@ export const AdminWalletManagementTable = (props) => {
                 </th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-                <th style={{ backgroundColor: "transparent" }}>Action</th>
+   {props.type=="history"?
 
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
                 {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
+                    const date= new Date(l.createdAt);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
                   return (
                     <tr key={index}>
                       <td
@@ -672,25 +616,28 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                        {l.status == "PENDING" ? (
-                          <div style={{ display: "flex" }}>
-                            <Button
-                              style={{
-                                backgroundColor: "#53449f",
-                                marginRight: "5px",
-                              }}
-                            >
-                              Accept
-                            </Button>
-                            <Button style={{ backgroundColor: "#fb896b" }}>
-                              Cancel
-                            </Button>
-                          </div>
-                        ) : (
-                          <Button style={{ backgroundColor: "#53449f" }}>
-                            Already Complete
-                          </Button>
-                        )}
+                        {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
+                    </Button>
+                  ))}
                       </td>
                     </tr>
                   );
@@ -711,14 +658,20 @@ export const AdminWalletManagementTable = (props) => {
                 </th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-                <th style={{ backgroundColor: "transparent" }}>Action</th>
+   {props.type=="history"?
 
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
                 {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
+                    const date= new Date(l.createdAt);
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
                   return (
                     <tr key={index}>
                       <td
@@ -776,25 +729,28 @@ export const AdminWalletManagementTable = (props) => {
                           color: "green",
                         }}
                       >
-                        {l.status == "PENDING" ? (
-                          <div style={{ display: "flex" }}>
-                            <Button
-                              style={{
-                                backgroundColor: "#53449f",
-                                marginRight: "5px",
-                              }}
-                            >
-                              Accept
-                            </Button>
-                            <Button style={{ backgroundColor: "#fb896b" }}>
-                              Cancel
-                            </Button>
-                          </div>
-                        ) : (
-                          <Button style={{ backgroundColor: "#53449f" }}>
-                            Already Complete
-                          </Button>
-                        )}
+                         {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
+                    <div style={{ display: "flex" }}>
+                      <Button
+                        style={{
+                          backgroundColor: "#53449f",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Accept
+                      </Button>
+                      <Button style={{ backgroundColor: "#fb896b" }}>
+                        Cancel
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button style={{ backgroundColor: "#53449f" }}>
+                      Already Complete
+                    </Button>
+                  ))}
                       </td>
                     </tr>
                   );
@@ -828,12 +784,19 @@ export const AdminRequestTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Request to Id</th>
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-          <th style={{ backgroundColor: "transparent" }}>Action</th>
-        </tr>
+   {props.type=="history"?
+
+          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}        </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
+              const date= new Date(l.createdAt);
+              console.log(l)
+              const formattedDate = date.toLocaleDateString();
+              const formattedTime = date.toLocaleTimeString();
+              const formattedDateTime = `${formattedDate} ${formattedTime}`;
             return (
               <tr key={index}>
                 <td
@@ -890,7 +853,10 @@ export const AdminRequestTable = (props) => {
                     border: "none",
                   }}
                 >
-                  {l.status == "PENDING" ? (
+                   {props.type=="history" ?
+                  formattedDateTime
+                :
+            (l.status == "PROCESSING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
@@ -908,7 +874,7 @@ export const AdminRequestTable = (props) => {
                     <Button style={{ backgroundColor: "#53449f" }}>
                       Already Complete
                     </Button>
-                  )}
+                  ))}
                 </td>
               </tr>
             );
@@ -960,6 +926,7 @@ export const AdminAllCustomersTable = (props) => {
           <tbody>
             {props.list &&
               props.list.map((l, index) => {
+
                 return (
                   <tr key={index}>
                     <td
