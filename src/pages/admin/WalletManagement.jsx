@@ -20,8 +20,9 @@ const WalletManagement = () => {
             },
           }
         );
-        console.log(response);
-        setWalletHistory(response.data.data);
+        const data=response.data.data.filter((datas)=>datas.status=='PENDING')
+
+        setWalletHistory(data);
       } catch (error) {
         console.log(error);
       }

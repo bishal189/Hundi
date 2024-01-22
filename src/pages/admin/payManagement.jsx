@@ -18,7 +18,6 @@ export function PayManagement() {
             },
           }
         );
-        console.log(response);
               const data=response.data.data.filter((datas)=>datas.status=='PROCESSING')
 
         setPayHistory(data);

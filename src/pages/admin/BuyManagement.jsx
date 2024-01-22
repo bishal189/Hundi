@@ -14,7 +14,6 @@ export function BuyManagement(){
           Authorization: `Bearer ${accessToken}`,
         },
     })
-     console.log(response)
       const data=response.data.data.filter((datas)=>datas.status=='PROCESSING')
      setBuyHistory(data)
   }catch(error){

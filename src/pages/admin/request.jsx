@@ -15,7 +15,6 @@ const [requestHistory, setRequestHistory] = useState(null);
           Authorization: `Bearer ${accessToken}`,
         },
     })
-     console.log(response)
       const data=response.data.data.filter((datas)=>datas.status=='PENDING')
      setRequestHistory(data)
   }catch(error){
