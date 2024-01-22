@@ -1,11 +1,39 @@
-import React from "react";
+import {useState} from "react";
 import { Table, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CiEdit, CiMail } from "react-icons/ci";
+import AxiosInstance from '../../axiosInstance'
+import {ErrorModal} from '../../components/user/popupModal'
 
 export const AdminPayManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
+  const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+
+  async function approvePay(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/approvePayTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
   return (
+    <>
+  {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -116,6 +144,7 @@ export const AdminPayManagementTable = (props) => {
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approvePay(l.id)}
                       >
                         Accept
                       </Button>
@@ -138,6 +167,7 @@ export const AdminPayManagementTable = (props) => {
         {/* Add more rows as needed */}
       </tbody>
     </Table>
+    </>
   );
 };
 
