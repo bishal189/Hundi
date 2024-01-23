@@ -1,11 +1,60 @@
-import React from "react";
+import {useState} from "react";
 import { Table, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CiEdit, CiMail } from "react-icons/ci";
+import AxiosInstance from '../../axiosInstance'
+import {ErrorModal} from '../../components/user/popupModal'
 
 export const AdminPayManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
+  const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+
+  async function approvePay(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/approvePayTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+    async function denyPay(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/denyPayTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
+
   return (
+    <>
+  {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -27,8 +76,9 @@ export const AdminPayManagementTable = (props) => {
 
           <th style={{ backgroundColor: "transparent" }}>Status</th>
           {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
 
           {/* Add more headers as needed */}
@@ -37,11 +87,22 @@ export const AdminPayManagementTable = (props) => {
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
-             const date= new Date(l.created_at);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
-              console.log(formattedDateTime)
+            var completedAtDateTime
+             var date= new Date(l.created_at);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+              if (l.completed_at){
+                 date= new Date(l.completed_at);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }
+
+
+
               return (
               <tr key={index}>
                 <td
@@ -100,26 +161,44 @@ export const AdminPayManagementTable = (props) => {
                 >
                   {l.status}
                 </td>
+
+                  {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
                 <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
                   }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
                 >
-                {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+
+            {l.status == "PROCESSING" ? (
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approvePay(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyPay(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
@@ -127,8 +206,8 @@ export const AdminPayManagementTable = (props) => {
                     <Button style={{ backgroundColor: "#53449f" }}>
                       Already Complete
                     </Button>
-                  ))}
-                </td>
+                  )}
+                </td>)}
               </tr>
             );
           })}
@@ -138,12 +217,60 @@ export const AdminPayManagementTable = (props) => {
         {/* Add more rows as needed */}
       </tbody>
     </Table>
+    </>
   );
 };
 
 export const AdminBuyManagementTable = (props) => {
+
+  const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+  async function approveBuy(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`buy/approveBuyTransaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+    async function denyBuy(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`buy/denyBuyTransaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
+
   const colorArr = ["#ededed", "white"];
   return (
+    <>
+    {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -163,19 +290,31 @@ export const AdminBuyManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
    {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
+
           {/* Add more headers as needed */}
         </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
-              const date= new Date(l.createdAt);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
+            var completedAtDateTime
+             var date= new Date(l.createdAt);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+
+              if (l.completedAt){
+                 date= new Date(l.completedAt);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }
             return (
               <tr key={index}>
                 <td
@@ -226,35 +365,47 @@ export const AdminBuyManagementTable = (props) => {
                 >
                   {l.status}
                 </td>
+               {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
                 <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
                   }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
                 >
-                   {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveBuy(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyBuy(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                </td>
+
+                </td>)}
               </tr>
             );
           })}
@@ -264,12 +415,59 @@ export const AdminBuyManagementTable = (props) => {
         {/* Add more rows as needed */}
       </tbody>
     </Table>
+    </>
   );
 };
 
 export const AdminTransferManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
+    const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+  async function approveTransfer(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/approveTransferTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+    async function denyTransfer(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`transaction/denyTransferTransactionAdmin/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
+
   return (
+    <>
+     {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -290,21 +488,35 @@ export const AdminTransferManagementTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Sender agent</th>
           <th style={{ backgroundColor: "transparent" }}>Reciever agent</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+          {props.type=="history"?
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
+
           {/* Add more headers as needed */}
         </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
-              const date= new Date(l.created_at);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
-            return (
+            var completedAtDateTime
+             var date= new Date(l.created_at);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+
+              if (l.completed_at){
+                 date= new Date(l.completed_at);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }
+
+
+              return (
               <tr key={index}>
                 <td
                   style={{
@@ -370,35 +582,47 @@ export const AdminTransferManagementTable = (props) => {
                 >
                   {l.status}
                 </td>
+               {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
                 <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
                   }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
                 >
-                   {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveTransfer(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyTransfer(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                </td>
+
+                </td>)}
               </tr>
             );
           })}
@@ -408,12 +632,59 @@ export const AdminTransferManagementTable = (props) => {
         {/* Add more rows as needed */}
       </tbody>
     </Table>
+    </>
   );
 };
 
 export const AdminWalletManagementTable = (props) => {
   const colorArr = ["#ededed", "white"];
+      const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+
+    async function approveWallet(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`wallet/accept${props.buttonValue}Transaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+    async function denyWallet(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`wallet/deny${props.buttonValue}Transaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
   return (
+    <>
+      {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -438,20 +709,33 @@ export const AdminWalletManagementTable = (props) => {
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
 
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+  {props.type=="history"?
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
+
                 {/* Add more headers as needed */}
               </tr>
             </thead>
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
-                    const date= new Date(l.createdAt);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
+               var completedAtDateTime
+             var date= new Date(l.createdAt);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+
+              if (l.completedAt){
+                 date= new Date(l.completedAt);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }
+
                   return (
                     <tr key={index}>
                       <td
@@ -496,36 +780,47 @@ export const AdminWalletManagementTable = (props) => {
                       >
                         {l.status}
                       </td>
-                      <td
-                        style={{
-                          backgroundColor: colorArr[index % 2],
-                          border: "none",
-                          color: "green",
-                        }}
-                      >
-                         {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+                     {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveWallet(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyWallet(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                      </td>
+
+                </td>)}
                     </tr>
                   );
                 })}
@@ -545,9 +840,10 @@ export const AdminWalletManagementTable = (props) => {
                 </th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+    {props.type=="history"?
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
                 {/* Add more headers as needed */}
               </tr>
@@ -555,11 +851,20 @@ export const AdminWalletManagementTable = (props) => {
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
-                    const date= new Date(l.createdAt);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
-                  return (
+   var completedAtDateTime
+             var date= new Date(l.createdAt);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+
+              if (l.completedAt){
+                 date= new Date(l.completedAt);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }                  return (
                     <tr key={index}>
                       <td
                         style={{
@@ -609,36 +914,47 @@ export const AdminWalletManagementTable = (props) => {
                       >
                         {l.status}
                       </td>
-                      <td
-                        style={{
-                          backgroundColor: colorArr[index % 2],
-                          border: "none",
-                          color: "green",
-                        }}
-                      >
-                        {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+                      {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveWallet(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyWallet(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                      </td>
+
+                </td>)}
                     </tr>
                   );
                 })}
@@ -658,9 +974,10 @@ export const AdminWalletManagementTable = (props) => {
                 </th>
                 <th style={{ backgroundColor: "transparent" }}>Amount</th>
                 <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
-
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
+    {props.type=="history"?
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
           <th style={{ backgroundColor: "transparent" }}>Action</th>}
                 {/* Add more headers as needed */}
               </tr>
@@ -668,11 +985,20 @@ export const AdminWalletManagementTable = (props) => {
             <tbody>
               {props.list &&
                 props.list.map((l, index) => {
-                    const date= new Date(l.createdAt);
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
-                  return (
+   var completedAtDateTime
+             var date= new Date(l.createdAt);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+
+              if (l.completedAt){
+                 date= new Date(l.completedAt);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }                  return (
                     <tr key={index}>
                       <td
                         style={{
@@ -722,36 +1048,47 @@ export const AdminWalletManagementTable = (props) => {
                       >
                         {l.status}
                       </td>
-                      <td
-                        style={{
-                          backgroundColor: colorArr[index % 2],
-                          border: "none",
-                          color: "green",
-                        }}
-                      >
-                         {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+                      {props.type=="history" ?
+              (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
+                <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveWallet(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyWallet(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                      </td>
+
+                </td>)}
                     </tr>
                   );
                 })}
@@ -760,12 +1097,60 @@ export const AdminWalletManagementTable = (props) => {
         )}
       </>
     </Table>
+    </>
   );
 };
 
 export const AdminRequestTable = (props) => {
   const colorArr = ["#ededed", "white"];
+   const [modal,setModal]=useState(false)
+  const [color,setColor]=useState('red')
+  const [error,setError]=useState('')
+
+
+    async function approveRequest(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+
+    try{
+     const response=await AxiosInstance.get(`request/acceptRequestTransaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+    async function denyRequest(transactId){
+    const accessToken=localStorage.getItem('accessToken')
+    try{
+     const response=await AxiosInstance.get(`request/denyRequestTransaction/${transactId}/`,{
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }})
+     setError(response.data.message)
+     setColor('green')
+     setModal(true)
+     props.toggleUpdater()
+    }
+    catch(error){
+      console.log(error)
+      setError(error.response.data.error)
+      setColor('red')
+      setModal(true)
+    }
+  }
+
   return (
+    <>
+       {modal && <ErrorModal show={true} color={color} error={error} closeModal={setModal}/>}
     <Table
       bordered
       hover
@@ -784,20 +1169,33 @@ export const AdminRequestTable = (props) => {
           <th style={{ backgroundColor: "transparent" }}>Request to Id</th>
           <th style={{ backgroundColor: "transparent" }}>Amount</th>
           <th style={{ backgroundColor: "transparent" }}>Status</th>
-   {props.type=="history"?
+    {props.type=="history"?
+  (<><th style={{ backgroundColor: "transparent" }}>Created At</th>
+          <th style={{ backgroundColor: "transparent" }}>Completed At At</th></>)
+          :
+          <th style={{ backgroundColor: "transparent" }}>Action</th>}
 
-          <th style={{ backgroundColor: "transparent" }}>Time</th>:
-          <th style={{ backgroundColor: "transparent" }}>Action</th>}        </tr>
+
+      </tr>
       </thead>
       <tbody>
         {props.list &&
           props.list.map((l, index) => {
-              const date= new Date(l.createdAt);
-              console.log(l)
-              const formattedDate = date.toLocaleDateString();
-              const formattedTime = date.toLocaleTimeString();
-              const formattedDateTime = `${formattedDate} ${formattedTime}`;
-            return (
+            console.log(l)
+ var completedAtDateTime
+             var date= new Date(l.createdAt);
+              const createdAtDate = date.toLocaleDateString();
+              const createdAtTime = date.toLocaleTimeString();
+              const createdAtDateTime = `${createdAtDate} ${createdAtTime}`;
+            console.log(l.id)
+              if (l.completedAt){
+                 date= new Date(l.completedAt);
+              const completedAtDate = date.toLocaleDateString();
+              const completedAtTime = date.toLocaleTimeString();
+               completedAtDateTime = `${completedAtDate} ${completedAtTime}`;
+              }else{
+                 completedAtDateTime="None"
+              }            return (
               <tr key={index}>
                 <td
                   style={{
@@ -847,35 +1245,48 @@ export const AdminRequestTable = (props) => {
                 >
                   {l.status}
                 </td>
+
+                {props.type=="history" ?
+                   (<>
+                 <td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
+                >{createdAtDateTime}
+                </td>
                 <td
                   style={{
                     backgroundColor: colorArr[index % 2],
                     border: "none",
                   }}
+                >{completedAtDateTime}
+                </td>
+                </>
+              ):
+              (<td
+                  style={{
+                    backgroundColor: colorArr[index % 2],
+                    border: "none",
+                  }}
                 >
-                   {props.type=="history" ?
-                  formattedDateTime
-                :
-            (l.status == "PROCESSING" ? (
+
                     <div style={{ display: "flex" }}>
                       <Button
                         style={{
                           backgroundColor: "#53449f",
                           marginRight: "5px",
                         }}
+                        onClick={()=>approveRequest(l.id)}
                       >
                         Accept
                       </Button>
-                      <Button style={{ backgroundColor: "#fb896b" }}>
+                      <Button onClick={()=>denyRequest(l.id)} style={{ backgroundColor: "#fb896b" }}>
                         Cancel
                       </Button>
                     </div>
-                  ) : (
-                    <Button style={{ backgroundColor: "#53449f" }}>
-                      Already Complete
-                    </Button>
-                  ))}
-                </td>
+
+                </td>)}
               </tr>
             );
           })}
@@ -885,6 +1296,7 @@ export const AdminRequestTable = (props) => {
         {/* Add more rows as needed */}
       </tbody>
     </Table>
+    </>
   );
 };
 

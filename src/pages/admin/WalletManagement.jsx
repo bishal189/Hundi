@@ -7,7 +7,11 @@ const WalletManagement = () => {
   const [buttonValue, setButtonValue] = useState("Send");
 
   const [walletHistory, setWalletHistory] = useState(null);
+const [updater,setUpdater]=useState(false) //for updating the values when approved or denied
 
+  function toggleUpdater(){
+    setUpdater(!updater)
+  }
   useEffect(() => {
     async function getWalletHistory() {
       const accessToken = localStorage.getItem("accessToken");
@@ -20,14 +24,15 @@ const WalletManagement = () => {
             },
           }
         );
-        console.log(response);
-        setWalletHistory(response.data.data);
+        const data=response.data.data.filter((datas)=>datas.status=='PENDING')
+
+        setWalletHistory(data);
       } catch (error) {
         console.log(error);
       }
     }
     getWalletHistory();
-  }, [buttonValue]);
+  }, [buttonValue,updater]);
   return (
     <>
       <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
@@ -91,6 +96,7 @@ const WalletManagement = () => {
         <AdminWalletManagementTable
           list={walletHistory}
           buttonValue={buttonValue}
+          toggleUpdater={toggleUpdater}
         />
       </div>
     </>

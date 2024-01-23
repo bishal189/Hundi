@@ -5,7 +5,11 @@ import AxiosInstance from "../../axiosInstance";
 
 export function PayManagement() {
   const [payHistory, setPayHistory] = useState(null);
+  const [updater,setUpdater]=useState(false) //for updating the values when approved or denied
 
+  function toggleUpdater(){
+    setUpdater(!updater)
+  }
   useEffect(() => {
     async function getPayHistory() {
       const accessToken = localStorage.getItem("accessToken");
@@ -18,21 +22,23 @@ export function PayManagement() {
             },
           }
         );
-        console.log(response);
-        setPayHistory(response.data.data);
+        const data=response.data.data.filter((datas)=>datas.status=='PROCESSING')
+
+        setPayHistory(data);
       } catch (error) {
         console.log(error);
       }
     }
     getPayHistory();
-  }, []);
+  }, [updater
+  ]);
 
   return (
     <>
       <div style={{ backgroundColor: "#dfe6ee" }} className="payContainer">
         <div style={{ fontSize: "1.5rem", padding: "20px" }}>Pay</div>
 
-        <AdminPayManagementTable list={payHistory} />
+        <AdminPayManagementTable toggleUpdater={toggleUpdater} list={payHistory} />
       </div>
     </>
   );
