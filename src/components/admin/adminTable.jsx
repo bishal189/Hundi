@@ -1505,7 +1505,7 @@ export const AdminAllCustomersTable = (props) => {
   );
 };
 
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 
 export const SettingsAdmin = ({ imagePreview }) => {
   const [localImagePreview, setLocalImagePreview] = useState(null);

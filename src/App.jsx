@@ -29,6 +29,7 @@ import TransferManagement from "./pages/admin/TransferManagement.jsx";
 
 import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
+import Settings from "./pages/admin/Settings";
 function App() {
   return (
     <Router>
@@ -190,6 +191,14 @@ function App() {
           element={
             <AdminLayout>
               <WalletManagement />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/settings"
+          element={
+            <AdminLayout>
+              <Settings />
             </AdminLayout>
           }
         />
