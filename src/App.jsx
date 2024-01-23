@@ -29,6 +29,7 @@ import TransferManagement from "./pages/admin/TransferManagement.jsx";
 import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 import AllCustomers from "./pages/admin/customer/AllCustomers.jsx";
+import CustomerDetails from "./pages/admin/customer/CustomerDetails.jsx";
 function App() {
   return (
     <Router>
@@ -199,6 +200,15 @@ function App() {
           element={
             <AdminLayout>
               <AllCustomers />
+            </AdminLayout>
+          }
+        />
+
+        <Route
+          path="/admin/customer/CustomerDetails"
+          element={
+            <AdminLayout>
+              <CustomerDetails />
             </AdminLayout>
           }
         />

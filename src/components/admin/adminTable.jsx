@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CiEdit, CiMail } from "react-icons/ci";
 
@@ -989,7 +989,14 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.name}{" "}
+                      <NavLink
+                        to="/admin/customer/CustomerDetails"
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      >
+                        {l.name}
+                      </NavLink>
                     </td>
 
                     <td
@@ -1007,7 +1014,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      ${l.userId} Usd
+                      {l.userId}
                     </td>
                     <td
                       style={{
@@ -1015,7 +1022,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.email}
+                      {l.emailId}
                     </td>
 
                     <td
@@ -1024,7 +1031,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.balance}
+                      ${l.balance} USD
                     </td>
 
                     <td
