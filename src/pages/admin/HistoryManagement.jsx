@@ -60,6 +60,7 @@ console.log(url)
         setTopupHistory(response.data.data)
       }else if (history=="Buy"){
        setBuyHistory(response.data.data)
+       console.log(response.data.data)
       }else if (history=='Request'){
         setRequestHistory(response.data.data)
       }

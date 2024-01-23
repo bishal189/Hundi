@@ -4,7 +4,11 @@ import AxiosInstance from "../../axiosInstance";
 import {useState,useEffect} from "react";
 export function BuyManagement(){
   const [BuyHistory, setBuyHistory] = useState(null);
+ const [updater,setUpdater]=useState(false) //for updating the values when approved or denied
 
+  function toggleUpdater(){
+    setUpdater(!updater)
+  }
   useEffect(()=>{
     async function getBuyHistory(){
       const accessToken=localStorage.getItem('accessToken');
@@ -22,7 +26,7 @@ export function BuyManagement(){
 
     }
   getBuyHistory()
-  },[])
+  },[updater])
     return(
         <>
         <div  style={{backgroundColor:'#dfe6ee'}}className="payContainer">
@@ -30,7 +34,7 @@ export function BuyManagement(){
           <div style={{fontSize:'1.5rem',padding:'20px'}}>Buy</div>
           <div style={{fontSize:'1.4rem',padding:'25px'}}>Add New Product</div>
           </div>
-            <AdminBuyManagementTable list={BuyHistory}/>
+            <AdminBuyManagementTable toggleUpdater={toggleUpdater} list={BuyHistory}/>
             </div>
         </>
     )
