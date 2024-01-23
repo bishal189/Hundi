@@ -6,7 +6,11 @@ import AxiosInstance from "../../axiosInstance";
 const TransferManagement = () => {
 
   const [transferHistory, setTransferHistory] = useState(null);
+const [updater,setUpdater]=useState(false) //for updating the values when approved or denied
 
+  function toggleUpdater(){
+    setUpdater(!updater)
+  }
   useEffect(()=>{
     async function getTransferHistory(){
       const accessToken=localStorage.getItem('accessToken');
@@ -25,7 +29,7 @@ const TransferManagement = () => {
 
     }
   getTransferHistory()
-  },[])
+  },[updater])
 
   return (
     <>
@@ -43,7 +47,7 @@ const TransferManagement = () => {
           <h4>Change currency rate</h4>
         </div>
 
-        {transferHistory && <AdminTransferManagementTable list={transferHistory} /> }
+        {transferHistory && <AdminTransferManagementTable toggleUpdater={toggleUpdater} list={transferHistory} /> }
       </div>
     </>
   );
