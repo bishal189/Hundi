@@ -771,11 +771,9 @@ export const AdminRequestTable = (props) => {
   );
 };
 
-
-
 import { useState, useEffect } from "react";
 
-const SettingsAdmin = ({ imagePreview }) => {
+export const SettingsAdmin = ({ imagePreview }) => {
   const [localImagePreview, setLocalImagePreview] = useState(null);
 
   useEffect(() => {
@@ -848,4 +846,42 @@ const SettingsAdmin = ({ imagePreview }) => {
   );
 };
 
-export default SettingsAdmin;
+export const ButtonSettings = (props) => {
+  return (
+    <>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+      <div style={{ marginLeft: "2rem",width:'155px' }}>
+        <h4 style={{ fontSize: "1rem" }}>{props.title}</h4>
+      </div>
+      <div style={{ marginLeft: "2rem", padding: "10px", width: "350px" }}>
+        <button
+          style={{
+            padding: "10px",
+            width: "150px",
+            height: "auto",
+            borderRadius: "3px",
+            border: "none",
+            outline: "none",
+            backgroundColor: `${props.enable}`,
+          }}
+        >
+          Enable
+        </button>
+        <button
+          style={{
+            padding: "10px",
+            width: "150px",
+            height: "auto",
+            borderRadius: "3px",
+            border: "none",
+            outline: "none",
+            backgroundColor: `${props.disable}`,
+          }}
+        >
+          Disable
+        </button>
+      </div>
+    </div>
+    </>
+  );
+};

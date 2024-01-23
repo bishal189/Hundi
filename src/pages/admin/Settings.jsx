@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import SettingAdmin from "../../components/admin/adminTable";
+import {SettingsAdmin,ButtonSettings} from "../../components/admin/adminTable";
+// import {ButtonSettings} from "../../components/admin/adminTable";
 
 const currencyOptions = [
   { value: "USD", label: "USD" },
@@ -43,7 +44,7 @@ const Settings = () => {
             alignItems: "center",
             padding: "10px",
             marginTop: "12px",
-            gap: "8px",
+            gap: "10px",
           }}
         >
           <button
@@ -90,99 +91,154 @@ const Settings = () => {
           <div
             style={{
               width: "46%",
-              border: "2px solid red",
+              // border: "2px solid red",
               borderRadius: "5px",
               backgroundColor: "white",
+              padding: "4px",
             }}
           >
-            <SettingAdmin imagePreview={imagePreview} />
-            <SettingAdmin imagePreview={imagePreview} />
-            <SettingAdmin imagePreview={imagePreview} />
-            <SettingAdmin imagePreview={imagePreview} />
+            <SettingsAdmin imagePreview={imagePreview} />
+            <SettingsAdmin imagePreview={imagePreview} />
+            <SettingsAdmin imagePreview={imagePreview} />
+            <SettingsAdmin imagePreview={imagePreview} />
 
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center',padding:'1rem' }}>
-              <div style={{marginLeft:'0.5rem',fontSize:'1rem',fontWeight:"500"}}>
-               <h4>Site currency</h4> 
-              </div>
-              <div style={{marginRight:"0.5rem"}}>
-              <Select
-                options={currencyOptions}
-                value={selectedCurrency}
-                onChange={handleCurrencyChange}
-                styles={{
-                  control: (provided) => ({
-                    ...provided,
-                    width: "200px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    boxShadow: "none",
-                  }),
-                  indicatorSeparator: () => ({}),
-                  dropdownIndicator: (provided) => ({
-                    ...provided,
-                    padding: "8px",
-                  }),
-                }}
-              />
-              </div>
-              
-            </div>
-
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center',padding:'1rem' }}>
-            <div style={{marginLeft:'0.5rem',fontSize:'1rem',fontWeight:"500"}}>
-               <h4>Site timezone</h4> 
-              </div>
-              <div style={{marginRight:"0.5rem"}}>
-              <Select
-                options={currencyOptions}
-                value={selectedCurrency}
-                onChange={handleCurrencyChange}
-                styles={{
-                  control: (provided) => ({
-                    ...provided,
-                    width: "200px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    boxShadow: "none",
-                  }),
-                  indicatorSeparator: () => ({}),
-                  dropdownIndicator: (provided) => ({
-                    ...provided,
-                    padding: "8px",
-                  }),
-                }}
-              />
-              </div>
-              
-            </div>
-
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center',padding:'1rem' }}>
-            <div style={{marginLeft:'0.5rem',fontSize:'1rem',fontWeight:"500"}}>
-               <h4>Site about</h4> 
-              </div>
-             <div style={{width:"200px"}}>
-              <textarea
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "1rem",
+              }}
+            >
+              <div
                 style={{
-                  width: "100%",
-                  height: "100px",
-                  borderRadius: "5px",
-                  border: "1px solid #ccc",
-                  boxShadow: "none",
+                  marginLeft: "0.5rem",
+                  fontSize: "1rem",
+                  fontWeight: "500",
                 }}
-              />
-             </div>
+              >
+                <h4>Site currency</h4>
+              </div>
+              <div style={{ marginRight: "0.5rem" }}>
+                <Select
+                  options={currencyOptions}
+                  value={selectedCurrency}
+                  onChange={handleCurrencyChange}
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      width: "200px",
+                      borderRadius: "5px",
+                      border: "1px solid #ccc",
+                      boxShadow: "none",
+                    }),
+                    indicatorSeparator: () => ({}),
+                    dropdownIndicator: (provided) => ({
+                      ...provided,
+                      padding: "8px",
+                    }),
+                  }}
+                />
+              </div>
             </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "1rem",
+              }}
+            >
+              <div
+                style={{
+                  marginLeft: "0.5rem",
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                }}
+              >
+                <h4>Site timezone</h4>
+              </div>
+              <div style={{ marginRight: "0.5rem" }}>
+                <Select
+                  options={currencyOptions}
+                  value={selectedCurrency}
+                  onChange={handleCurrencyChange}
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      width: "200px",
+                      borderRadius: "5px",
+                      border: "1px solid #ccc",
+                      boxShadow: "none",
+                    }),
+                    indicatorSeparator: () => ({}),
+                    dropdownIndicator: (provided) => ({
+                      ...provided,
+                      padding: "8px",
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "1rem",
+              }}
+            >
+              <div
+                style={{
+                  marginLeft: "0.5rem",
+                  fontSize: "1rem",
+                  fontWeight: "500",
+                }}
+              >
+                <h4>Site about</h4>
+              </div>
+              <div style={{ width: "200px" }}>
+                <textarea
+                  style={{
+                    width: "100%",
+                    height: "100px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                    boxShadow: "none",
+                  }}
+                />
+              </div>
+            </div>
+          
           </div>
 
           {/* for right  */}
+          
           <div
             style={{
               width: "46%",
-              border: "2px solid black",
+              // border: "2px solid black",
               borderRadius: "5px",
+            
+              backgroundColor: "white",
+              padding:'20px'
             }}
           >
-            Right container
+            
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767" title="Email verfication" />
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication " />
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           <ButtonSettings enable="#b5b9d5" disable="#ff6767"  title=" KYC Verfication "/>
+           
           </div>
         </div>
       </div>
