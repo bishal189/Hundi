@@ -1504,3 +1504,118 @@ export const AdminAllCustomersTable = (props) => {
     </Table>
   );
 };
+
+import { useState, useEffect } from "react";
+
+export const SettingsAdmin = ({ imagePreview }) => {
+  const [localImagePreview, setLocalImagePreview] = useState(null);
+
+  useEffect(() => {
+    // Update localImagePreview when the imagePreview prop changes
+    setLocalImagePreview(imagePreview);
+  }, [imagePreview]);
+
+  const openFileInput = () => {
+    document.getElementById("uploadInput").click();
+  };
+
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            marginLeft: "1rem",
+            padding: "10px",
+            fontSize: "1.5rem",
+            fontWeight: "500",
+          }}
+        >
+          {" "}
+          Site logo
+        </div>
+        <div
+          style={{
+            width: "230px",
+            height: "92px",
+            borderRadius: "10px",
+            cursor: "pointer",
+            overflow: "hidden",
+            padding: "10px",
+          }}
+          onClick={openFileInput}
+        >
+          {localImagePreview ? (
+            <img
+              src={localImagePreview}
+              alt="Uploaded Logo"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                backgroundColor: "#ddd",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              Click to upload image
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const ButtonSettings = (props) => {
+  return (
+    <>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+      <div style={{ marginLeft: "2rem",width:'155px' }}>
+        <h4 style={{ fontSize: "1rem" }}>{props.title}</h4>
+      </div>
+      <div style={{ marginLeft: "2rem", padding: "10px", width: "350px" }}>
+        <button
+          style={{
+            padding: "10px",
+            width: "150px",
+            height: "auto",
+            borderRadius: "3px",
+            border: "none",
+            outline: "none",
+            backgroundColor: `${props.enable}`,
+          }}
+        >
+          Enable
+        </button>
+        <button
+          style={{
+            padding: "10px",
+            width: "150px",
+            height: "auto",
+            borderRadius: "3px",
+            border: "none",
+            outline: "none",
+            backgroundColor: `${props.disable}`,
+          }}
+        >
+          Disable
+        </button>
+      </div>
+    </div>
+    </>
+  );
+};

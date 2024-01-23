@@ -14,6 +14,7 @@ import { UserPayModel } from "./pages/user/userpaymodel";
 import { UserProfile } from "./pages/user/userProfile";
 import { UserRequest } from "./pages/user/userRequest";
 import { UserWallet } from "./pages/user/userWallet";
+
 import {
   UserSend,
   UserTopUp,
@@ -28,7 +29,6 @@ import TransferManagement from "./pages/admin/TransferManagement.jsx";
 
 import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
-import AllCustomers from "./pages/admin/customer/AllCustomers.jsx";
 function App() {
   return (
     <Router>
@@ -190,15 +190,6 @@ function App() {
           element={
             <AdminLayout>
               <WalletManagement />
-            </AdminLayout>
-          }
-        />
-
-        <Route
-          path="/admin/customer/AllCustomers"
-          element={
-            <AdminLayout>
-              <AllCustomers />
             </AdminLayout>
           }
         />
