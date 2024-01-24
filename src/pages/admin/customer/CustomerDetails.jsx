@@ -9,10 +9,13 @@ const SwitchButtons = ({
   rightButtonLable,
   active,
 }) => {
+  const [rightButtonSelected, setRightButtonSelected] = useState(!active);
+  const [leftButtonSelected, setLeftButtonSelected] = useState(active);
+
   return (
     <div>
       <p style={{ fontSize: ".9rem" }}>{label}</p>
-      {active ? (
+      {leftButtonSelected && (
         <div
           className="d-flex rounded my-1"
           style={{ width: "100%", overflow: "hidden", height: "30px" }}
@@ -25,14 +28,26 @@ const SwitchButtons = ({
               color: "white",
               fontSize: ".9rem",
             }}
+            onClick={(e) => {
+              setLeftButtonSelected(true);
+              setRightButtonSelected(false);
+            }}
           >
             {leftButtonLable}
           </button>
-          <button style={{ width: "50%", border: "none", fontSize: ".9rem" }}>
+          <button
+            style={{ width: "50%", border: "none", fontSize: ".9rem" }}
+            onClick={(e) => {
+              setLeftButtonSelected(false);
+              setRightButtonSelected(true);
+            }}
+          >
             {rightButtonLable}
           </button>
         </div>
-      ) : (
+      )}
+
+      {rightButtonSelected && (
         <div
           className="d-flex rounded my-1"
           style={{ width: "100%", overflow: "hidden", height: "30px" }}
@@ -42,6 +57,10 @@ const SwitchButtons = ({
               width: "50%",
               border: "none",
               fontSize: ".9rem",
+            }}
+            onClick={(e) => {
+              setLeftButtonSelected(true);
+              setRightButtonSelected(false);
             }}
           >
             {leftButtonLable}
@@ -53,6 +72,10 @@ const SwitchButtons = ({
               color: "white",
               background: "#FF5151",
               fontSize: ".9rem",
+            }}
+            onClick={(e) => {
+              setLeftButtonSelected(false);
+              setRightButtonSelected(true);
             }}
           >
             {rightButtonLable}
