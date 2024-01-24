@@ -25,6 +25,7 @@ const [updater,setUpdater]=useState(false) //for updating the values when approv
      setTransferHistory(data)
   }catch(error){
     console.log(error)
+    alert(error.response.data.error)
   }
 
     }

@@ -1,76 +1,33 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { AdminAllCustomersTable } from "../../../components/admin/adminTable";
-
+import AxiosInstance from '../../../axiosInstance'
+import {useEffect,useState} from 'react'
 const AllCustomers = () => {
-  const list = [
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-    {
-      avatar: "http://localhost:44318/resources/userImg",
-      name: "Martin James",
-      role: "User",
-      userId: "980000",
-      emaiId: "myname@gmail.com",
-      balance: "4356",
-      profit: "8",
-      kyc: "unverified",
-      status: "Action",
-    },
-  ];
+  const [customerList,setCustomerList]=useState([])
+
+  useEffect(()=>{
+   async function getCustomerList(){
+     try{
+     const accessToken=localStorage.getItem('accessToken')
+
+    const response=await AxiosInstance.get('auth/getallusers',{
+      headers:{
+        Authorization:`Bearer ${accessToken}`
+      }
+    })
+   console.log(response)
+   setCustomerList(response.data.data)
+
+    }catch(error){
+      console.log(error)
+      if (error.response.data){
+        alert(error.response.data.error)
+      }
+    }
+  }
+  getCustomerList()
+  },[])
   return (
     <div style={{ backgroundColor: "#dfe6ee" }} className="transferContainer">
       <div
@@ -142,7 +99,7 @@ const AllCustomers = () => {
           </Button>
         </div>
       </div>
-      <AdminAllCustomersTable list={list} />
+      <AdminAllCustomersTable list={customerList} />
     </div>
   );
 };
