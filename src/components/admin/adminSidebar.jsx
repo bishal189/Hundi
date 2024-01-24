@@ -96,14 +96,14 @@ export const AdminCommonSideBar = (props) => {
           </li>
 
           <li className="li-icons">
-            <NavLink
-              to="/admin/customer/allcustomer"
+            <a
+              style={{color:'white'}}
               onClick={() => customerShowToggler()}
             >
               <BiTransfer style={{ fontSize: "1.3rem" }} />
               &nbsp;&nbsp;&nbsp;Customers
               <IoMdArrowDropdown style={{ fontSize: "2rem" }} />
-            </NavLink>
+            </a>
           </li>
 
           {customerShow && (

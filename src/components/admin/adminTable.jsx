@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, Button, NavLink } from "react-bootstrap";
 import { useState } from "react";
-
+import {Link  } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CiEdit, CiMail } from "react-icons/ci";
 import AxiosInstance from "../../axiosInstance";
@@ -1497,14 +1497,16 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      <NavLink
-                        to="/admin/customer/customerdetails"
+                      <Link
+                        to={`/admin/customer/customerdetails/${l.userId}`}
                         style={{
                           cursor: "pointer",
+                        color:'black',
+                        textDecoration:'none',
                         }}
                       >
                         {l.name}
-                      </NavLink>
+                      </Link>
                     </td>
 
                     <td
