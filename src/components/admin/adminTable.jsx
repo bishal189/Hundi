@@ -1498,7 +1498,7 @@ export const AdminAllCustomersTable = (props) => {
                       }}
                     >
                       <NavLink
-                        to="/admin/customer/CustomerDetails"
+                        to="/admin/customer/customerdetails"
                         style={{
                           cursor: "pointer",
                         }}

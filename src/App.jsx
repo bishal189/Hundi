@@ -207,6 +207,15 @@ function App() {
         />
 
         <Route
+          path="/admin/customer/AllCustomer"
+          element={
+            <AdminLayout>
+              <AllCustomers />
+            </AdminLayout>
+          }
+        />
+
+        <Route
           path="/admin/customer/CustomerDetails"
           element={
             <AdminLayout>
