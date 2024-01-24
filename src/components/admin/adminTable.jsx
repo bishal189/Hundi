@@ -1501,6 +1501,8 @@ export const AdminAllCustomersTable = (props) => {
                         to={`/admin/customer/customerdetails/${l.userId}`}
                         style={{
                           cursor: "pointer",
+                        color:'black',
+                        textDecoration:'none',
                         }}
                       >
                         {l.name}
