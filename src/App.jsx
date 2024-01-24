@@ -30,6 +30,7 @@ import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 import AllCustomers from "./pages/admin/customer/AllCustomers.jsx";
 import ClientList from "./pages/agent/clientList.jsx";
+
 function App() {
   return (
     <Router>
@@ -203,7 +204,8 @@ function App() {
             </AdminLayout>
           }
         />
-         <Route path="/client-list" element={<ClientList />} />
+        <Route path="/client-list" element={<ClientList />} />
+      
       </Routes>
     </Router>
   );

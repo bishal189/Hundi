@@ -97,7 +97,7 @@ export const AdminCommonSideBar = (props) => {
 
           <li className="li-icons">
             <NavLink
-              to="/admin/customer/AllCustomers"
+              to="/admin/customer/allcustomer"
               onClick={() => customerShowToggler()}
             >
               <BiTransfer style={{ fontSize: "1.3rem" }} />
@@ -110,7 +110,7 @@ export const AdminCommonSideBar = (props) => {
             <>
               <li className="li-icons li-icons-inner customer">
                 <NavLink
-                  to="/admin/customer/AllCustomers"
+                  to="/admin/customer/allcustomer"
                   onClick={() => {
                     props.setShowSidebar && props.setShowSidebar(false);
                   }}
