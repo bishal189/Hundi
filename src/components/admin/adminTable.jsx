@@ -1726,10 +1726,11 @@ export const ButtonSettings = (props) => {
           alignItems: "center",
         }}
       >
-        <div style={{ marginLeft: "2rem", width: "155px" }}>
-          <h4 style={{ fontSize: "1rem" }}>{props.title}</h4>
+        <div style={{ marginLeft: "0rem"}}>
+          <h4 style={{ fontSize: "1rem" ,width:"135px"}}>{props.title}</h4>
         </div>
-        <div style={{ marginLeft: "2rem", padding: "10px", width: "350px" }}>
+        <div style={{ marginLeft: "1rem", padding: "10px", width: "285px" ,display:'flex',
+}}>
           <button
             style={{
               padding: "10px",
