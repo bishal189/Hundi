@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { CiMail, CiWallet } from "react-icons/ci";
 import { FcSimCardChip } from "react-icons/fc";
@@ -64,13 +64,18 @@ const SwitchButtons = ({
 };
 
 const InputComponent = ({ legend, text = "", type = "text" }) => {
+  const [input, setInput] = useState(legend);
+  const updateInput = (e) => {
+    setInput(e.value);
+  };
   return (
     <div className="container" style={{ width: "100%" }}>
       <p style={{ fontSize: ".9rem" }}>{legend}</p>
       <input
+        onChange={updateInput}
         className="rounded-1 border-bottom p-2 my-1"
         type={type}
-        value={text}
+        value={input}
         style={{
           border: "none",
           background: "#e7e7e7",
