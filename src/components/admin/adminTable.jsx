@@ -1456,7 +1456,7 @@ export const AdminAllCustomersTable = (props) => {
               <th style={{ backgroundColor: "transparent" }}>Email ID</th>
               <th style={{ backgroundColor: "transparent" }}>Balance</th>
 
-              <th style={{ backgroundColor: "transparent" }}>Profile</th>
+              <th style={{ backgroundColor: "transparent" }}>Profit</th>
               <th style={{ backgroundColor: "transparent" }}>KYC</th>
 
               <th style={{ backgroundColor: "transparent" }}>Status</th>
@@ -1498,7 +1498,7 @@ export const AdminAllCustomersTable = (props) => {
                       }}
                     >
                       <Link
-                        to={`/admin/customer/customerdetails/${l.userId}`}
+                        to={`/admin/customer/customerdetails/${l.id}`}
                         style={{
                           cursor: "pointer",
                         color:'black',
@@ -1515,7 +1515,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.role}{" "}
+                    {l.is_admin?"Admin":"User"}
                     </td>
 
                     <td
@@ -1524,7 +1524,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.userId}
+                      {l.id}
                     </td>
                     <td
                       style={{
@@ -1532,7 +1532,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.emailId}
+                      {l.email}
                     </td>
 
                     <td
@@ -1550,7 +1550,7 @@ export const AdminAllCustomersTable = (props) => {
                         border: "none",
                       }}
                     >
-                      {l.profit}
+                     $0.00 USD
                     </td>
 
                     <td
@@ -1570,7 +1570,7 @@ export const AdminAllCustomersTable = (props) => {
                           alignItems: "center",
                         }}
                       >
-                        {l.kyc}
+                        Verified
                       </div>
                     </td>
 
@@ -1591,7 +1591,7 @@ export const AdminAllCustomersTable = (props) => {
                           alignItems: "center",
                         }}
                       >
-                        {l.status}
+                      {l.is_active?"Active":"Disabled"}
                       </div>
                     </td>
 

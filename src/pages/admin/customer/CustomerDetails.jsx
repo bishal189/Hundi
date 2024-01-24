@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { CiMail, CiWallet } from "react-icons/ci";
 import { FcSimCardChip } from "react-icons/fc";
+
+import AxiosInstance from '../../../axiosInstance'
+import {useParams} from 'react-router-dom'
 
 const SwitchButtons = ({
   label,
@@ -86,11 +89,12 @@ const SwitchButtons = ({
   );
 };
 
-const InputComponent = ({ legend, text = "", type = "text" }) => {
-  const [input, setInput] = useState(legend);
+const InputComponent = ({ legend, text , type = "text" }) => {
+  const [input, setInput] = useState(text);
   const updateInput = (e) => {
     setInput(e.value);
   };
+  console.log(legend,text)
   return (
     <div className="container" style={{ width: "100%" }}>
       <p style={{ fontSize: ".9rem" }}>{legend}</p>
@@ -112,8 +116,49 @@ const InputComponent = ({ legend, text = "", type = "text" }) => {
 };
 
 const CustomerDetails = (props) => {
+  const {customerId}=useParams();
+  const [customerData,setCustomerData]=useState(null)
+  useEffect(()=>{
+   async function getCustomer(){
+     try{
+     const accessToken=localStorage.getItem('accessToken')
+
+    const response=await AxiosInstance.get(`auth/getuser/${customerId}`,{
+      headers:{
+        Authorization:`Bearer ${accessToken}`
+      }
+    })
+   console.log(response)
+   setCustomerData(response.data.data)
+
+    }catch(error){
+      console.log(error)
+      if (error.response.data){
+        alert(error.response.data.error)
+      }
+    }
+  }
+  getCustomer()
+  },[])
+const [dateJoined,setDateJoined]=useState(null)
+   useEffect(() => {
+    // Function to convert the date string to the "YYYY-MM-DD" format
+    const convertDate = (rawDate) => {
+      const parsedDate = new Date(rawDate);
+      const year = parsedDate.getFullYear();
+      const month = (parsedDate.getMonth() + 1).toString().padStart(2, '0');
+      const day = parsedDate.getDate().toString().padStart(2, '0');
+      return `${month}/${day}/${year}`;
+    };
+  if (customerData){
+    // Set the formatted date when the component mounts
+    setDateJoined(convertDate(customerData.date_joined));}
+  }, [customerData]);
+useEffect(()=>{console.log(dateJoined)})
+
+
   return (
-    <div className="container" style={{ background: "#e7e7e7" }}>
+  customerData && (  <div className="container" style={{ background: "#e7e7e7" }}>
       <div className="row">
         <div className="col d-flex justify-content-between md-2 mt-4 mx-4">
           <h4>Details of Aurthor Noah</h4>
@@ -146,13 +191,13 @@ const CustomerDetails = (props) => {
             />
           </div>
           <h6 className="m-1" style={{ fontSize: ".9rem" }}>
-            Author Noah
+          {customerData.name}
           </h6>
           <p className="m-0" style={{ fontSize: ".9rem" }}>
-            America
+          {customerData.country}
           </p>
           <p className="m-0 p-0" style={{ fontSize: ".7rem" }}>
-            User
+            {customerData.is_admin?"Admin":"User"}
           </p>
 
           <div className="d-flex align-items-center my-2">
@@ -196,7 +241,7 @@ const CustomerDetails = (props) => {
                   padding: 0,
                 }}
               >
-                4356
+              {customerData.balance}
               </p>
             </div>
           </div>
@@ -206,7 +251,7 @@ const CustomerDetails = (props) => {
               label="Account status"
               leftButtonLable="Active"
               rightButtonLable="Disabled"
-              active={true}
+              active={customerData.is_active}
             />
             <SwitchButtons
               label="Email Verification"
@@ -304,24 +349,19 @@ const CustomerDetails = (props) => {
           <div className="container my-4 p-0">
             <h5>Basic Info</h5>
             <div className="d-flex justify-content-between my-1">
-              <InputComponent legend="First name" text="Arthur" />
-              <InputComponent legend="Last name" text="Noha" />
-              <InputComponent legend="Country" text="America" />
+              <InputComponent legend="Full name" text={customerData.name} />
+              <InputComponent legend="Country" text={customerData.country} />
+            </div>
+
+            <div className="d-flex justify-content-between my-1">
+              <InputComponent legend="Gender" text={customerData.gender}/>
+              <InputComponent legend="Date of birth" text={customerData.date_of_birth} type="date"/>
+              <InputComponent legend="Citry" text={customerData.city} />
             </div>
             <div className="d-flex justify-content-between my-1">
-              <InputComponent legend="Phone" text="+918923723" />
-              <InputComponent legend="User ID" text="87456" />
-              <InputComponent legend="Email" text="exmple@gmail.com" />
-            </div>
-            <div className="d-flex justify-content-between my-1">
-              <InputComponent legend="Gender" text="Male" />
-              <InputComponent legend="Date of birth" text="14 july 1980" />
-              <InputComponent legend="Citry" text="California" />
-            </div>
-            <div className="d-flex justify-content-between my-1">
-              <InputComponent legend="Zip code" text="8767" />
-              <InputComponent legend="Address" text="magalbare 7" />
-              <InputComponent legend="Joing date" text="2 aug, 2002, 14:20" />
+              <InputComponent legend="Zip code" text={customerData.zip_code} />
+              <InputComponent legend="Address" text={customerData.address} />
+            {dateJoined &&  <InputComponent legend="Joing date" text={dateJoined} />}
             </div>
             <div className="container d-flex justify-content-center">
               <button
@@ -374,7 +414,7 @@ const CustomerDetails = (props) => {
                     fontSize: ".9rem",
                   }}
                 >
-                  Remove Aurthor Noha
+                  Remove {customerData.name}
                 </button>
               </div>
             </div>
@@ -382,6 +422,7 @@ const CustomerDetails = (props) => {
         </div>
       </div>
     </div>
+ )
   );
 };
 
