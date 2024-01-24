@@ -1468,7 +1468,6 @@ export const AdminAllCustomersTable = (props) => {
           <tbody>
             {props.list &&
               props.list.map((l, index) => {
-                console.log(l)
                 return (
                   <tr key={index}>
                     <td
@@ -1499,7 +1498,7 @@ export const AdminAllCustomersTable = (props) => {
                       }}
                     >
                       <Link
-                        to={`/admin/customer/customerdetails/${l.userId}`}
+                        to={`/admin/customer/customerdetails/${l.id}`}
                         style={{
                           cursor: "pointer",
                         color:'black',
