@@ -31,6 +31,8 @@ export function BuyManagement(){
           <div style={{fontSize:'1.4rem',padding:'25px'}}>Add New Product</div>
           </div>
             <AdminBuyManagementTable list={BuyHistory}/>
+            <Button variant="primary">Search</Button>
+
             </div>
         </>
     )
