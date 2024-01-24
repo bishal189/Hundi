@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { CiMail, CiWallet } from "react-icons/ci";
 import { FcSimCardChip } from "react-icons/fc";
@@ -9,10 +9,13 @@ const SwitchButtons = ({
   rightButtonLable,
   active,
 }) => {
+  const [rightButtonSelected, setRightButtonSelected] = useState(!active);
+  const [leftButtonSelected, setLeftButtonSelected] = useState(active);
+
   return (
     <div>
       <p style={{ fontSize: ".9rem" }}>{label}</p>
-      {active ? (
+      {leftButtonSelected && (
         <div
           className="d-flex rounded my-1"
           style={{ width: "100%", overflow: "hidden", height: "30px" }}
@@ -25,14 +28,26 @@ const SwitchButtons = ({
               color: "white",
               fontSize: ".9rem",
             }}
+            onClick={(e) => {
+              setLeftButtonSelected(true);
+              setRightButtonSelected(false);
+            }}
           >
             {leftButtonLable}
           </button>
-          <button style={{ width: "50%", border: "none", fontSize: ".9rem" }}>
+          <button
+            style={{ width: "50%", border: "none", fontSize: ".9rem" }}
+            onClick={(e) => {
+              setLeftButtonSelected(false);
+              setRightButtonSelected(true);
+            }}
+          >
             {rightButtonLable}
           </button>
         </div>
-      ) : (
+      )}
+
+      {rightButtonSelected && (
         <div
           className="d-flex rounded my-1"
           style={{ width: "100%", overflow: "hidden", height: "30px" }}
@@ -42,6 +57,10 @@ const SwitchButtons = ({
               width: "50%",
               border: "none",
               fontSize: ".9rem",
+            }}
+            onClick={(e) => {
+              setLeftButtonSelected(true);
+              setRightButtonSelected(false);
             }}
           >
             {leftButtonLable}
@@ -54,6 +73,10 @@ const SwitchButtons = ({
               background: "#FF5151",
               fontSize: ".9rem",
             }}
+            onClick={(e) => {
+              setLeftButtonSelected(false);
+              setRightButtonSelected(true);
+            }}
           >
             {rightButtonLable}
           </button>
@@ -64,13 +87,18 @@ const SwitchButtons = ({
 };
 
 const InputComponent = ({ legend, text = "", type = "text" }) => {
+  const [input, setInput] = useState(legend);
+  const updateInput = (e) => {
+    setInput(e.value);
+  };
   return (
     <div className="container" style={{ width: "100%" }}>
       <p style={{ fontSize: ".9rem" }}>{legend}</p>
       <input
+        onChange={updateInput}
         className="rounded-1 border-bottom p-2 my-1"
         type={type}
-        value={text}
+        value={input}
         style={{
           border: "none",
           background: "#e7e7e7",
