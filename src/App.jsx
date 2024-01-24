@@ -216,7 +216,7 @@ function App() {
         />
 
         <Route
-          path="/admin/customer/CustomerDetails"
+          path="/admin/customer/CustomerDetails/:customerId"
           element={
             <AdminLayout>
               <CustomerDetails />
