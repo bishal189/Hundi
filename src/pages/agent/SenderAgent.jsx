@@ -4,6 +4,7 @@ import { Table, Button } from "react-bootstrap";
 import AxiosInstance from "../../axiosInstance";
 import { HomeHeader } from "../../components/user/homeheader";
 import ClientSearchBar from "./ClientSearchbar";
+import TransactionIdSearchBar from "./TransactionIdSearchbar";
 
 const SenderAgent = () => {
   const [senderAgent, setSenderAgent] = useState([]);
@@ -42,7 +43,7 @@ const SenderAgent = () => {
           <div style={{ fontSize: "1.5rem", padding: "20px" }}>Sender Agent</div>
 
           <div style={{ fontSize: "1.4rem", padding: "25px" }}>
-            <ClientSearchBar onSearch={handleSearch} />
+            <TransactionIdSearchBar onSearch={handleSearch} />
           </div>
         </div>
         <SenderAgentTable list={filteredSenderAgent.length > 0 ? filteredSenderAgent : senderAgent} />

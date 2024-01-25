@@ -34,6 +34,7 @@ import SenderAgent from "./pages/agent/SenderAgent.jsx";
 
 
 
+
 function App() {
   return (
     <Router>
@@ -208,7 +209,8 @@ function App() {
           }
         />
         <Route path="/client-list" element={<ClientList />} />
-        <Route path="/sender-agent" element={<SenderAgent />} />
+        <Route path="/sender-agent" element={<SenderAgent/>} />
+        
         
       </Routes>
     </Router>
