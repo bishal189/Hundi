@@ -29,7 +29,7 @@ import TransferManagement from "./pages/admin/TransferManagement.jsx";
 import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 import AllCustomers from "./pages/admin/customer/AllCustomers.jsx";
-import ClientList from "./pages/agent/clientList.jsx";
+import ClientList from "./pages/agent/ClientList.jsx";
 
 
 
