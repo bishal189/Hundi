@@ -30,6 +30,7 @@ import WalletManagement from "./pages/admin/WalletManagement.jsx";
 import { RequestManagement } from "./pages/admin/request.jsx";
 import AllCustomers from "./pages/admin/customer/AllCustomers.jsx";
 import ClientList from "./pages/agent/ClientList.jsx";
+import SenderAgent from "./pages/agent/SenderAgent.jsx";
 
 
 
@@ -207,6 +208,7 @@ function App() {
           }
         />
         <Route path="/client-list" element={<ClientList />} />
+        <Route path="/sender-agent" element={<SenderAgent />} />
         
       </Routes>
     </Router>
